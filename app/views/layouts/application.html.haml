@@ -1,0 +1,29 @@
+!!! Strict
+%html(xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en")
+  %head
+    %meta(http-equiv="Content-type" content="text/html; charset=utf-8")
+    %title= content_for?(:title) ? content_for(:title) : t(:site_name)
+    = stylesheet_link_tag :all
+    = yield :stylesheets if content_for?(:stylesheets)
+  %body
+    #what_i_do
+      .wrapper
+        %h2== What I Do That Makes Me Stand Out...
+
+    #content
+      .wrapper
+        .container
+          #portfolio.clearfix
+            #about_me
+              %p
+                I am a 1 man show, I am a freelancer, and I am what you need for your website.
+            #work
+              = yield
+          #faq.clearfix
+        #footer
+          %p
+            == <a href="#">TOS</a> &bull; <a href="#">FAQ</a> &bull; <a href="#">Order</a> &bull; <a href="#">Clients</a> &bull; <a href="#">Contact</a>
+          == Copyright &copy; #{Time.now.year} <a href="./">Garrett Bjerkhoel</a>. All Rights Reserved.
+            
+    = javascript_include_tag "jquery.1.4.min"
+    = yield :javascript if content_for?(:javascript)

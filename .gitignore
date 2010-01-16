@@ -1,0 +1,14 @@
+db/*.sqlite3
+log/*.log
+tmp/**/*
+*.tmproj
+
+# Generate your own
+doc/*
+
+# Can bundle your own gems
+vendor/gems/**/*
+bin/*
+
+# Hacker
+config/database.yml
