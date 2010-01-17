@@ -12,6 +12,7 @@ bin/*
 
 # Hacker
 config/database.yml
+config/synch_s3_asset_host.yml
 
 # Get your own ;)
 config/s3.yml

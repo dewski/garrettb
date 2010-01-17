@@ -34,6 +34,10 @@ namespace :deploy do
   task :move_in_database_yml, :roles => :app do
     run "cp #{deploy_to}/shared/system/database.yml #{current_path}/config/"
   end
+  
+  task :move_in_asset_info, :roles => :app do
+    run "cp #{deploy_to}/shared/system/synch_s3_asset_host.yml #{current_path}/config/"
+  end
 end
 
 namespace :maintenance do
@@ -53,4 +57,4 @@ end
 ########################
 # Migrate the DB
 after "deploy", "deploy:migrate", "deploy:cleanup"
-after "deploy:symlink", "s3_asset_host:synch_public", "deploy:move_in_database_yml"
+after "deploy:symlink", "deploy:move_in_asset_info", "s3_asset_host:synch_public", "deploy:move_in_database_yml"
