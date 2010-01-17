@@ -1,5 +1,5 @@
 - title "Editing #{@item.name}"
-- form_for @item, :url => admin_item_path(@item) do |f|
+- form_for @item, :url => admin_item_path(@item), :html => { :multipart => true } do |f|
   = f.error_messages
   %dl
     %dd= f.label :name
@@ -7,5 +7,7 @@
     
     %dd= f.label :description
     %dt= f.text_area :description
+    
+  %h2= link_to "Images", admin_item_images_path(@item)
     
   = f.submit "Save"
