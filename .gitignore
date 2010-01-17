@@ -12,3 +12,6 @@ bin/*
 
 # Hacker
 config/database.yml
+
+# Get your own ;)
+config/s3.yml

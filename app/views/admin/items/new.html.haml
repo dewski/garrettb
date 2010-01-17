@@ -1,0 +1,11 @@
+- title "New Item"
+- form_for @item, :url => admin_items_path do |f|
+  = f.error_messages
+  %dl
+    %dd= f.label :name
+    %dt= f.text_field :name
+    
+    %dd= f.label :description
+    %dt= f.text_area :description
+    
+  = f.submit "Save"

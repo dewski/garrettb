@@ -1,0 +1,5 @@
+- title @item.name
+%h1= @item.name
+%p= @item.description
+
+= link_to "Edit #{@item.name}", edit_admin_item_path(@item)

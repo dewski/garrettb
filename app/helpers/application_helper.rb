@@ -22,7 +22,7 @@ module ApplicationHelper
   
   def title(page_title)
     content_for(:title) {
-      "#{page_title} &bull; #{t(:site_name)}"
+      "#{page_title} &bull; #{t(:site_name)}".html_safe!
     }
   end
   

@@ -16,4 +16,6 @@ GB::Application.configure do
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
+  
+  Paperclip.options[:command_path] = "/usr/local/bin"
 end
