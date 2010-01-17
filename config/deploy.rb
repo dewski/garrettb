@@ -31,6 +31,11 @@ namespace :deploy do
     run "cd #{release_path} && whenever --update-crontab #{application}"
   end
   
+  desc "Run gem bundle"
+  task :bundle, :roles => :db do
+    run "cd #{current_path} && gem bundle"
+  end
+  
   task :move_in_database_yml, :roles => :app do
     run "cp #{deploy_to}/shared/system/database.yml #{current_path}/config/"
   end
@@ -57,4 +62,4 @@ end
 ########################
 # Migrate the DB
 after "deploy", "deploy:migrate", "deploy:cleanup"
-after "deploy:symlink", "deploy:move_in_asset_info", "s3_asset_host:synch_public", "deploy:move_in_database_yml"
+after "deploy:symlink", "deploy:move_in_asset_info", "s3_asset_host:synch_public", "deploy:move_in_database_yml", "deploy:bundle"
