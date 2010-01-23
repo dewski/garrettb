@@ -9,15 +9,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100116234752) do
+ActiveRecord::Schema.define(:version => 20100122071523) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories", ["slug"], :name => "index_categories_on_slug"
+
+  create_table "comments", :force => true do |t|
+    t.integer  "post_id",    :null => false
+    t.string   "email",      :null => false
+    t.string   "name"
+    t.string   "body",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
 
   create_table "images", :force => true do |t|
     t.integer  "item_id"
     t.string   "file_file_name"
     t.integer  "file_file_size"
-    t.string   "file_file_type"
+    t.string   "file_content_type"
     t.datetime "file_updated_at"
-    t.integer  "position",        :default => 0
+    t.integer  "position",          :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,7 +50,22 @@ ActiveRecord::Schema.define(:version => 20100116234752) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "images_count", :default => 0
   end
+
+  create_table "posts", :force => true do |t|
+    t.integer  "category_id",                     :null => false
+    t.string   "title",                           :null => false
+    t.text     "body"
+    t.boolean  "published",    :default => false
+    t.datetime "published_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
+  end
+
+  add_index "posts", ["category_id"], :name => "index_posts_on_category_id"
+  add_index "posts", ["slug"], :name => "index_posts_on_slug"
 
   create_table "users", :force => true do |t|
     t.datetime "created_at"

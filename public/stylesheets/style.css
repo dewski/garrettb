@@ -1,58 +1,10 @@
-/**********************************************/
-/*  Garrett Bjerkhoel *************************/
-/*  @url http://www.garrettbjerkhoel.com ******/
-/**********************************************/
-/*  Code is not to be redistributed or sold.  */
-/**********************************************/
-
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
-	margin: 0; padding: 0;
-}
-img, a img { 
-	border: 0;
-}
-ol,ul {
-	list-style: none;
-}
-q:before,q:after {
-	content: '';
-}
-.clearfix:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
-}
-.clearfix {
-    display: inline-block;
-}
-html[xmlns] .clearfix {
-    display: block;
-}
-* html .clearfix {
-    height: 1%;
-}
-
-/**
-  * Body
-  */
-html{
-	font-size: 100%;
-}
-body {
-	margin: 0; padding: 0;
-	font: 62.5% Arial, sans-serif;
-	color: #333;
-	background: #444;
-}
+@import "reset.css";
 
 /**
   * What I Do
   */
 #what_i_do {
-	background: #2f2f2f url('/images/what_i_do/background.gif') repeat-x top;
+	background: #2f2f2f url('../images/what_i_do/background.gif') repeat-x top;
 	height: 4.6em;
 	border-bottom: 1px solid #6d6d6d;
 }
@@ -94,11 +46,11 @@ body {
   * Content
   */
 #content {
-	background: url('/images/content/background.gif') repeat-x top;
+	background: url('../images/content/background.gif') repeat-x top;
 	padding: 1.08em 0 0;
 }
 #content .wrapper {
-	background: url('/images/content/wrap.gif') repeat-x top;
+	background: url('../images/content/wrap.gif') repeat-x top;
 	width: 67.1em;
 	padding: 0.833em;
 }
@@ -109,26 +61,18 @@ body {
 	border-bottom: 1px solid #fff;
 }
 #about_me {
-	background: url('/images/content/logo_bg.gif') repeat-y right;
+	background: url('../images/content/logo_bg.gif') repeat-y right;
 	width: 19.2em;
 	float: left;
 	border-right: 0.083em solid #fff;
 	padding: 2.1em;
 }
 #about_me h1 {
-	background: url('/images/content/logo.gif') no-repeat top;
-	width: 228px; height: 65px;
 	padding: 0 0 0.416em;
-}
-#about_me h1 a, #about_me h1 a:hover {
-	text-decoration: none;
-	float: left;
-	text-indent: -1000000px;
-	width: 228px; height: 65px;
 }
 #about_me p {
 	padding: .75em 0;
-	font: 1.15em Arial, sans-serif;
+	font: 1.15em "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 #about_me a {
 	text-decoration: underline;
@@ -144,7 +88,7 @@ body {
 	float: left;
 }
 #faq {
-	background: url('/images/content/column_bg.gif') repeat-x top;
+	background: url('../images/content/column_bg.gif') repeat-x top;
 	border-top: 1px solid #d6d6d6;
 }
 #faq .answer {
@@ -153,7 +97,7 @@ body {
 	float: left;
 }
 .f_b {
-	background: url('/images/content/column_border.gif') no-repeat top left;
+	background: url('../images/content/column_border.gif') no-repeat top left;
 }
 #faq .answer h2 {
 	font-size: 1em;

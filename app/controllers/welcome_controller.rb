@@ -1,5 +1,8 @@
 class WelcomeController < ApplicationController
+  layout 'home'
+  
   def index
-    @items = Item.latest
+    @items = Item.where("images_count > 0")
+    @posts = Post.where("published = 1").order("published_at DESC").limit(3)
   end
 end

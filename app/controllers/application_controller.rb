@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  filter_parameter_logging :password
   before_filter do |controller|
     controller.send(:require_user) if ['admin'].include?(controller.class.to_s.module_name)
   end
@@ -21,16 +20,14 @@ class ApplicationController < ActionController::Base
   def require_user
     unless current_user
       store_location
-      flash[:notice] = t("user.no_access")
-      redirect_to new_user_session_url
+      redirect_to new_user_session_url, :notice => t("user.no_access")
     end
   end
 
   def require_no_user
     if current_user
       store_location
-      flash[:notice] = "You must be logged out to access this page"
-      redirect_to account_url
+      redirect_to root_path, :notice => "You must be logged out to access this page"
     end
   end
 

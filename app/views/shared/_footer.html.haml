@@ -1,0 +1,12 @@
+#footer
+  %p
+    = link_to "GitHub", "http://github.com/dewski"
+    &bull;
+    = link_to "Blog", posts_path
+    &bull;
+    = link_to "Work", works_path
+    &bull;
+    = link_to "Contact", contact_path
+    &bull;
+    = link_to "About", about_path
+  == Copyright &copy; #{Time.now.year} #{link_to t(:site_name), root_path}. All Rights Reserved.

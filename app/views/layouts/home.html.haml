@@ -1,0 +1,36 @@
+!!!
+%html(xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en")
+  %head
+    %meta(http-equiv="Content-type" content="text/html; charset=utf-8")
+    %title= content_for?(:title) ? content_for(:title) : t(:site_name)
+    = stylesheet_link_tag :all
+    = yield :stylesheets if content_for?(:stylesheets)
+  %body
+    #what_i_do
+      .wrapper
+        %h2== What I Do That Makes Me Stand Out...
+    #content
+      .wrapper
+        .container
+          #portfolio.clearfix
+            #about_me
+              %h1= link_to "Garrett Bjerkhoel", root_path
+              #navigation
+                = link_to "Home", root_path
+                %span.bull== &bull;
+                = link_to "Work", works_path
+                %span.bull== &bull;
+                = link_to "Blog", posts_path
+              %p
+                I am a 1 man show, I am a freelancer, and I am what you need for your website.
+            #work
+              = yield
+          #faq.clearfix
+            - @posts.each_with_index do |post, i|
+              .answer[post]{ :class => (i != 0) ? 'f_b' : '' }
+                %h2= link_to post.title, post_path(post)
+                %p= post.body
+        = render "shared/footer"
+            
+    = javascript_include_tag "jquery.1.4.min", "application"
+    = yield :javascript if content_for?(:javascript)

@@ -1,0 +1,5 @@
+- title "New Upload for #{@item.name}"
+
+- form_for ["admin", @item, @image], :html => { :multipart => true } do |f|
+  = f.file_field :file
+  = f.submit
