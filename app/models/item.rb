@@ -1,14 +1,13 @@
 class Item < ActiveRecord::Base
   scope :latest, order('created_at DESC').limit(9)
   
-  before_save :generate_slug
   has_many :images, :dependent => :destroy
+  before_save :generate_slug
   
-  validates_presence_of :name
-  validates_presence_of :description
+  validates_presence_of :name, :description
   
   def thumbnail
-    images.first
+    images.order('position DESC').first
   end
   
   def to_param

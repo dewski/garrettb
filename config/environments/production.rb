@@ -1,6 +1,4 @@
 GB::Application.configure do
-  # Settings specified here will take precedence over those in config/environment.rb
-
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
   config.cache_classes = true
@@ -11,9 +9,6 @@ GB::Application.configure do
 
   # See everything in the log (default is :info)
   # config.log_level = :debug
-
-  # Use a different logger for distributed setups
-  # config.logger = SyslogLogger.new
 
   # Use a different cache store in production
   config.cache_store = :mem_cache_store, "172.19.2.187:11211"
@@ -27,7 +22,5 @@ GB::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-
-  # Enable threaded mode
-  # config.threadsafe!
+  Haml::Template::options[:ugly] = false
 end

@@ -4,6 +4,7 @@
     %meta(http-equiv="Content-type" content="text/html; charset=utf-8")
     %title= content_for?(:title) ? content_for(:title) : t(:site_name)
     = stylesheet_link_tag :all
+    = auto_discovery_link_tag :atom, posts_path(:format => :atom)
     = yield :stylesheets if content_for?(:stylesheets)
   %body
     #what_i_do
@@ -12,8 +13,7 @@
     #content
       .wrapper
         .container
-          #work
-            = yield
+          = yield
         = render "shared/footer"
             
     = javascript_include_tag "jquery.1.4.min", "application"

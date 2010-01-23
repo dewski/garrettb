@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
   layout 'blog'
   respond_to :html
+  respond_to :atom, :only => :index
   
   def index
     @posts = Post.published
+    respond_with @posts
   end
   
   def show

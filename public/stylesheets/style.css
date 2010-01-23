@@ -62,9 +62,9 @@
 }
 #about_me {
 	background: url('../images/content/logo_bg.gif') repeat-y right;
-	width: 19.2em;
+	width: 18.2em;
 	float: left;
-	border-right: 0.083em solid #fff;
+	border-right: 3px solid #fff;
 	padding: 2.1em;
 }
 #about_me h1 {
@@ -84,8 +84,11 @@
 	color: #333;
 }
 #work {
-	width: 43.6em;
+	width: 44.5em;
 	float: left;
+}
+#work img {
+  float: left;
 }
 #faq {
 	background: url('../images/content/column_bg.gif') repeat-x top;
