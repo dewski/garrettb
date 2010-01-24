@@ -5,4 +5,11 @@
     - @item.skills.each do |skill|
       %strong{ :class => "skill #{skill.slug}" }= skill.title
   %p= @item.description
-= image_tag @item.images.first.file.url(:large)
+
+#thumbs.clearfix
+  - @item.images.each do |image|
+    %li= link_to image_tag(image.file.url)
+  - if @item.url.present?
+    %li.view= link_to "&nbsp;".html_safe!, @item.url
+#featured
+  = image_tag @item.images.first.file.url(:large)
