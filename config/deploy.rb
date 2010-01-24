@@ -73,7 +73,7 @@ namespace :bundler do
 
   task :bundle_new_release do
     bundler.symlink_vendor
-    run("cd #{release_path} && gem bundle --only #{rails_env}")
+    run("cd #{release_path} && gem bundle --only production")
   end
 end
 
