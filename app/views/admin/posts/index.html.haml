@@ -1,1 +1,9 @@
 - title "Posts"
+.meta
+  %ul#navigation.clearfix
+    %li= link_to "New Post", new_admin_post_path
+  %h2== All Posts
+.body
+  - @posts.each do |post|
+    .item_overview[post]
+      %h2= link_to post.title, edit_admin_post_path(post)

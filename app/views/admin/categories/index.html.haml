@@ -1,1 +1,9 @@
 - title "Categories"
+.meta
+  %ul#navigation.clearfix
+    %li= link_to "New Category", new_admin_category_path
+  %h2== All Categories
+.body
+  - @categories.each do |category|
+    .item_overview[category]
+      %h2= link_to category.title, edit_admin_category_path(category)

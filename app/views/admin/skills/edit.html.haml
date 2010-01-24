@@ -4,7 +4,7 @@
     %li= link_to "All Skills", admin_skills_path
   %h2= @skill.name
 .body
-  - form_for @skill, :url => admin_skill_path(@skill), :html => { :multipart => true } do |f|
+  - form_for @skill, :url => admin_skill_path(@skill) do |f|
     = f.error_messages
     %dl
       %dd= f.label :title

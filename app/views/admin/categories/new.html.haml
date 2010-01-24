@@ -1,0 +1,13 @@
+- title "New Category"
+.meta
+  %ul#navigation.clearfix
+    %li= link_to "Go Back", admin_categories_path
+  %h2== New Category
+.body
+  - form_for @category, :url => admin_categories_path do |f|
+    = f.error_messages
+    %dl
+      %dd= f.label :title
+      %dt= f.text_field :title
+      
+    = f.submit

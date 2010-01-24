@@ -4,7 +4,7 @@
     %li= link_to "Go Back", admin_skills_path
   %h2== New Skill
 .body
-  - form_for @skill, :url => admin_skills_path, :html => { :multipart => true } do |f|
+  - form_for @skill, :url => admin_skills_path do |f|
     = f.error_messages
     %dl
       %dd= f.label :title

@@ -7,15 +7,15 @@ class Admin::PostsController < ApplicationController
   end
   
   def show
-    respond_with(@post = Post.find(params[:id]))
+    respond_with(@post = Post.find_by_slug(params[:id]))
   end
   
   def edit
-    respond_with(@post = Post.find(params[:id]))
+    respond_with(@post = Post.find_by_slug(params[:id]))
   end
   
   def update
-    @post = Post.find(params[:id])
+    @post = Post.find_by_slug(params[:id])
     @post.update_attributes(params[:post])
     respond_with @post, :location => edit_admin_post_path(@post)
   end
