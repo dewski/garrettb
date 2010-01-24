@@ -41,6 +41,7 @@ namespace :deploy do
   end
   
   task :move_in_asset_info, :roles => :app do
+    run "cp #{deploy_to}/shared/system/s3.yml #{current_path}/config/"
     run "cp #{deploy_to}/shared/system/synch_s3_asset_host.yml #{current_path}/config/"
   end
 end

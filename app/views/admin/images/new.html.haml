@@ -9,5 +9,6 @@
   %h2= @item.name
 .body
   - form_for ["admin", @item, @image], :html => { :multipart => true } do |f|
+    = f.error_messages
     = f.file_field :file
     = f.submit
