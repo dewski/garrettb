@@ -10,8 +10,19 @@ GB::Application.routes.draw do |map|
   match '/admin' => redirect("/admin/dashboard")
   namespace :admin do
     resource  :dashboard
+    
     resources :items do
-      resources :images
+      
+      resources :images do
+        member do
+          get :crop
+        end
+        
+        collection do
+          post :reorder
+        end
+      end
+      
     end
     
     resources :posts do
@@ -19,6 +30,7 @@ GB::Application.routes.draw do |map|
     end
     
     resources :categories
+    resources :skills
   end
   
   resources :works, :as => 'work'

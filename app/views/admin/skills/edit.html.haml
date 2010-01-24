@@ -1,0 +1,13 @@
+- title "Editing #{@skill.name}"
+.meta
+  %ul#navigation.clearfix
+    %li= link_to "All Skills", admin_skills_path
+  %h2= @skill.name
+.body
+  - form_for @skill, :url => admin_skill_path(@skill), :html => { :multipart => true } do |f|
+    = f.error_messages
+    %dl
+      %dd= f.label :title
+      %dt= f.text_field :title
+      
+    = f.submit

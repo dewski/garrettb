@@ -1,0 +1,9 @@
+- title "Managing Skills"
+.meta
+  %ul#navigation.clearfix
+    %li= link_to "New Skill", new_admin_skill_path
+  %h2== All Skills
+.body
+  - @skills.each do |skill|
+    .item_overview[skill]
+      %h2= link_to skill.title, edit_admin_skill_path(skill)

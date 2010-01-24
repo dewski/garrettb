@@ -1,2 +1,2 @@
 - @items.each do |item|
-  = link_to image_tag(item.thumbnail.file.url(:small), :alt => item.name), work_path(item)
+  = link_to image_tag(item.thumbnail.file.url(:small), :alt => item.name, :width => 178, :height => 114), work_path(item)

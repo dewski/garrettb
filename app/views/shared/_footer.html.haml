@@ -10,3 +10,13 @@
     &bull;
     = link_to "About", about_path
   == Copyright &copy; #{Time.now.year} #{link_to t(:site_name), root_path}. All Rights Reserved.
+
+= javascript_include_tag "jquery.1.4.min", "jquery-ui-1.7.2.min", "jquery.qtip-1.0.0-rc3.min", "application"
+- if content_for?(:javascript_files)
+  = yield :javascript_files
+- if content_for?(:javascript)
+  %script{ :type => "text/javascript" }
+    :plain
+      $(document).ready(function () {
+        #{yield :javascript}
+      });

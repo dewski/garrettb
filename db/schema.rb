@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100122071523) do
+ActiveRecord::Schema.define(:version => 20100124050727) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -51,7 +51,16 @@ ActiveRecord::Schema.define(:version => 20100122071523) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "images_count", :default => 0
+    t.string   "url"
   end
+
+  create_table "items_skills", :id => false, :force => true do |t|
+    t.integer "item_id"
+    t.integer "skill_id"
+  end
+
+  add_index "items_skills", ["item_id"], :name => "index_items_skills_on_item_id"
+  add_index "items_skills", ["skill_id"], :name => "index_items_skills_on_skill_id"
 
   create_table "posts", :force => true do |t|
     t.integer  "category_id",                     :null => false
@@ -66,6 +75,15 @@ ActiveRecord::Schema.define(:version => 20100122071523) do
 
   add_index "posts", ["category_id"], :name => "index_posts_on_category_id"
   add_index "posts", ["slug"], :name => "index_posts_on_slug"
+
+  create_table "skills", :force => true do |t|
+    t.string   "title",      :null => false
+    t.string   "slug",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "skills", ["slug"], :name => "index_skills_on_slug"
 
   create_table "users", :force => true do |t|
     t.datetime "created_at"

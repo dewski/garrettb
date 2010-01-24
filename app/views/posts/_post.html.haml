@@ -1,4 +1,4 @@
 .post[post]
   %h2= link_to post.title, post_path(post)
-  %h3== Post #{time_ago_in_words post.published_at} ago in #{post.category.title}
+  %h3== Posted on #{post.published_at.strftime("%m/%d/%Y")} in #{post.category.title}
   %p= post.body

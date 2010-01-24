@@ -13,24 +13,8 @@
       .wrapper
         .container
           #portfolio.clearfix
-            #about_me
-              %h1= link_to "Garrett Bjerkhoel", root_path
-              #navigation
-                = link_to "Home", root_path
-                %span.bull== &bull;
-                = link_to "Work", works_path
-                %span.bull== &bull;
-                = link_to "Blog", posts_path
-              %p
-                I am a 1 man show, I am a freelancer, and I am what you need for your website.
+            = render "shared/header"
             #work.clearfix
               = yield
-          #faq.clearfix
-            - @posts.each_with_index do |post, i|
-              .answer[post]{ :class => (i != 0) ? 'f_b' : '' }
-                %h2= link_to post.title, post_path(post)
-                %p= post.body
+          = render "shared/faq"
         = render "shared/footer"
-            
-    = javascript_include_tag "jquery.1.4.min", "application"
-    = yield :javascript if content_for?(:javascript)

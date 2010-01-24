@@ -1,4 +1,13 @@
 - title "Managing Items"
-- @items.each do |item|
-  .item[item]
-    %h1= link_to item.name, edit_admin_item_path(item)
+.meta
+  %ul#navigation.clearfix
+    %li= link_to "New Client", new_admin_item_path
+  %h2== All Clients
+.body
+  - @items.each do |item|
+    .item_overview[item]
+      %h2= link_to item.name, edit_admin_item_path(item)
+      .description
+        %p= item.description
+      %ul.images.clearfix
+        = render item.images

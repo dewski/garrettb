@@ -1,0 +1,13 @@
+- title "New Skill"
+.meta
+  %ul#navigation.clearfix
+    %li= link_to "Go Back", admin_skills_path
+  %h2== New Skill
+.body
+  - form_for @skill, :url => admin_skills_path, :html => { :multipart => true } do |f|
+    = f.error_messages
+    %dl
+      %dd= f.label :title
+      %dt= f.text_field :title
+      
+    = f.submit

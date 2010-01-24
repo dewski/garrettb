@@ -1,0 +1,37 @@
+- title "Cropping Thumbnail"
+- stylesheet "jquery.Jcrop"
+- javascript_file "jquery.Jcrop.min"
+
+.body
+  = image_tag @image.file.url(:original), :id => "cropbox"
+
+  %div( style="width:178px; height:114px; overflow:hidden" )
+    = image_tag @image.file.url(:original), :id => "preview"
+
+  - form_for @image, :url => admin_item_image_path(@image.item, @image) do |f|
+    - [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute|
+      = f.hidden_field attribute, :id => attribute
+    = f.submit
+
+- content_for :javascript do
+  :plain
+    var ratio = #{@image.file_geometry(:large).height} / #{@image.file_geometry(:large).width};
+    $('#cropbox').Jcrop({
+      onChange: update_crop,
+      onSelect: update_crop,
+      aspectRatio: 1.56
+    });
+    function update_crop(coords) {
+      var rx = 178/coords.w;
+      var ry = 114/coords.h;
+      $('#preview').css({
+        width: Math.round(rx * #{@image.file_geometry(:original).width}) + 'px',
+        height: Math.round(ry * #{@image.file_geometry(:original).height}) + 'px',
+        marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+        marginTop: '-' + Math.round(ry * coords.y) + 'px'
+      });
+      $("#crop_x").val(Math.round(coords.x * ratio));
+      $("#crop_y").val(Math.round(coords.y * ratio));
+      $("#crop_w").val(Math.round(coords.w * ratio));
+      $("#crop_h").val(Math.round(coords.h * ratio));
+    }

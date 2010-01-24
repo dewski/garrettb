@@ -13,11 +13,4 @@
       .wrapper
         .container
           = yield
-          #faq.clearfix
-        #footer
-          %p
-            == <a href="#">TOS</a> &bull; <a href="#">FAQ</a> &bull; <a href="#">Order</a> &bull; <a href="#">Clients</a> &bull; <a href="#">Contact</a>
-          == Copyright &copy; #{Time.now.year} #{link_to t(:site_name), root_path}. All Rights Reserved.
-            
-    = javascript_include_tag "jquery.1.4.min"
-    = yield :javascript if content_for?(:javascript)
+        = render "shared/footer"

@@ -23,7 +23,7 @@ namespace :deploy do
   
   desc "Restarting mod_rails with restart.txt"
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "touch #{File.join(current_path, 'tmp', 'restart.txt')}"
+    run "touch #{File.join(current_path, "tmp", "restart.txt")}"
   end
   
   desc "Update the crontab file"
@@ -57,9 +57,30 @@ namespace :maintenance do
   end
 end
 
+namespace :bundler do
+  task :install do
+    run("#{try_sudo} gem install bundler --source=http://gemcutter.org")
+  end
+
+  task :symlink_vendor do
+    shared_gems = File.join(shared_path, "vendor/gems")
+    release_gems = "#{release_path}/vendor/gems" 
+    %w(cache gems specifications).each do |sub_dir|
+      shared_sub_dir = File.join(shared_gems, sub_dir)
+      run("mkdir -p #{shared_sub_dir} && mkdir -p #{release_gems} && ln -s #{shared_sub_dir} #{release_gems}/#{sub_dir}")
+    end
+  end
+
+  task :bundle_new_release do
+    bundler.symlink_vendor
+    run("cd #{release_path} && gem bundle --only #{rails_env}")
+  end
+end
+
 #######
 # Tasks
 ########################
 # Migrate the DB
 after "deploy", "deploy:migrate", "deploy:cleanup"
 after "deploy:symlink", "deploy:move_in_asset_info", "s3_asset_host:synch_public", "deploy:move_in_database_yml", "deploy:bundle"
+after "deploy:update_code", "bundler:bundle_new_release"

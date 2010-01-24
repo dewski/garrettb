@@ -18,14 +18,8 @@
 #what_i_do p {
 	float: right;
 }
-#what_i_do a {
-	text-decoration: none;
-	font: bold 0.8em "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #fff;
-	text-transform: uppercase;
-	margin: 0 0 0 1.66em;
-}
-#what_i_do a:hover {
+#what_i_do a,
+#what_i_do span {
 	text-decoration: none;
 	font: bold 0.8em "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #ddd;
@@ -58,17 +52,26 @@
 	background: #fff;
 }
 #portfolio {
+	background: url('../images/content/logo_bg.gif') repeat-y 20.7em 0;
 	border-bottom: 1px solid #fff;
 }
 #about_me {
-	background: url('../images/content/logo_bg.gif') repeat-y right;
-	width: 18.2em;
+	width: 18.4em;
 	float: left;
-	border-right: 3px solid #fff;
 	padding: 2.1em;
 }
 #about_me h1 {
-	padding: 0 0 0.416em;
+	padding: 0 0 0.6em;
+	border-bottom: 1px solid #eee;
+	width: 205px;
+	margin: 0 0 0.6em;
+}
+#about_me h1 a {
+  background: url('../images/content/logo.gif') no-repeat;
+  width: 205px; height: 20px;
+  display: block;
+  font-size: 0.1em;
+  text-indent: -9999em;
 }
 #about_me p {
 	padding: .75em 0;
@@ -83,12 +86,26 @@
 	text-decoration: none;
 	color: #333;
 }
+#about_me ul {
+  padding: 5px 0 0.6em;
+}
+#about_me li {
+  float: left;
+  margin: 0 8px 0 0;
+}
+#about_me li a {
+  background: #eee;
+  text-decoration: none;
+  padding: 3px 5px;
+  -webkit-border-radius: 3px;
+  border: 1px solid #ddd;
+}
+#about_me li a:hover {
+  border: 1px solid #eee;
+}
 #work {
 	width: 44.5em;
 	float: left;
-}
-#work img {
-  float: left;
 }
 #faq {
 	background: url('../images/content/column_bg.gif') repeat-x top;
@@ -139,4 +156,171 @@
 	font-weight: bold;
 	color: #fff;
 	border-bottom: 0.1em solid #888;
+}
+
+/* Admin */
+.meta {
+  background: url('../images/admin/meta.gif') repeat-x top;
+  border-bottom: 1px solid #eee;
+}
+.works .meta {
+  background-image: none;
+}
+.meta h2 {
+  padding: 15px;
+}
+.meta #navigation {
+  float: right;
+}
+.meta li {
+  float: left;
+}
+.meta li a {
+  background: url('../images/admin/arrow_inactive.gif') no-repeat bottom center;
+  text-decoration: none;
+  display: block;
+  padding: 15px;
+}
+.meta li a:hover,
+.meta li.active a {
+  background-image: url('../images/admin/arrow_active.gif');
+}
+#images {}
+#images li {
+  margin: 15px 5px 15px 0;
+  float: left;
+}
+#images li img,
+.item_overview li img {
+  background: #fff;
+  cursor: move;
+  padding: 2px;
+  -webkit-border-radius: 3px;
+  border: 1px solid #ddd;
+}
+.body {
+  padding: 15px;
+}
+form dd {
+  font-weight: bold;
+}
+form dt {
+  padding: 0 0 15px;
+}
+dt input {
+  width: 500px;
+  padding: 5px;
+  font-size: 16px;
+}
+dt textarea {
+  width: 500px;
+  padding: 5px;
+  font-size: 11px;
+}
+.body .item_overview {
+  background: #eee;
+  -webkit-border-radius: 5px;
+  padding: 10px;
+  margin: 0 0 15px;
+}
+.item_overview h2 {
+  font-size: 13px;
+}
+.item_overview p {
+  padding: 5px 0 ;
+}
+.item_overview li {
+  float: left;
+  margin: 0 10px 0 0;
+}
+.item_overview li img {
+  cursor: default;
+}
+#work .post {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+.post h2 {
+  padding: 0 0 2px;
+}
+#work .post h2 a {
+  text-decoration: none;
+  font-size: 19px;
+}
+.post h3,
+.answer h2 small {
+  font-size: 11px;
+  color: #aaa;
+  text-transform: uppercase;
+}
+.answer h2 small {
+  float: right;
+}
+#work .post p {
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+/* WOWOW */
+.welcome #work a {
+  float: left;
+  position: relative;
+  width: 178px; height: 114px;
+}
+.welcome #work a strong {
+  text-decoration: none;
+  color: #fff;
+  font-size: 11px;
+  text-align: center;
+  text-transform: uppercase;
+  
+  position: absolute;
+  background: red;
+  width: 148px;
+  padding: 5px;
+  top: 10px;
+  left: 10px;
+  
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  background: #222;
+  background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.9)));
+  border: 1px solid #000;
+  -webkit-box-shadow: rgba(0,0,0,0.5) 0 2px 3px;
+}
+.welcome #work a:active strong {
+  background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.9)), to(rgba(0, 0, 0, 0.7)));
+}
+
+.body form .skills {
+  float: right;
+  width: 200px;
+}
+.skills label {
+  display: block;
+}
+.skills h2 {
+  padding: 0 0 10px;
+}
+.works .meta {
+  padding: 15px;
+}
+.works .meta h2 {
+  font-size: 28px;
+  line-height: 39px;
+}
+.works .meta p,
+.works .meta h2 {
+  padding: 0;
+}
+.works .skills {
+  padding: 10px 0;
+}
+.works .skills .skill {
+  float: left;
+  background: #000;
+  color: #fff;
+  font-size: 10px;
+  padding: 1px 4px; margin: 0 5px 0 0;
+  -webkit-border-radius: 2px;
 }

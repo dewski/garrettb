@@ -1,5 +1,11 @@
 - title @item.name
-%h1= @item.name
-%p= @item.description
-
-= link_to "Edit #{@item.name}", edit_admin_item_path(@item)
+.meta
+  %ul#navigation.clearfix
+    %li= link_to "All Clients", admin_items_path
+    %li.active= link_to "Overview", admin_item_path(@item)
+    %li= link_to "Edit", edit_admin_item_path(@item)
+    %li= link_to "Images", admin_item_images_path(@item)
+    %li= link_to "Upload image", new_admin_item_image_path(@item)
+  %h2= @item.name
+.body
+  %p= @item.description

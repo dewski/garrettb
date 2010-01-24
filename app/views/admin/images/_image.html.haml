@@ -1,1 +1,1 @@
-= image_tag image.file.url
+%li.image[image]= link_to image_tag(image.file.url(:small)), crop_admin_item_image_path(image.item, image)

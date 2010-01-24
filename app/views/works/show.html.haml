@@ -1,1 +1,8 @@
 - title @item.name
+.meta
+  %h2= @item.name
+  .skills.clearfix
+    - @item.skills.each do |skill|
+      %strong{ :class => "skill #{skill.slug}" }= skill.title
+  %p= @item.description
+= image_tag @item.images.first.file.url(:large)

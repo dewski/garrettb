@@ -4,7 +4,10 @@ class Item < ActiveRecord::Base
   has_many :images, :dependent => :destroy
   before_save :generate_slug
   
+  has_and_belongs_to_many :skills
+  
   validates_presence_of :name, :description
+  validates_format_of :url, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix
   
   def thumbnail
     images.order('position DESC').first

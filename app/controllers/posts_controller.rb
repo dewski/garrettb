@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  layout 'blog'
   respond_to :html
   respond_to :atom, :only => :index
   

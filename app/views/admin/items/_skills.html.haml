@@ -1,0 +1,6 @@
+.skills
+  %h2 Skills
+  - Skill.all.each do |skill|
+    %label
+      = check_box_tag "item[skill_ids][]", skill.id, @item.skills.include?(skill)
+      = skill.title

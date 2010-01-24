@@ -7,8 +7,9 @@ tmp/**/*
 doc/*
 
 # Can bundle your own gems
-vendor/gems/**/*
 bin/*
+vendor/gems/*
+!vendor/gems/cache/
 
 # Hacker
 config/database.yml

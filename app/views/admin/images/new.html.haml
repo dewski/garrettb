@@ -1,5 +1,13 @@
 - title "New Upload for #{@item.name}"
-
-- form_for ["admin", @item, @image], :html => { :multipart => true } do |f|
-  = f.file_field :file
-  = f.submit
+.meta
+  %ul#navigation.clearfix
+    %li= link_to "All Clients", admin_items_path
+    %li= link_to "Overview", admin_item_path(@item)
+    %li= link_to "Edit", edit_admin_item_path(@item)
+    %li= link_to "Images", admin_item_images_path(@item)
+    %li.active= link_to "Upload image", new_admin_item_image_path(@item)
+  %h2= @item.name
+.body
+  - form_for ["admin", @item, @image], :html => { :multipart => true } do |f|
+    = f.file_field :file
+    = f.submit

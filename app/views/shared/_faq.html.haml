@@ -1,0 +1,7 @@
+#faq.clearfix
+  - Post.where("published = 1").order("published_at DESC").limit(3).each_with_index do |post, i|
+    .answer{ :class => (i != 0) ? 'f_b' : '' }
+      %h2
+        %small= post.published_at.strftime("%m/%d/%Y")
+        = link_to post.title, post_path(post)
+      %p= post.body

@@ -1,4 +1,22 @@
 - title "Manage images for #{@item.name}"
-= render @item.images
+.meta
+  %ul#navigation.clearfix
+    %li= link_to "All Clients", admin_items_path
+    %li= link_to "Overview", admin_item_path(@item)
+    %li= link_to "Edit", edit_admin_item_path(@item)
+    %li.active= link_to "Images", admin_item_images_path(@item)
+    %li= link_to "Upload image", new_admin_item_image_path(@item)
+  %h2= @item.name
+.body
+  %ul#images.clearfix
+    = render @images
 
-Upload a new image here
+- content_for :javascript do
+  :plain
+    $('#images').sortable({
+      opacity: 0.6,
+      revert: true,
+      update: function (event, ui) {
+        $.post("#{reorder_admin_item_images_path(@item)}", $('#images').sortable('serialize'));
+      }
+    });
