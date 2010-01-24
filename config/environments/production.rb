@@ -10,4 +10,5 @@ GB::Application.configure do
   config.action_controller.asset_host = "http://img.garrettbjerkhoel.com"
   
   Paperclip.options[:command_path] = "/usr/local/bin"
+  Paperclip.options[:log_command] = true
 end
