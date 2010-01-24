@@ -12,6 +12,7 @@ class Image < ActiveRecord::Base
   },
   :default_style => :thumb,
   :storage => :s3,
+  :url => :s3_alias_url,
   :s3_credentials => File.join(Rails.root, 'config', 's3.yml'),
   :path => "image/:id_partition/:style.:extension"
   
