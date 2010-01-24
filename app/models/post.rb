@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   belongs_to :category
   has_many :comments
   
-  before_save :generate_slug
+  before_save :generate_slug, :set_published_at
   validates_associated :comments
   
   def to_param
@@ -14,5 +14,9 @@ class Post < ActiveRecord::Base
   protected
     def generate_slug
       self.slug = title.to_slug
+    end
+    
+    def set_published_at
+      self.published_at = (self.published? ? Time.now : nil)
     end
 end
