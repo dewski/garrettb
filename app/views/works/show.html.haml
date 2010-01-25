@@ -8,8 +8,11 @@
 
 #thumbs.clearfix
   - @item.images.each do |image|
-    %li= link_to image_tag(image.file.url)
+    %li= link_to image_tag(image.file.url, :id => "thumb_image_#{image.id}")
   - if @item.url.present?
     %li.view= link_to "&nbsp;".html_safe!, @item.url
 #featured
   = image_tag @item.images.first.file.url(:large)
+.autoload{ :style => "display:none" }
+  - @item.images.each do |image|
+    = image_tag image.file.url(:large), :id => "large_image_#{image.id}"

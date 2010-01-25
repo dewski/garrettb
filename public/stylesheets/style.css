@@ -341,3 +341,21 @@ dt textarea {
   font-weight: bold;
   text-transform: uppercase;
 }
+#featured {
+  width: 535px; height: 332px;
+  overflow: hidden;
+}
+#featured img {
+}
+.works .listing {
+  padding: 40px 0 0 70px;
+}
+.works .listing .item {
+  float: left;
+  width: 178px;
+  padding: 0 30px 30px 0;
+}
+.listing a img {
+  padding: 2px;
+  border: 1px solid #ddd;
+}

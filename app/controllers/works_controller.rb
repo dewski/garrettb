@@ -3,7 +3,7 @@ class WorksController < ApplicationController
   respond_to :html
   
   def index
-    @items = Item.all
+    @items = Item.where("images_count > 0").order("name ASC")
     respond_with @items
   end
   

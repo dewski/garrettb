@@ -6,4 +6,10 @@ $(document).ready(function () {
       $(this).remove();
     });
   });
+  
+  $('.works #thumbs a').live('click', function (e) {
+    e.preventDefault();
+    var large_img = $(this).find('img').attr('src').replace('thumb', 'large');
+    $('#featured img').attr();
+  });
 });
