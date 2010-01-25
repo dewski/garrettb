@@ -37,8 +37,9 @@ GB::Application.routes.draw do |map|
   resources :works, :as => 'work'
   resources :posts, :as => 'blog'
   
+  resource :contact, :controller => 'contact'
+  
   match '/about' => 'pages#about', :as => 'about'
-  match '/contact' => 'pages#contact', :as => 'contact'
   
   root :to => 'welcome#index'
 end

@@ -11,6 +11,13 @@ GB::Application.configure do
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_content_type = "text/html"
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => "localhost",
+    :port => 1025,
+    :domain => "www.garrettbjerkhoel.com"
+  }
   
   Paperclip.options[:command_path] = "/usr/local/bin"
   Paperclip.options[:log_command] = true

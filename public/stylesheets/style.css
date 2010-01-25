@@ -217,6 +217,10 @@ dt textarea {
   padding: 5px;
   font-size: 11px;
 }
+.contact dt input,
+.contact dt textarea {
+  width: 490px;
+}
 .body .item_overview {
   background: #eee;
   -webkit-border-radius: 5px;
