@@ -98,6 +98,7 @@
   text-decoration: none;
   padding: 3px 5px;
   -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
   border: 1px solid #ddd;
 }
 #about_me li a:hover {
@@ -196,6 +197,7 @@
   cursor: move;
   padding: 2px;
   -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
   border: 1px solid #ddd;
 }
 .body {
@@ -224,6 +226,7 @@ dt textarea {
 .body .item_overview {
   background: #eee;
   -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
   padding: 10px;
   margin: 0 0 15px;
 }
@@ -283,18 +286,21 @@ dt textarea {
   
   display: block;
   
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
   background: #222;
   background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.9)));
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
   border: 1px solid #000;
 }
 #work a:active strong,
 .works .item a:active strong {
   background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.9)), to(rgba(0, 0, 0, 0.7))) !important;
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)) !important;
 }
 .works .item a:hover strong {
   background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.9))) !important;
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)) !important;
 }
 .works .item a strong {
   margin: 5px 0 0;
@@ -340,6 +346,7 @@ dt textarea {
   font-size: 10px;
   padding: 1px 4px; margin: 0 5px 0 0;
   -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
 }
 #work #thumbs {
   list-style: none;
@@ -365,12 +372,12 @@ dt textarea {
 #featured img {
 }
 .works .listing {
-  padding: 40px 0 0 70px;
+  padding: 40px 0 0 60px;
 }
 .works .listing .item {
   float: left;
   width: 178px;
-  padding: 0 30px 30px 0;
+  padding: 0 50px 40px 0;
 }
 .listing a img {
   padding: 2px;
@@ -396,4 +403,13 @@ dt textarea {
 }
 .post .body {
   padding: 0;
+}
+
+/* About */
+body.about #work {
+  background: url('../images/content/about.jpg') no-repeat bottom right;
+  
+  height: auto !important;
+  min-height: 500px;
+  height: 500px;
 }
