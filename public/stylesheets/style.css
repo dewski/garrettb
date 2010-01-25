@@ -401,6 +401,11 @@ dt textarea {
   width: 93px; height: 15px;
   margin: 21px 0 0;
 }
+.meta .31three {
+  background: url('../images/agencies/31three.png') no-repeat;
+  width: 101px; height: 15px;
+  margin: 21px 0 0;
+}
 .post .body {
   padding: 0;
 }
