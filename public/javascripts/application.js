@@ -9,7 +9,7 @@ $(document).ready(function () {
   
   $('.works #thumbs a').live('click', function (e) {
     e.preventDefault();
-    var large_img = $(this).find('img').attr('src').replace('thumb', 'large');
-    $('#featured img').attr();
+    var large_img = $(this).find('img').attr('id').replace('thumb', 'large');
+    $('#'+ large_img).show();
   });
 });

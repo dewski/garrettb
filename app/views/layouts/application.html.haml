@@ -27,3 +27,23 @@
               = yield
           = render "shared/faq"
         = render "shared/footer"
+    = javascript_include_tag "jquery.1.4.min", "jquery-ui-1.7.2.min", "jquery.qtip-1.0.0-rc3.min", "application"
+    - if content_for?(:javascript_files)
+      = yield :javascript_files
+    - if content_for?(:javascript)
+      %script{ :type => "text/javascript" }
+        :plain
+          $(document).ready(function () {
+            #{yield :javascript}
+          });
+    %script{ :type => "text/javascript" }
+      :plain
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-12213707-2']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+        })();
