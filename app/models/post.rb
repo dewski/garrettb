@@ -4,7 +4,8 @@ class Post < ActiveRecord::Base
   belongs_to :category
   has_many :comments
   
-  before_save :generate_slug, :set_published_at
+  before_save :generate_slug
+  before_create :set_published_at
   validates_associated :comments
   
   def to_param

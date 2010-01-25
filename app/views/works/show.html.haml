@@ -1,6 +1,6 @@
 - title @item.name
 .meta
-  - if @item.agency?
+  - if @item.agency.present?
     = link_to @item.agency.title, @item.agency.url, :class => "agency #{@item.agency.slug}"
   %h2= @item.name
   .skills.clearfix
