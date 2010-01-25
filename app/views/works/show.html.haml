@@ -1,6 +1,7 @@
 - title @item.name
 .meta
-  = link_to @item.agency.title, @item.agency.url, :class => "agency #{@item.agency.slug}"
+  - if @item.agency?
+    = link_to @item.agency.title, @item.agency.url, :class => "agency #{@item.agency.slug}"
   %h2= @item.name
   .skills.clearfix
     - @item.skills.each do |skill|
@@ -9,7 +10,7 @@
 
 #thumbs.clearfix
   - @item.images.each do |image|
-    %li= link_to image_tag(image.file.url, :id => "thumb_image_#{image.id}")
+    %li= link_to image_tag(image.file.url, :id => "thumb_image_#{image.id}"), "#"
   - if @item.url.present?
     %li.view= link_to "&nbsp;".html_safe!, @item.url
 #featured

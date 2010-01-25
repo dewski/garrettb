@@ -2,6 +2,7 @@
 .meta
   %ul#navigation.clearfix
     %li= link_to "Go Back", admin_posts_path
+    %li= link_to "Delete", admin_post_path(@post), :method => :delete
   %h2= @post.title
 .body
   - form_for @post, :url => admin_post_path(@post) do |f|

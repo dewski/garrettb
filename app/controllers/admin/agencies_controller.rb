@@ -32,4 +32,10 @@ class Admin::AgenciesController < ApplicationController
     @agency.update_attributes(params[:agency])
     respond_with @agency, :location => edit_admin_agency_path(@agency), :flash => "Successfully updated #{@agency.title}"
   end
+  
+  def destroy
+    @agency = Agency.find_by_slug(params[:id])
+    @agency.destroy
+    respond_with @agency, :status => :destroyed, :location => admin_agencies_path, :notice => "Agency was created deleted"
+  end
 end

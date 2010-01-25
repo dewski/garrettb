@@ -1,0 +1,15 @@
+- title "Editing #{@category.title}"
+.meta
+  %ul#navigation.clearfix
+    %li= link_to "Go Back", admin_categories_path
+    %li= link_to "Delete", admin_category_path(@category), :method => :delete
+  %h2= @category.title
+.body
+  - form_for @category, :url => admin_agency_path(@category) do |f|
+    = f.error_messages
+    
+    %dl
+      %dd= f.label :title
+      %dt= f.text_field :title
+      
+    = f.submit

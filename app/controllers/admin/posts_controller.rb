@@ -39,6 +39,8 @@ class Admin::PostsController < ApplicationController
   end
   
   def destroy
-    
+    @post = Post.find_by_slug(params[:id])
+    @post.destroy
+    respond_with @post, :status => :destroyed, :location => admin_posts_path, :notice => "Post was created deleted"
   end
 end

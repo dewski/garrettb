@@ -33,6 +33,8 @@ class Admin::CategoriesController < ApplicationController
   end
   
   def destroy
-    
+    @category = Category.find_by_slug(params[:id])
+    @category.destroy
+    respond_with @category, :status => :destroyed, :location => admin_categories_path, :notice => "Category was created deleted"
   end
 end

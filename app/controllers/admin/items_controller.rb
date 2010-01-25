@@ -41,4 +41,10 @@ class Admin::ItemsController < ApplicationController
       end
     end
   end
+  
+  def destroy
+    @item = Item.find_by_slug(params[:id])
+    @item.destroy
+    respond_with @item, :status => :destroyed, :location => admin_items_path, :notice => "Item was created deleted"
+  end
 end

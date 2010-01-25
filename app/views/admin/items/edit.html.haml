@@ -6,6 +6,7 @@
     %li.active= link_to "Edit", edit_admin_item_path(@item)
     %li= link_to "Images", admin_item_images_path(@item)
     %li= link_to "Upload image", new_admin_item_image_path(@item)
+    %li= link_to "Delete", admin_item_path(@item), :method => :delete
   %h2= @item.name
 .body
   - form_for @item, :url => admin_item_path(@item), :html => { :multipart => true } do |f|

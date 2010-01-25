@@ -1,8 +1,9 @@
-- title "Editing #{@agency.name}"
+- title "Editing #{@agency.title}"
 .meta
   %ul#navigation.clearfix
     %li= link_to "All Agencies", admin_agencies_path
-  %h2= @agency.name
+    %li= link_to "Delete", admin_agency_path(@agency), :method => :delete
+  %h2= @agency.title
 .body
   - form_for @agency, :url => admin_agency_path(@agency) do |f|
     = f.error_messages

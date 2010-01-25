@@ -1,8 +1,9 @@
-- title "Editing #{@skill.name}"
+- title "Editing #{@skill.title}"
 .meta
   %ul#navigation.clearfix
     %li= link_to "All Skills", admin_skills_path
-  %h2= @skill.name
+    %li= link_to "Delete", admin_skill_path(@skill), :method => :delete
+  %h2= @skill.title
 .body
   - form_for @skill, :url => admin_skill_path(@skill) do |f|
     = f.error_messages

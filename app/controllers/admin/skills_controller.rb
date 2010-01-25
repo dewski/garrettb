@@ -33,4 +33,10 @@ class Admin::SkillsController < ApplicationController
     @skill.update_attributes(params[:skill])
     respond_with @skill, :location => edit_admin_skill_path(@skill)
   end
+  
+  def destroy
+    @skill = Skill.find_by_slug(params[:id])
+    @skill.destroy
+    respond_with @skill, :status => :destroyed, :location => admin_skills_path, :notice => "Skill was created deleted"
+  end
 end

@@ -377,3 +377,6 @@ dt textarea {
   width: 93px; height: 15px;
   margin: 21px 0 0;
 }
+.post .body {
+  padding: 0;
+}
