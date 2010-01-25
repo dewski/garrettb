@@ -12,11 +12,12 @@ $(document).ready(function () {
     var large_img = $(this).find('img').attr('id').replace('thumb', 'large');
     var target = $('#'+ large_img);
     
-    if(!target.hasClassName('displayed')) {
-      target.show();
+    if(!target.hasClass('displayed')) {
       $('img.displayed').fadeOut("fast", function () {
-        $(this).removeClass('displayed');
-        target.addClass('displayed');
+        $(this).removeClass('displayed').css('z-index', '1');
+        target.fadeIn(function () {
+          $(this).addClass('displayed');
+        });
       });
     }
   });

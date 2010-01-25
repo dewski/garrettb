@@ -14,7 +14,7 @@
   - if @item.url.present?
     %li.view= link_to "&nbsp;".html_safe!, @item.url
 #featured
-  = image_tag @item.images.first.file.url(:large), :class => "displayed"
+  = image_tag @item.images.first.file.url(:large), :class => "displayed", :style => "z-index: 15"
   - @item.images.each do |image|
     = image_tag image.file.url(:large), :id => "large_image_#{image.id}", :style => "display:none"
     
