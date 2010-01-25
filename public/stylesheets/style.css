@@ -271,29 +271,42 @@ dt textarea {
   position: relative;
   width: 178px; height: 114px;
 }
-.welcome #work a strong {
+#work a strong,
+.works .item strong {
   text-decoration: none;
   color: #fff;
   font-size: 11px;
   text-align: center;
   text-transform: uppercase;
-  
-  position: absolute;
-  background: red;
-  width: 148px;
+  width: 173px;
   padding: 5px;
-  top: 10px;
-  left: 10px;
+  
+  display: block;
   
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   background: #222;
   background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.9)));
   border: 1px solid #000;
-  -webkit-box-shadow: rgba(0,0,0,0.5) 0 2px 3px;
 }
-.welcome #work a:active strong {
-  background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.9)), to(rgba(0, 0, 0, 0.7)));
+#work a:active strong,
+.works .item a:active strong {
+  background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.9)), to(rgba(0, 0, 0, 0.7))) !important;
+}
+.works .item a:hover strong {
+  background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.9))) !important;
+}
+.works .item a strong {
+  margin: 5px 0 0;
+  width: 173px;
+}
+.welcome #work a strong {
+  position: absolute;
+  width: 148px;
+  top: 10px;
+  left: 10px;
+  -webkit-box-shadow: rgba(0,0,0,0.5) 0 2px 3px;
+  -moz-box-shadow: rgba(0,0,0,0.5) 0 2px 3px;
 }
 
 .body form .skills {
