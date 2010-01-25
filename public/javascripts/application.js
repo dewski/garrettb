@@ -13,5 +13,9 @@ $(document).ready(function () {
     }
     var large_img = $(this).find('img').attr('id').replace('thumb', 'large');
     $('#'+ large_img).show();
+    $('img.displayed').fadeOut(1000, function () {
+      $(this).removeClass('displayed');
+      $('#'+ large_img).addClass('displayed');
+    });
   });
 });
