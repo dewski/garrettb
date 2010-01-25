@@ -31,6 +31,7 @@ GB::Application.routes.draw do |map|
     
     resources :categories
     resources :skills
+    resources :agencies
   end
   
   resources :works, :as => 'work'

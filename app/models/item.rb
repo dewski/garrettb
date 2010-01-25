@@ -2,6 +2,7 @@ class Item < ActiveRecord::Base
   scope :latest, order('created_at DESC').limit(9)
   
   has_many :images, :dependent => :destroy
+  belongs_to :agency
   before_save :generate_slug
   
   has_and_belongs_to_many :skills

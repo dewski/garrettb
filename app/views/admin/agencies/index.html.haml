@@ -1,0 +1,9 @@
+- title "Managing Agencies"
+.meta
+  %ul#navigation.clearfix
+    %li= link_to "New Agency", new_admin_agency_path
+  %h2== All Agencies
+.body
+  - @agencies.each do |agency|
+    .item_overview[agency]
+      %h2= link_to agency.title, edit_admin_agency_path(agency)

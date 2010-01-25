@@ -1,0 +1,16 @@
+- title "Editing #{@agency.name}"
+.meta
+  %ul#navigation.clearfix
+    %li= link_to "All Agencies", admin_agencies_path
+  %h2= @agency.name
+.body
+  - form_for @agency, :url => admin_agency_path(@agency) do |f|
+    = f.error_messages
+    %dl
+      %dd= f.label :title
+      %dt= f.text_field :title
+      
+      %dd= f.label :url
+      %dt= f.text_field :url
+      
+    = f.submit

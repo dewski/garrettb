@@ -1,0 +1,16 @@
+- title "New Agency"
+.meta
+  %ul#navigation.clearfix
+    %li= link_to "Go Back", admin_agencies_path
+  %h2== New Agency
+.body
+  - form_for @agency, :url => admin_agencies_path do |f|
+    = f.error_messages
+    %dl
+      %dd= f.label :title
+      %dt= f.text_field :title
+      
+      %dd= f.label :url
+      %dt= f.text_field :url
+      
+    = f.submit

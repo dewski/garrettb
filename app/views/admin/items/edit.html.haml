@@ -11,12 +11,16 @@
   - form_for @item, :url => admin_item_path(@item), :html => { :multipart => true } do |f|
     = f.error_messages
     = render "skills"
+    
     %dl
       %dd= f.label :name
       %dt= f.text_field :name
       
       %dd= f.label :url, "Link"
       %dt= f.text_field :url
+      
+      %dd= f.label :agency_id, "Agency"
+      %dt= f.select :agency_id, Agency.all.map { |a| [a.title, a.id] }
     
       %dd= f.label :description
       %dt= f.text_area :description

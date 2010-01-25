@@ -1,9 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  title: MyString
-  slug: MyString
+php:
+  title: PHP
+  slug: php
 
-two:
-  title: MyString
-  slug: MyString
+rails:
+  title: Ruby on Rails
+  slug: rails
