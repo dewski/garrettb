@@ -8,9 +8,25 @@
   %body
     #what_i_do
       .wrapper
-        %h2== What I Do That Makes Me Stand Out...
+        %p
+          %span== Web Applications
+          %span== Ruby on Rails
+          %span== PHP/MySQL
+          %span== HTML/CSS
+          %span== WordPress
+          %span== JavaScript
+        %h2== Just some of the things I can do for you...
     #content
       .wrapper
         .container
           = yield
         = render "shared/footer"
+    = javascript_include_tag "jquery.1.4.min", "jquery-ui-1.7.2.min", "application"
+    - if content_for?(:javascript_files)
+      = yield :javascript_files
+    - if content_for?(:javascript)
+      %script{ :type => "text/javascript" }
+        :plain
+          $(document).ready(function () {
+            #{yield :javascript}
+          });
