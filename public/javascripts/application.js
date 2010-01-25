@@ -8,14 +8,16 @@ $(document).ready(function () {
   });
   
   $('.works #thumbs a').live('click', function (e) {
-    if($(this).attr('href') == "#") {
-      e.preventDefault();
-    }
+    if($(this).attr('href') == "#") e.preventDefault();
     var large_img = $(this).find('img').attr('id').replace('thumb', 'large');
-    $('#'+ large_img).show();
-    $('img.displayed').fadeOut(1000, function () {
-      $(this).removeClass('displayed');
-      $('#'+ large_img).addClass('displayed');
-    });
+    var target = $('#'+ large_img);
+    
+    if(!target.hasClassName('displayed')) {
+      target.show();
+      $('img.displayed').fadeOut("fast", function () {
+        $(this).removeClass('displayed');
+        target.addClass('displayed');
+      });
+    }
   });
 });
