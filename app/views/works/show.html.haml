@@ -17,6 +17,7 @@
   = image_tag @item.images.first.file.url(:large), :class => "displayed"
   - @item.images.each do |image|
     = image_tag image.file.url(:large), :id => "large_image_#{image.id}", :style => "display:none"
+    
 .hidden_loader{ :style => "display:none" }
   - @item.images.each do |image|
     = image_tag image.file.url(:large)
