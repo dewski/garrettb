@@ -26,13 +26,13 @@ q:before,q:after {
     height: 0;
 }
 .clearfix {
-    display: inline-block;
+  display: inline-block;
 }
 html[xmlns] .clearfix {
-    display: block;
+  display: block;
 }
 * html .clearfix {
-    height: 1%;
+  height: 1%;
 }
 
 /**
@@ -51,4 +51,10 @@ body {
 a {
   color: #333;
   outline: none;
+}
+
+span.amp {
+  font-family: Baskerville, "Goudy Old Style", "Palatino", "Book Antiqua", serif;
+  font-weight: normal;
+  font-size: 1.2em;
 }

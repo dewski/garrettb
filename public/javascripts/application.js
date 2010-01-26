@@ -21,4 +21,24 @@ $(document).ready(function () {
       });
     }
   });
+  
+  $('a.dewski').live('click', function (e) {
+    e.preventDefault();
+    var dewskis = $('#dewskis'),
+        x = 1,
+        img = "<img src='/images/content/dewski.gif' style='display:none' alt='' />";
+    dewskis.fadeIn();
+    for(var i = 0; i < 154; i++) {
+      dewskis.append(img);
+      dewskis.find('img:last').hide(0).delay(i*10).fadeIn(50);
+    }
+    window.setTimeout(function () {
+      $('#thirsty').hide();
+      $('#quenched').show();
+      $('body.about #work').css({
+        backgroundImage: 'url("/images/content/about_dewski.jpg")'
+      });
+      dewskis.fadeOut("fast");
+    }, 2500);
+  });
 });

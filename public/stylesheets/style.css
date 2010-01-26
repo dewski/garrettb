@@ -417,3 +417,43 @@ body.about #work {
   min-height: 500px;
   height: 500px;
 }
+body.about #work {
+  position: relative;
+}
+body.about .body {
+  font-size: 16px;
+  padding: 13px 25px 20px;
+}
+body.about .body p {
+  padding: 7px 0;
+  line-height: 26px;
+}
+
+a.bkwld,
+a.github,
+a.gowalla,
+a.twitter,
+a.jquery {
+  text-decoration: none;
+  font-weight: bold;
+  color: #00a7e5;
+}
+a.github {
+  color: #eea025;
+}
+a.gowalla {
+  color: #435522;
+}
+a.lastfm {
+  color: #ee3425;
+}
+a.jquery {
+  color: #4082ae;
+}
+#dewskis {
+  position: absolute;
+  background: #fff;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  overflow: hidden;
+}
