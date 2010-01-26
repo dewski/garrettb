@@ -31,11 +31,6 @@ namespace :deploy do
     run "cd #{release_path} && whenever --update-crontab #{application}"
   end
   
-  desc "Run gem bundle"
-  task :bundle, :roles => :db do
-    run "cd #{current_path} && gem bundle"
-  end
-  
   task :move_in_database_yml, :roles => :app do
     run "cp #{deploy_to}/shared/system/database.yml #{current_path}/config/"
   end

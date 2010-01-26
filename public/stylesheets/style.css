@@ -391,7 +391,7 @@ dt textarea {
   display: block;
   text-indent: -9999em;
   font-size: 0.1em;
-  margin: 15px 0 0;
+  margin: 13px 5px 0 0;
 }
 .meta .agency_bkwld {
   background: url('../images/agencies/bkwld.png') no-repeat;
@@ -400,12 +400,10 @@ dt textarea {
 .meta .agency_jeff-doe-design {
   background: url('../images/agencies/jeffdoe.png') no-repeat;
   width: 93px; height: 15px;
-  margin: 21px 0 0;
 }
 .meta .agency_31three {
   background: url('../images/agencies/31three.png') no-repeat;
   width: 101px; height: 15px;
-  margin: 21px 0 0;
 }
 .post .body {
   padding: 0;
