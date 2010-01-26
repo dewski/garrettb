@@ -3,7 +3,7 @@
   %ul#navigation.clearfix
     %li= link_to "New Client", new_admin_item_path
   %h2== All Clients
-.body
+#items.body
   - @items.each do |item|
     .item_overview[item]
       %h2= link_to item.name, edit_admin_item_path(item)
@@ -11,3 +11,15 @@
         %p= item.description
       %ul.images.clearfix
         = render item.images
+
+- content_for :javascript do
+  :plain
+    $('#items').sortable({
+      opacity: 0.6,
+      axis: 'y',
+      cursor: 'pointer',
+      revert: false,
+      update: function (event, ui) {
+        $.post("#{reorder_admin_items_path}", $('#items').sortable('serialize'));
+      }
+    });

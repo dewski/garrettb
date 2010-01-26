@@ -3,7 +3,7 @@ class Admin::ItemsController < ApplicationController
   respond_to :html, :xml, :json
   
   def index
-    respond_with(@items = Item.all)
+    respond_with(@items = Item.order('position ASC'))
   end
   
   def show
@@ -30,8 +30,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(params[:item])
     
     if @item.save
-      flash[:notice] = "User was created successfully."
-      respond_with @item, :status => :created, :location => admin_item_path(@item)
+      respond_with @item, :status => :created, :location => admin_item_path(@item), :notice => "User was created successfully."
     else
       respond_with(@item.errors, :status => :unprocessable_entity) do |format|
         format.html {
@@ -46,5 +45,11 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find_by_slug(params[:id])
     @item.destroy
     respond_with @item, :status => :destroyed, :location => admin_items_path, :notice => "Item was created deleted"
+  end
+  
+  def reorder
+    params[:item].each_with_index do |id, index|
+      Item.find(id).update_attribute :position, index+1
+    end
   end
 end

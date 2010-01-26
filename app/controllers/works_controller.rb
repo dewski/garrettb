@@ -9,6 +9,7 @@ class WorksController < ApplicationController
   
   def show
     @item = Item.find_by_slug(params[:id])
+    @images = @item.images
     respond_with @item
   end
 end

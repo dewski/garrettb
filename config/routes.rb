@@ -12,6 +12,10 @@ GB::Application.routes.draw do |map|
     resource  :dashboard
     
     resources :items do
+        
+      collection do
+        post :reorder
+      end
       
       resources :images do
         member do

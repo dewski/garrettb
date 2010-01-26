@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100125043748) do
+ActiveRecord::Schema.define(:version => 20100126032346) do
 
   create_table "agencies", :force => true do |t|
     t.string   "title",      :null => false
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20100125043748) do
     t.integer  "images_count", :default => 0
     t.string   "url"
     t.integer  "agency_id"
+    t.integer  "position",     :default => 0
   end
 
   create_table "items_skills", :id => false, :force => true do |t|

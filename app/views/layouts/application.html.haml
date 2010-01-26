@@ -4,7 +4,7 @@
     %meta(http-equiv="Content-type" content="text/html; charset=utf-8")
     %title= content_for?(:title) ? content_for(:title) : t(:site_name)
     = auto_discovery_link_tag :atom, posts_path(:format => :atom)
-    = stylesheet_link_tag :all
+    = stylesheet_link_tag "style"
     - if content_for?(:stylesheets)
       = yield :stylesheets
   %body{ :class => "#{controller.controller_name}"}
