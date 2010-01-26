@@ -61,6 +61,17 @@ module ApplicationHelper
     end
   end
   
+  def markdown(post)
+    content = case [controller.controller_name, controller.action_name]
+      when ['welcome', 'index'] then post.excerpt
+      when ['posts', 'index'] then post.summary
+      when ['posts', 'show'] then post.body
+      else post.body
+    end
+    
+    BlueCloth.new(content).to_html.html_safe!
+  end
+  
   def markdown_footer(body)
     cutoff = body.split('\end')
     content = (cutoff.length > 0) ? cutoff[0] : truncate(body, 75)

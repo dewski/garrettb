@@ -13,6 +13,12 @@
       %dd= f.label :body
       %dt= f.text_area :body
       
+      %dd= f.label :excerpt
+      %dt= f.text_area :excerpt
+      
+      %dd= f.label :preview
+      %dt= f.text_area :preview
+      
       %dd= f.label :category_id, "Category"
       %dt= f.collection_select :category_id, Category.all, :id, :title
       

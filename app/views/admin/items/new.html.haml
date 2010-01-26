@@ -14,6 +14,9 @@
       
       %dd= f.label :url, "Link"
       %dt= f.text_field :url
+      
+      %dd= f.label :agency_id, "Agency"
+      %dt= f.select :agency_id, Agency.all.map { |a| [a.title, a.id] }
     
       %dd= f.label :description
       %dt= f.text_area :description
