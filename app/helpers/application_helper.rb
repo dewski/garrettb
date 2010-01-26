@@ -60,4 +60,23 @@ module ApplicationHelper
       "(not deployed)"
     end
   end
+  
+  def markdown_footer(body)
+    cutoff = body.split('\end')
+    content = (cutoff.length > 0) ? cutoff[0] : truncate(body, 75)
+    
+    BlueCloth.new(content).to_html.html_safe!
+  end
+  
+  def markdown_post(body)
+    cutoff = body.split('\end')
+    
+    if controller.action_name == 'show'
+      content = body.gsub('\end', '')
+    else
+      content = (cutoff.length > 0) ? cutoff[0] : body
+    end
+    
+    BlueCloth.new(content).to_html.html_safe!
+  end
 end
