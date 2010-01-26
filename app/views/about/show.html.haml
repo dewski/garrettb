@@ -6,3 +6,7 @@
   %p If you want to just get in <a href="/contact">contact</a> with me,<br />theres a form for that.
   %p#thirsty Now that you made it all the way down<br />to the bottom I only ask for you to<br /><a href="#" class="dewski">give me a Mountain Dew</a> to drink.
   %p#quenched{ :style => "display:none" } Ah, thank you, now I can help you<br />through my <a href="/work">work</a>.
+  
+- content_for :javascript do
+  :plain
+    $.preLoadImages('/images/content/about_dewski.jpg', '/images/content/dewski.gif');

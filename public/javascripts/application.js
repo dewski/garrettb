@@ -42,3 +42,15 @@ $(document).ready(function () {
     }, 2500);
   });
 });
+
+(function($) {
+  var cache = [];
+  $.preLoadImages = function() {
+    var args_len = arguments.length;
+    for (var i = args_len; i--;) {
+      var cacheImage = document.createElement('img');
+      cacheImage.src = arguments[i];
+      cache.push(cacheImage);
+    }
+  }
+})(jQuery);
