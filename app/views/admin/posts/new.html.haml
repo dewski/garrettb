@@ -6,6 +6,7 @@
 .body
   - form_for @post, :url => admin_posts_path do |f|
     = f.error_messages
+    
     %dl
       %dd= f.label :title
       %dt= f.text_field :title
@@ -16,8 +17,8 @@
       %dd= f.label :excerpt
       %dt= f.text_area :excerpt
       
-      %dd= f.label :preview
-      %dt= f.text_area :preview
+      %dd= f.label :summary
+      %dt= f.text_area :summary
       
       %dd= f.label :category_id, "Category"
       %dt= f.collection_select :category_id, Category.all, :id, :title
