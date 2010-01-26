@@ -393,16 +393,16 @@ dt textarea {
   font-size: 0.1em;
   margin: 15px 0 0;
 }
-.meta .bkwld {
+.meta .agency_bkwld {
   background: url('../images/agencies/bkwld.png') no-repeat;
   width: 100px; height: 22px;
 }
-.meta .jeff-doe-design {
+.meta .agency_jeff-doe-design {
   background: url('../images/agencies/jeffdoe.png') no-repeat;
   width: 93px; height: 15px;
   margin: 21px 0 0;
 }
-.meta .31three {
+.meta .agency_31three {
   background: url('../images/agencies/31three.png') no-repeat;
   width: 101px; height: 15px;
   margin: 21px 0 0;
