@@ -61,7 +61,7 @@ module ApplicationHelper
     end
   end
   
-  def p_markdown(post)
+  def markdown(post)
     return blue_cloth(post) if post.is_a?(String)
     
     content = case [controller.controller_name, controller.action_name]
