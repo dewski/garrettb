@@ -62,6 +62,8 @@ module ApplicationHelper
   end
   
   def p_markdown(post)
+    return blue_cloth(post) if post.is_a?(String)
+    
     content = case [controller.controller_name, controller.action_name]
       when ['welcome', 'index'] then post.excerpt
       when ['posts', 'index'] then post.summary
@@ -69,6 +71,10 @@ module ApplicationHelper
       else post.body
     end
     
+    blue_cloth(content)
+  end
+  
+  def blue_cloth(content)
     BlueCloth.new(content).to_html.html_safe!
   end
 end

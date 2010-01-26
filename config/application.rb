@@ -6,6 +6,7 @@ module GB
     
     config.filter_parameters = :password
     
+    
     config.generators do |g|
       g.orm             :active_record
       g.template_engine :haml

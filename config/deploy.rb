@@ -1,7 +1,12 @@
+set :default_stage, "staging"
+set :stages, %w(staging production)
+require 'capistrano/ext/multistage'
+
 default_run_options[:pty] = true
 
 set :application, "garrettb"
-set :deploy_to, "/var/www/garrettb"
+
+set :master, "/var/www/garrettb/production"
 
 set :scm, :git
 set :deploy_via, :remote_cache
@@ -32,12 +37,12 @@ namespace :deploy do
   end
   
   task :move_in_database_yml, :roles => :app do
-    run "cp #{deploy_to}/shared/system/database.yml #{current_path}/config/"
+    run "cp #{master}/shared/system/database.yml #{current_path}/config/"
   end
   
   task :move_in_asset_info, :roles => :app do
-    run "cp #{deploy_to}/shared/system/s3.yml #{current_path}/config/"
-    run "cp #{deploy_to}/shared/system/synch_s3_asset_host.yml #{current_path}/config/"
+    run "cp #{master}/shared/system/s3.yml #{current_path}/config/"
+    run "cp #{master}/shared/system/synch_s3_asset_host.yml #{current_path}/config/"
   end
 end
 
@@ -69,7 +74,7 @@ namespace :bundler do
 
   task :bundle_new_release do
     bundler.symlink_vendor
-    run("cd #{release_path} && gem bundle --only production")
+    run("cd #{release_path} && gem bundle")
   end
 end
 
