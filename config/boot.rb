@@ -18,5 +18,5 @@ require "action_view/railtie"
 require "action_mailer/railtie"
 
 require "paperclip"
-require "authlogic"
+# require "authlogic"
 require "bluecloth"
