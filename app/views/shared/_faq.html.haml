@@ -4,4 +4,4 @@
       %h2
         %small= post.published_at.strftime("%m/%d/%Y")
         = link_to post.title, post_path(post)
-      = markdown post
+      = p_markdown post

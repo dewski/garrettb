@@ -2,4 +2,4 @@
   %h2= link_to post.title, post_path(post)
   %h3== Posted on #{post.published_at.strftime("%m/%d/%Y")} in #{post.category.title}
   .body
-    = markdown post
+    = p_markdown post
