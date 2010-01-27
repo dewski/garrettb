@@ -372,15 +372,15 @@ dt textarea {
 }
 #featured img {
 }
-.works .listing {
+.works #listing {
   padding: 40px 0 0 60px;
 }
-.works .listing .item {
+.works #listing .item {
   float: left;
   width: 178px;
   padding: 0 50px 40px 0;
 }
-.listing a img {
+#listing a img {
   padding: 2px;
   border: 1px solid #ddd;
 }
@@ -456,4 +456,27 @@ a.jquery {
   top: 0; bottom: 0;
   left: 0; right: 0;
   overflow: hidden;
+}
+
+/* Sorting */
+#sorting {
+   background: url('../images/admin/meta.gif') repeat-x top;
+   font-size: 11px;
+}
+#sorting li {
+  float: left;
+}
+#sorting li a {
+  display: block;
+  padding: 8px;
+  text-decoration: none;
+  color: #666;
+}
+#sorting a:hover,
+#sorting a.active {
+  background: url('../images/admin/meta_hover.gif') repeat-x top;
+  color: #000;
+}
+#sorting a.active {
+  font-weight: bold;
 }

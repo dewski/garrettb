@@ -7,6 +7,7 @@
 .body
   - form_for @post, :url => admin_post_path(@post) do |f|
     = f.error_messages
+    
     %dl
       %dd= f.label :title
       %dt= f.text_field :title

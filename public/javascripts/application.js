@@ -41,6 +41,30 @@ $(document).ready(function () {
       dewskis.fadeOut("fast");
     }, 2500);
   });
+  
+  $('#sorting a').live('click', function (e) {
+    e.preventDefault();
+    var rel = $(this).attr('rel'), items = $('#listing .item');
+    
+    if($('#sorting .active').attr('rel') == rel) {
+      return;
+    }
+    
+    $('#sorting .active').removeClass('active');
+    $(this).addClass('active');
+    
+    if(rel == 'all') {
+      items.fadeIn(250);
+    } else {
+      items.each(function () {
+        if(!$(this).hasClass(rel)) {
+          $(this).fadeOut(250);
+        } else {
+          $(this).fadeIn(250);
+        }
+      });
+    }
+  });
 });
 
 (function($) {
@@ -54,3 +78,22 @@ $(document).ready(function () {
     }
   }
 })(jQuery);
+
+(function($) {
+  $.hasKey = function() {
+    var args_len = arguments.length;
+    for (var i = args_len; i--;) {
+      var cacheImage = document.createElement('img');
+      cacheImage.src = arguments[i];
+      cache.push(cacheImage);
+    }
+  }
+})(jQuery);
+
+function oc(a) {
+  var args_len = a.length, o = {};
+  for(var i = 0; i < args_len; i++) {
+    o[a[i]] = '';
+  }
+  return o;
+}

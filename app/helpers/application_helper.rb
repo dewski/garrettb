@@ -14,12 +14,6 @@ module ApplicationHelper
     content_for(name.to_sym) { tag :meta, :name => name, :content => content } unless content.nil? or name.nil?
   end
   
-  def link_tag(title, link)
-    content_for(:alternate) {
-      tag :link, :rel => "alternate", :type => "application/rss+xml", :title => title, :href => link
-    } unless title.nil? or link.nil?
-  end
-  
   def title(page_title)
     content_for(:title) {
       "#{page_title} &bull; #{t(:site_name)}".html_safe!
@@ -53,15 +47,16 @@ module ApplicationHelper
   end
  
   def application_last_deployed
-    if File.exists?("#{RAILS_ROOT}/REVISION")
-      @deployed_at ||= File.stat("#{RAILS_ROOT}/REVISION").ctime
-      time_ago_in_words(@deployed_at) + " ago"
+    if File.exists?("#{Rails.root}/REVISION")
+      @deployed_at ||= File.stat("#{Rails.root}/REVISION").ctime
+      "#{time_ago_in_words @deployed_at} ago"
     else
       "(not deployed)"
     end
   end
   
   def markdown(post)
+    return if post.nil?
     return blue_cloth(post) if post.is_a?(String)
     
     content = case [controller.controller_name, controller.action_name]
