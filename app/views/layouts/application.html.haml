@@ -8,16 +8,6 @@
     - if content_for?(:stylesheets)
       = yield :stylesheets
   %body{ :class => "#{controller.controller_name}"}
-    #what_i_do
-      .wrapper
-        %p
-          %span== Web Applications
-          %span== Ruby on Rails
-          %span== PHP/MySQL
-          %span== HTML/CSS
-          %span== WordPress
-          %span== JavaScript
-        %h2== Just some of the things I can do for you...
     #content
       .wrapper
         .container

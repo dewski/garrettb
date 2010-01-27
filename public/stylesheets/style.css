@@ -480,3 +480,17 @@ a.jquery {
 #sorting a.active {
   font-weight: bold;
 }
+
+.post ul, .post ol {
+  padding: 0 0 0 20px;
+}
+.post ul li {
+  list-style-type: disc;
+}
+.post ol li {
+  list-style-type: decimal;
+}
+.post li {
+  padding: 3px 0;
+  font-size: 15px;
+}
