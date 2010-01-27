@@ -482,7 +482,7 @@ a.jquery {
 }
 
 .post ul, .post ol {
-  padding: 0 0 0 20px;
+  padding: 25px 0 25px 30px;
 }
 .post ul li {
   list-style-type: disc;
@@ -491,6 +491,6 @@ a.jquery {
   list-style-type: decimal;
 }
 .post li {
-  padding: 3px 0;
-  font-size: 15px;
+  padding: 5px 0;
+  font-size: 14px;
 }
