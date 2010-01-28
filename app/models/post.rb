@@ -4,8 +4,7 @@ class Post < ActiveRecord::Base
   belongs_to :category
   has_many :comments
   
-  before_save :generate_slug
-  before_create :set_published_at
+  before_save :generate_slug, :set_published_at
   validates_associated :comments
   
   def to_param
@@ -18,6 +17,8 @@ class Post < ActiveRecord::Base
     end
     
     def set_published_at
+      # It's already been published, don't change the date.
+      return if self.published_at.present?
       self.published_at = (self.published? ? Time.now : nil)
     end
 end
