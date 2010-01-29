@@ -503,6 +503,7 @@ a.jquery {
   margin: 10px 0; padding: 0 !important;
 }
 #links a {
+  text-decoration: none;
   text-transform: uppercase;
   font-size: 12px;
   display: block;
