@@ -1,3 +1,7 @@
+Cufon.replace('ul#links a', {
+  fontFamily: 'Gotham Rounded Book'
+});
+
 $(document).ready(function () {
   $('.welcome #work a').hover(function () {
     $(this).append("<strong>"+ $(this).find("img").attr('alt') +"</strong>");

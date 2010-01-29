@@ -62,9 +62,7 @@
 }
 #about_me h1 {
 	padding: 0 0 0.6em;
-	border-bottom: 1px solid #eee;
 	width: 205px;
-	margin: 0 0 0.6em;
 }
 #about_me h1 a {
   background: url('../images/content/logo.gif') no-repeat;
@@ -86,14 +84,16 @@
 	text-decoration: none;
 	color: #333;
 }
-#about_me ul {
-  padding: 5px 0 0.6em;
+#navigation {
+	margin: 0.5em 0 1.75em; padding: 1.25em 0;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
 }
-#about_me li {
+#navigation li {
   float: left;
   margin: 0 8px 0 0;
 }
-#about_me li a {
+#navigation a {
   background: #eee;
   text-decoration: none;
   padding: 3px 5px;
@@ -101,9 +101,11 @@
   -moz-border-radius: 3px;
   border: 1px solid #ddd;
 }
-#about_me li a:hover {
+#navigation a:hover {
   border: 1px solid #eee;
 }
+
+/* Work */
 #work {
 	width: 44.5em;
 	float: left;
@@ -493,4 +495,34 @@ a.jquery {
 .post li {
   padding: 4px 0;
   font-size: 13px;
+}
+
+/* Links */
+#links {
+  border: 1px solid #dadada;
+  margin: 10px 0; padding: 0 !important;
+}
+#links a {
+  text-transform: uppercase;
+  font-size: 12px;
+  display: block;
+  color: #5a5a5a;
+  font-weight: normal;
+  padding: 9px 0 9px 32px;
+}
+#links li {
+  background: #ededed url('../images/content/link_bg.gif') repeat-x top;
+  border-top: 1px solid #dadada;
+}
+#links li:first-child {
+  border-top: 0;
+}
+li.github a {
+  background: url('../images/links/github.gif') no-repeat left center;
+}
+li.lastfm a {
+  background: url('../images/links/lastfm.gif') no-repeat left center;
+}
+li.twitter a {
+  background: url('../images/links/twitter.gif') no-repeat left center;
 }

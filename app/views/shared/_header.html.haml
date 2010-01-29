@@ -1,9 +1,14 @@
 #about_me
-  %h1= link_to "Garrett Bjerkhoel", root_path
+  %h1= link_to 'Garrett Bjerkhoel', root_path
   %ul#navigation.clearfix
-    %li= link_to "Work", works_path
-    %li= link_to "About", about_path
-    %li= link_to "Blog", posts_path
-    %li= link_to "Contact", contact_path
-  %p
-    I am a one man show, and I am what you need for your website.
+    %li= link_to 'Work', works_path
+    %li= link_to 'About', about_path
+    %li= link_to 'Blog', posts_path
+    %li= link_to 'Contact', contact_path
+
+  %ul#links
+    %li.github= link_to 'My Code', 'http://github.com/dewski'
+    %li.lastfm= link_to 'My Music', 'http://last.fm/user/silverkid14'
+    %li.twitter= link_to 'My Tweets', 'http://twitter.com/garrettb'
+  
+  %ul#twitter_update_list
