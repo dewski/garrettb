@@ -20,9 +20,6 @@ GB::Application.configure do
     :user_name => "admin@clientend.com",
     :password => "dewski"
   }
-  config.action_mailer.default_url_options = {
-    :host => "garrettbjerkhoel.com"
-  }
   
   Paperclip.options[:command_path] = "/usr/local/bin"
   Paperclip.options[:log_command] = true
