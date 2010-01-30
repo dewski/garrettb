@@ -36,6 +36,11 @@ html[xmlns] .clearfix {
 }
 pre, code {
   font: 12px Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono", monospace;
+  margin: 0; padding: 0;
+}
+pre {
+  background: #efefef;
+  padding: 5px;
 }
 
 /**
