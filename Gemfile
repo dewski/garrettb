@@ -1,7 +1,6 @@
 clear_sources
 source "http://gemcutter.org"
 source "http://gems.github.com"
-bundle_path "vendor/bundler_gems"
 
 directory "/Users/garrett/src/sites/GB", :glob => "{*/,}*.gemspec"
 
