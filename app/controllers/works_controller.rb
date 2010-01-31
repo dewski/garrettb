@@ -10,6 +10,15 @@ class WorksController < ApplicationController
   def show
     @item = Item.find_by_slug(params[:id])
     @images = @item.images
+    
+    @thumbs = []
+    @images.each do |image|
+      @thumbs <<  {
+        :thumb => image.thumb_image,
+        :large => image.large_image
+      }
+    end
+    
     respond_with @item
   end
 end

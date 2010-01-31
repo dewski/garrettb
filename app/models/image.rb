@@ -6,7 +6,7 @@ class Image < ActiveRecord::Base
   after_update :reprocess_file, :if => :cropping?
   
   has_attached_file :file, :styles => {
-    :large => ["535>", :png],
+    :large => ["534>", :png],
     :small => ["178x114#", :png],
     :thumb => ["75x75#", :png]
   },
@@ -23,6 +23,15 @@ class Image < ActiveRecord::Base
   def file_geometry(style = :original)
     @geometry ||= {}
     @geometry[style] ||= Paperclip::Geometry.from_file(file.url(style))
+  end
+  
+  # JSON Methods
+  def thumb_image
+    file.url(:thumb)
+  end
+  
+  def large_image
+    file.url(:large)
   end
   
   private

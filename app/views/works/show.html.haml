@@ -9,16 +9,18 @@
       %li{ :class => "skill #{skill.slug}" }= skill.title
 
 #thumbs.clearfix
-  - @item.images.each do |image|
+  - @images.each do |image|
     - logger.info image.id
-    %li= link_to image_tag(image.file.url, :id => "thumb_image_#{image.id}"), "#"
+    %li= link_to image_tag(image.file.url, :id => "thumb_image_#{image.id}"), '#'
   - if @item.url.present?
     %li.view= link_to "&nbsp;".html_safe!, @item.url
+
 #featured
-  = image_tag @item.images.first.file.url(:large), :class => "displayed", :style => "z-index: 15"
-  - @item.images.each do |image|
-    = image_tag image.file.url(:large), :id => "large_image_#{image.id}", :style => "display:none"
+  = image_tag @images.first.file.url(:large)
     
-.hidden_loader{ :style => "display:none" }
-  - @item.images.each do |image|
-    = image_tag image.file.url(:large)
+- content_for :javascript do
+  :plain
+    items = #{@thumbs.to_json};
+    $(items).each(function (i, item) {
+      $.preloadImages(item.large)
+    });

@@ -1,3 +1,5 @@
+var items;
+
 $(document).ready(function () {
   $('body.welcome #right a').hover(function () {
     $(this).append("<strong>"+ $(this).find("img").attr('alt') +"</strong>");
@@ -8,18 +10,13 @@ $(document).ready(function () {
   });
   
   $('body.works #thumbs a').live('click', function (e) {
-    if($(this).attr('href') == "#") e.preventDefault();
-    var large_img = $(this).find('img').attr('id').replace('thumb', 'large');
-    var target = $('#'+ large_img);
-    
-    if(!target.hasClass('displayed')) {
-      $('img.displayed').fadeOut("fast", function () {
-        $(this).removeClass('displayed').css('z-index', '1');
-        target.fadeIn(function () {
-          $(this).addClass('displayed');
-        });
-      });
-    }
+    e.preventDefault();
+    var index = $(this).parent().prevAll().size();
+    $('#featured').prepend($('<img/>', { src: items[index].large, alt: 'alt', style: 'z-index:5' }));
+    $('#featured img:eq(0)').hide().fadeIn(250, function () {
+      $(this).css('z-index', '1');
+      $('#featured img:eq(1)').remove();
+    });
   });
   
   $('a.dewski').live('click', function (e) {
