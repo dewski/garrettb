@@ -285,6 +285,28 @@ body.works .meta h2 {
   letter-spacing: -1px;
 }
 body.works .meta p { padding: 0; }
+body.works .meta .agency {
+  float: right;
+  display: block;
+  text-indent: -9999em;
+  font-size: 0.1em;
+  margin: 13px 5px 0 0;
+}
+body.works .meta .agency_bkwld {
+  background: url('../images/agencies/bkwld.png') no-repeat;
+  width: 100px;
+  height: 22px;
+}
+body.works .meta .agency_jeff-doe-design {
+  background: url('../images/agencies/jeffdoe.png') no-repeat;
+  width: 93px;
+  height: 15px;
+}
+body.works .meta .agency_31three {
+  background: url('../images/agencies/31three.png') no-repeat;
+  width: 101px;
+  height: 15px;
+}
 body.works .skills { padding: 10px 0; }
 body.works .skills .skill {
   float: left;
@@ -362,28 +384,6 @@ body.works #listing .item {
   width: 535px;
   height: 332px;
   overflow: hidden;
-}
-.meta .agency {
-  float: right;
-  display: block;
-  text-indent: -9999em;
-  font-size: 0.1em;
-  margin: 13px 5px 0 0;
-}
-.meta .agency .agency_bkwld {
-  background: url('../images/agencies/bkwld.png') no-repeat;
-  width: 100px;
-  height: 22px;
-}
-.meta .agency .agency_jeff-doe-design {
-  background: url('../images/agencies/jeffdoe.png') no-repeat;
-  width: 93px;
-  height: 15px;
-}
-.meta .agency .agency_31three {
-  background: url('../images/agencies/31three.png') no-repeat;
-  width: 101px;
-  height: 15px;
 }
 body.about #right {
   background: url('../images/content/about.jpg') no-repeat bottom right;
