@@ -1,5 +1,4 @@
 - title @item.name
-- javascript 'cufon-yui', 'gotham_rounded.font'
 
 .meta
   - if @item.agency.present?
@@ -23,6 +22,3 @@
 .hidden_loader{ :style => "display:none" }
   - @item.images.each do |image|
     = image_tag image.file.url(:large)
-
-- content_for :javascript do
-  Cufon.replace('.meta h2');
