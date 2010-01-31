@@ -1,10 +1,10 @@
 clear_sources
-bundle_path "vendor/gems"
+source "http://gemcutter.org"
+source "http://gems.github.com"
+bundle_path "vendor/bundler_gems"
 
 directory "/Users/garrett/src/sites/GB", :glob => "{*/,}*.gemspec"
 
-source "http://gemcutter.org"
-source "http://gems.github.com"
 
 git "git://github.com/rails/arel.git"
 git "git://github.com/rails/rack.git"

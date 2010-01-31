@@ -1,68 +1,58 @@
-/**********************************************/
-/*  Garrett Bjerkhoel *************************/
-/*  @url http://www.garrettbjerkhoel.com ******/
-/**********************************************/
-/*  Code is not to be redistributed or sold.  */
-/**********************************************/
-
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
-	margin: 0; padding: 0;
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
 }
-img, a img { 
-	border: 0;
-}
-ol,ul {
-	list-style: none;
-}
-q:before,q:after {
-	content: '';
-}
+img { border: 0; }
+a img { border: 0; }
+ol, ul { list-style: none; }
+q:before { content: ''; }
+q:after { content: ''; }
 .clearfix:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
-}
-.clearfix {
-  display: inline-block;
-}
-html[xmlns] .clearfix {
+  content: ".";
   display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
 }
-* html .clearfix {
-  height: 1%;
-}
+.clearfix { display: inline-block; }
+html[xmlns] .clearfix { display: block; }
+* html .clearfix { height: 1%; }
 pre, code {
-  font: 12px Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono", monospace;
-  margin: 0; padding: 0;
+  font: 12px Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+  margin: 0;
+  padding: 0;
 }
 pre {
   background: #efefef;
+  margin: 5px 0;
   padding: 5px;
 }
-
-/**
-  * Body
-  */
-html{
-	font-size: 100%;
-}
 body {
-	margin: 0; padding: 0;
-	font: 62.5% "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #333;
-	background: #444;
+  background: #444444 url('../images/content/background.gif') repeat-x top;
+  font: 12px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333333;
+  margin: 0;
+  padding: 10px 0 0;
 }
-
 a {
-  color: #333;
+  color: #333333;
   outline: none;
 }
-
 span.amp {
   font-family: Baskerville, "Goudy Old Style", "Palatino", "Book Antiqua", serif;
   font-weight: normal;
   font-size: 1.2em;
+}
+form dd { font-weight: bold; }
+form dt { padding: 0 0 15px; }
+dt input {
+  width: 500px;
+  padding: 5px;
+  font-size: 16px;
+}
+dt textarea {
+  width: 500px;
+  padding: 5px;
+  font-size: 11px;
 }

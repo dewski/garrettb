@@ -8,15 +8,14 @@
     - if content_for?(:stylesheets)
       = yield :stylesheets
   %body{ :class => controller.controller_name }
-    #content
-      .wrapper
-        .container
-          #portfolio.clearfix
-            = render 'shared/header'
-            #work
-              = yield
-          = render 'shared/faq'
-        = render 'shared/footer'
+    #wrapper
+      #container
+        #main.clearfix
+          = render 'shared/header'
+          #right
+            = yield
+        = render 'shared/faq'
+      = render 'shared/footer'
     = javascript_include_tag 'jquery.1.4.min', 'cufon-yui', 'fonts', 'application'
     - if content_for?(:javascript_files)
       = yield :javascript_files

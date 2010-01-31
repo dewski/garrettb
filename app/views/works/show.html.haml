@@ -1,11 +1,13 @@
 - title @item.name
+- javascript 'cufon-yui', 'gotham_rounded.font'
+
 .meta
   - if @item.agency.present?
     = link_to @item.agency.title, @item.agency.url, :class => "agency agency_#{@item.agency.slug}"
   %h2= @item.name
-  .skills.clearfix
+  %ul.skills.clearfix
     - @item.skills.each do |skill|
-      %strong{ :class => "skill #{skill.slug}" }= skill.title
+      %li{ :class => "skill #{skill.slug}" }= skill.title
 
 #thumbs.clearfix
   - @item.images.each do |image|
@@ -21,3 +23,6 @@
 .hidden_loader{ :style => "display:none" }
   - @item.images.each do |image|
     = image_tag image.file.url(:large)
+
+- content_for :javascript do
+  Cufon.replace('.meta h2');

@@ -3,24 +3,13 @@
   %head
     %meta(http-equiv="Content-type" content="text/html; charset=utf-8")
     %title= content_for?(:title) ? content_for(:title) : t(:site_name)
-    = stylesheet_link_tag :all
+    = stylesheet_link_tag 'style'
     = yield :stylesheets if content_for?(:stylesheets)
-  %body
-    #what_i_do
-      .wrapper
-        %p
-          %span== Web Applications
-          %span== Ruby on Rails
-          %span== PHP/MySQL
-          %span== HTML/CSS
-          %span== WordPress
-          %span== JavaScript
-        %h2== Just some of the things I can do for you...
-    #content
-      .wrapper
-        .container
-          = yield
-        = render "shared/footer"
+  %body.admin
+    #wrapper
+      #container
+        = yield
+      = render "shared/footer"
     = javascript_include_tag "jquery.1.4.min", "jquery-ui-1.7.2.min", "application"
     - if content_for?(:javascript_files)
       = yield :javascript_files

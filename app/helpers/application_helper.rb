@@ -20,7 +20,7 @@ module ApplicationHelper
     }
   end
   
-  def javascript_file(*files)
+  def javascript(*files)
     content_for(:javascript_files) {
       javascript_include_tag(*files)
     }
