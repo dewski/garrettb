@@ -290,7 +290,7 @@ body.works .meta .agency {
   display: block;
   text-indent: -9999em;
   font-size: 0.1em;
-  margin: 13px 5px 0 0;
+  margin: 0 5px 0 0;
 }
 body.works .meta .agency_bkwld {
   background: url('../images/agencies/bkwld.png') no-repeat;
@@ -383,8 +383,8 @@ body.works #listing .item {
 #featured {
   width: 534px;
   height: auto !important;
-  min-height: 344px;
-  height: 344px;
+  min-height: 343px;
+  height: 343px;
   overflow: hidden;
 }
 #featured img { position: absolute; }
