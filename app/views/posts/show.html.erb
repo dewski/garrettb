@@ -1,0 +1,27 @@
+<% title @post.title %>
+
+<%= render @post %>
+
+<div id="comment_wrapper">
+	<ul id="comments">
+		<%= render @post.comments %>
+	</ul>
+	<div id="comment_form">
+		<% form_for @comment, :url => post_comments_path(@post), :remote => true do |f| %>
+			<p>
+				<%= f.label :name %>
+				<%= f.text_field :name %>
+			</p>
+			<p>
+				<%= f.label :email %>
+				<%= f.text_field :email %>
+			</p>
+			<p>
+				<%= f.text_area :body %>
+			</p>
+			<p>
+				<%= f.submit %>
+			</p>
+		<% end %>
+	</div>
+</div>

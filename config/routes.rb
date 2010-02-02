@@ -39,7 +39,9 @@ GB::Application.routes.draw do |map|
   end
   
   resources :works, :as => 'work'
-  resources :posts, :as => 'blog'
+  resources :posts, :as => 'blog' do
+    resources :comments
+  end
   
   resource :contact, :controller => 'contact'
   resource :about, :controller => 'about'

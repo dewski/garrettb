@@ -1,2 +1,10 @@
 - title @post.title
+
 = render @post
+
+#comment_wrapper
+  %ul#comments
+    = @post.comments
+  #comment_form
+    - form_for @comment, :url => post_comments_path(@post), :remote => true do |f|
+      = f.label :name

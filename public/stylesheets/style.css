@@ -121,11 +121,28 @@ dt textarea {
   padding: 15px;
   border-bottom: 1px solid #eeeeee;
 }
-#right .post h2 { padding: 0 0 2px; }
-#right .post h2 a {
+#right .post .comment_count {
+  float: right;
+  font-weight: bold;
+  font-size: 11px;
+  margin: 5px 0 0;
+}
+#right .post .comment_count a {
   text-decoration: none;
+  background: url('../images/content/comment_normal.gif') no-repeat top right;
+  padding: 11px 17px 0 0;
+  color: #999999;
+}
+#right .post .comment_count a:hover {
+  background: url('../images/content/comment_hover.gif') no-repeat top right;
+  color: #111111;
+}
+#right .post h2 {
+  padding: 0 0 2px;
   font-size: 19px;
 }
+#right .post h2 a { text-decoration: none; }
+#right .post h2 a:hover { text-decoration: underline; }
 #right .post h3 {
   font-size: 11px;
   color: #aaaaaa;
@@ -328,15 +345,56 @@ body.works .item a:hover strong {
   background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.9))) !important;
   background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)) !important;
 }
-body.works #listing { padding: 40px 0 0 60px; }
+body.works #listing {
+  position: relative;
+  padding: 10px 0 0 60px;
+}
 body.works #listing a img {
   padding: 2px;
   border: 1px solid #dddddd;
 }
 body.works #listing .item {
   float: left;
-  width: 178px;
+  width: 184px;
   padding: 0 50px 40px 0;
+}
+#sorting {
+  font-size: 10px;
+  padding: 25px 0 15px 40px;
+}
+#sorting li {
+  float: left;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 3px 0 0;
+}
+#sorting li a {
+  display: block;
+  text-decoration: none;
+  color: #666666;
+  padding: 1px 6px;
+}
+#sorting li a:hover {
+  background: #828282;
+  border: 1px solid #727272;
+  border-top-color: #5e5e5e;
+  color: #ffffff;
+  padding: 0 5px;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+#sorting li a.active {
+  background: #828282;
+  border: 1px solid #727272;
+  border-top-color: #5e5e5e;
+  color: #ffffff;
+  padding: 0 5px;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
 }
 #right a strong {
   text-decoration: none;
@@ -440,27 +498,7 @@ body.about #dewskis {
   left: 0;
   right: 0;
   overflow: hidden;
-}
-#sorting {
-  background: url('../images/admin/meta.gif') repeat-x top;
-  font-size: 11px;
-}
-#sorting li { float: left; }
-#sorting li a {
-  display: block;
-  padding: 8px;
-  text-decoration: none;
-  color: #666666;
-}
-#sorting li a:hover {
-  background: url('../images/admin/meta_hover.gif') repeat-x top;
-  color: #000000;
-  font-weight: bold;
-}
-#sorting li a.active {
-  background: url('../images/admin/meta_hover.gif') repeat-x top;
-  color: #000000;
-  font-weight: bold;
+  padding: 3px 0 0 3px;
 }
 #links {
   border: 1px solid #dadada;

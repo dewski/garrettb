@@ -196,7 +196,7 @@ module Haml
     # according to Rails' XSS handling, if it's loaded.
     #
     # @param text [Object]
-    def assert_html_safe!(text)
+    def assert_html_safe(text)
       return unless rails_xss_safe? && text && !text.to_s.html_safe?
       raise Haml::Error.new("Expected #{text.inspect} to be HTML-safe.")
     end

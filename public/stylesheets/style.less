@@ -82,12 +82,35 @@
 	  padding: 15px;
     border-bottom: 1px solid #eee;
     
-    h2 {
-      padding: 0 0 2px;
+    .comment_count {
+      float: right;
+      font-weight: bold;
+      font-size: 11px;
+      margin: 5px 0 0;
       
       a {
         text-decoration: none;
-        font-size: 19px;
+        background: url('../images/content/comment_normal.gif') no-repeat top right;
+        padding: 11px 17px 0 0;
+        color: #999;
+      }
+      
+      a:hover {
+        background: url('../images/content/comment_hover.gif') no-repeat top right;
+        color: #111;
+      }
+    }
+    
+    h2 {
+      padding: 0 0 2px;
+      font-size: 19px;
+      
+      a {
+        text-decoration: none;
+      }
+      
+      a:hover {
+        text-decoration: underline;
       }
     }
     
@@ -385,7 +408,8 @@ body.works {
   }
   
   #listing {
-    padding: 40px 0 0 60px;
+    position: relative;
+    padding: 10px 0 0 60px;
     
     a img {
       padding: 2px;
@@ -394,11 +418,42 @@ body.works {
     
     .item {      
       float: left;
-      width: 178px;
+      width: 184px;
       padding: 0 50px 40px 0;
     }
   }
 }
+
+/* Sorting */
+#sorting {
+  font-size: 10px;
+  padding: 25px 0 15px 40px;
+  
+  li {
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 3px 0 0;
+    
+    a {
+      display: block;
+      text-decoration: none;
+      color: #666;
+      padding: 1px 6px;
+    }
+
+    a:hover, a.active {
+      background: #828282;
+      border: 1px solid #727272;
+      border-top-color: #5e5e5e;
+      color: #fff;
+      padding: 0 5px;
+      text-shadow: rgba(0,0,0,0.25) 0 -1px 0;
+      .border_radius(2px);
+    }
+  }
+}
+
 #right a strong,
 .works .item strong {
   text-decoration: none;
@@ -475,29 +530,7 @@ body.about {
     top: 0; bottom: 0;
     left: 0; right: 0;
     overflow: hidden;
-  }
-}
-
-/* Sorting */
-#sorting {
-   background: url('../images/admin/meta.gif') repeat-x top;
-   font-size: 11px;
-   
-  li {
-    float: left;
-
-    a {
-      display: block;
-      padding: 8px;
-      text-decoration: none;
-      color: #666;
-    }
-    
-    a:hover, a.active {
-      background: url('../images/admin/meta_hover.gif') repeat-x top;
-      color: #000;
-      font-weight: bold;
-    }
+    padding: 3px 0 0 3px;
   }
 }
 

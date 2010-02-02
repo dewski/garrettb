@@ -16,7 +16,7 @@ module ApplicationHelper
   
   def title(page_title)
     content_for(:title) {
-      "#{page_title} &bull; #{t(:site_name)}".html_safe!
+      "#{page_title} &bull; #{t(:site_name)}".html_safe
     }
   end
   
@@ -70,6 +70,6 @@ module ApplicationHelper
   end
   
   def blue_cloth(content)
-    BlueCloth.new(content).to_html.html_safe!
+    BlueCloth.new(content).to_html.html_safe
   end
 end

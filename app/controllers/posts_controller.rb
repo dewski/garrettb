@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   
   def show
     @post = Post.find_by_slug(params[:id])
-    respond_with @post
+    @comment = @post.comments.build
+    respond_with @post, @comment
   end
 end

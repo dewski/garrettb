@@ -1,2 +1,2 @@
 .item[item]{ :class => "item #{item.skills.map { |skill| "#{skill.slug} " }}".rstrip }
-  = link_to "#{image_tag(item.thumbnail.file.url(:small), :width => 178, :height => 114)}<strong>#{item.name}</strong>".html_safe!, work_path(item)
+  = link_to "#{image_tag(item.thumbnail.file.url(:small), :width => 178, :height => 114)}<strong>#{item.name}</strong>".html_safe, work_path(item)

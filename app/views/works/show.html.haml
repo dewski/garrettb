@@ -13,7 +13,7 @@
     - logger.info image.id
     %li= link_to image_tag(image.file.url, :id => "thumb_image_#{image.id}"), '#'
   - if @item.url.present?
-    %li.view= link_to "&nbsp;".html_safe!, @item.url
+    %li.view= link_to '&nbsp;'.html_safe, @item.url
 
 #featured
   = image_tag @images.first.file.url(:large)

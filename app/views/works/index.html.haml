@@ -1,8 +1,8 @@
 - title "Work"
 
 %ul#sorting.clearfix
-  %li= link_to 'All', '#', :rel => 'all'
-  - Skill.order('title ASC').each do |skill|
+  %li= link_to 'All', '#', :rel => 'all', :class => 'active'
+  - Skill.order('title ASC').each_with_index do |skill, i|
     - unless skill.item_ids.empty?
       %li= link_to skill.title, '#', :rel => skill.slug
 #listing.clearfix

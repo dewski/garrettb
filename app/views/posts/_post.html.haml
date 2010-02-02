@@ -1,4 +1,5 @@
 .post[post]
+  .comment_count= link_to post.comments_count, post_path(post, :anchor => 'comments')
   %h2= link_to post.title, post_path(post)
   %h3== Posted on #{post.published_at.strftime("%m/%d/%Y")} in #{post.category.title}
   .body
