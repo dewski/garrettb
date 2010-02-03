@@ -173,6 +173,72 @@
 	}
 }
 
+#comment_wrapper {
+  h1 {
+   padding: 15px 20px 15px;
+   border-bottom: 1px solid #eee;
+  }
+  #comments {
+    li {
+      border-bottom: 1px solid #eee;
+      padding: 20px;
+      
+      .avatar {
+        width: 50px;
+        float: left;
+        margin: 0 20px 0 0;
+      }
+      
+      .content {
+        float: left;
+        width: 415px;
+        
+        .title {
+          h3 {
+            font-size: 14px;
+          }
+          small {
+            font-size: 11px;
+            color: #999;
+          }
+        }
+      }
+    }
+  }
+  #comment_form {
+    border-top: 1px solid #fff;
+    background: #efefef;
+    padding: 20px;
+    
+    h3 {
+      font-size: 18px;
+    }
+    
+    form {
+      padding: 20px 0 0;
+      
+      label {
+        font-weight: bold;
+        display: block;
+        margin: 0 0 1px;
+      }
+      input[type='text'], textarea {
+        width: 400px;
+        padding: 2px;
+        font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+        outline: none;
+      }
+      
+      p {
+        padding: 0 0 10px;
+      }
+    }
+  }
+}
+
+body.posts {
+}
+
 #faq {
 	background: url('../images/content/column_bg.gif') repeat-x top;
 	border-top: 1px solid #d6d6d6;

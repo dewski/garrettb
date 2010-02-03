@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  scope :published, where("published = 1").order("published_at DESC").includes(:category)
+  scope :published, where('published = 1').order('published_at DESC').includes(:category)
   
   belongs_to :category
   has_many :comments

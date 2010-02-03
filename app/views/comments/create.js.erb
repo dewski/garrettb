@@ -1,2 +1,3 @@
 $('#comments').append("<%= escape_javascript render(@comment) %>");
 $('#new_comment').clearForm();
+$('#comment_wrapper h1:eq(0)').text('<%= pluralize @comment.post.comments.length, 'comment' %>');

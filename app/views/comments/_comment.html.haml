@@ -1,2 +1,8 @@
-.comment[comment]
-  = comment.name
+%li.comment.clearfix[comment]
+  .avatar= image_tag comment.gravatar, :width => 50, :height => 50, :class => 'avatar'
+  .content
+    .title
+      %h3= comment.name
+      %small= comment.created_at.strftime('%I:%M %p %B %d, %Y')
+    = markdown comment.body
+  

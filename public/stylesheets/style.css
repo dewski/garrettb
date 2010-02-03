@@ -180,6 +180,53 @@ dt textarea {
   font-weight: bold;
   text-transform: uppercase;
 }
+#comment_wrapper h1 {
+  padding: 15px 20px 15px;
+  border-bottom: 1px solid #eeeeee;
+}
+#comment_wrapper #comments li {
+  border-bottom: 1px solid #eeeeee;
+  padding: 20px;
+}
+#comment_wrapper #comments li .avatar {
+  width: 50px;
+  float: left;
+  margin: 0 20px 0 0;
+}
+#comment_wrapper #comments li .content {
+  float: left;
+  width: 415px;
+}
+#comment_wrapper #comments li .content .title h3 { font-size: 14px; }
+#comment_wrapper #comments li .content .title small {
+  font-size: 11px;
+  color: #999999;
+}
+#comment_wrapper #comment_form {
+  border-top: 1px solid #ffffff;
+  background: #efefef;
+  padding: 20px;
+}
+#comment_wrapper #comment_form h3 { font-size: 18px; }
+#comment_wrapper #comment_form form { padding: 20px 0 0; }
+#comment_wrapper #comment_form form label {
+  font-weight: bold;
+  display: block;
+  margin: 0 0 1px;
+}
+#comment_wrapper #comment_form form input[type='text'] {
+  width: 400px;
+  padding: 2px;
+  font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  outline: none;
+}
+#comment_wrapper #comment_form form textarea {
+  width: 400px;
+  padding: 2px;
+  font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  outline: none;
+}
+#comment_wrapper #comment_form form p { padding: 0 0 10px; }
 #faq {
   background: url('../images/content/column_bg.gif') repeat-x top;
   border-top: 1px solid #d6d6d6;
