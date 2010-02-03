@@ -1,12 +1,10 @@
-set :default_stage, "staging"
+set :default_stage, 'staging'
 set :stages, %w(staging production)
 require 'capistrano/ext/multistage'
 
 default_run_options[:pty] = true
 
 set :application, "garrettb"
-
-set :master, "/var/www/garrettb/production"
 
 set :scm, :git
 set :deploy_via, :remote_cache
@@ -34,15 +32,6 @@ namespace :deploy do
   desc "Update the crontab file"
   task :update_crontab, :roles => :db do
     run "cd #{release_path} && whenever --update-crontab #{application}"
-  end
-  
-  task :move_in_database_yml, :roles => :app do
-    run "cp #{master}/shared/system/database.yml #{current_path}/config/"
-  end
-  
-  task :move_in_asset_info, :roles => :app do
-    run "cp #{master}/shared/system/s3.yml #{current_path}/config/"
-    run "cp #{master}/shared/system/synch_s3_asset_host.yml #{current_path}/config/"
   end
 end
 
