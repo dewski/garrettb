@@ -1,0 +1,36 @@
+<% title "Contact" %>
+
+<div class="body">
+  <% form_for :contact, :url => contact_path do |f| %>
+    <%= f.error_messages %>
+  
+		<dl>
+			<dd><%= f.label :name %></dd>
+			<dt><%= f.text_field :name%></dt>
+			
+			<dd><%= f.label :email %></dd>
+			<dt><%= f.text_field :email%></dt>
+			
+			<dd><%= f.label :body %></dd>
+			<dt><%= f.text_area :body%></dt>
+		</dl>
+    
+    <%= f.submit "Submit" %>
+	<% end %>
+</div>
+<% content_for :javascript do %>
+$('body.contact form').live('submit', function (e) {
+  $(['name', 'email', 'body']).each(function (i, v) {
+    var item = $('#contact_'+ v);
+    if(item.val() == "") {
+      e.preventDefault();
+      alert('Please fill out the '+ v +' field.');
+      item.addClass('has_errors');
+      item.focus();
+      return false;
+    } else {
+      item.removeClass('has_errors');
+    }
+  });
+});
+<% end %>
