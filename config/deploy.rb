@@ -63,7 +63,7 @@ namespace :bundler do
 
   task :bundle_new_release do
     bundler.symlink_vendor
-    run("cd #{release_path} && gem bundle")
+    run("cd #{release_path} && bundle install")
   end
 end
 
