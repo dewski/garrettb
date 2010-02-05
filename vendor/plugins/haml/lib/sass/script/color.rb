@@ -19,6 +19,7 @@ module Sass::Script
     class << self; include Haml::Util; end
 
     # A hash from color names to `[red, green, blue]` value arrays.
+    # @private
     HTML4_COLORS = map_vals({
         'black'   => 0x000000,
         'silver'  => 0xc0c0c0,
@@ -38,6 +39,7 @@ module Sass::Script
         'aqua'    => 0x00ffff
       }) {|color| (0..2).map {|n| color >> (n << 3) & 0xff}.reverse}
     # A hash from `[red, green, blue]` value arrays to color names.
+    # @private
     HTML4_COLORS_REVERSE = map_hash(HTML4_COLORS) {|k, v| [v, k]}
 
     # Constructs an RGB or HSL color object,
@@ -64,8 +66,9 @@ module Sass::Script
     #   The attributes are specified as an array.
     #   This overload only supports RGB or RGBA colors.
     #
-    #   @param rgba [Array<Numeric>] A three-element array of the red, green, blue,
-    #     and optionally alpha values (respectively) of the color
+    #   @param rgba [Array<Numeric>] A three- or four-element array
+    #     of the red, green, blue, and optionally alpha values (respectively)
+    #     of the color
     #   @raise [ArgumentError] if not enough attributes are specified
     def initialize(attrs, allow_both_rgb_and_hsl = false)
       super(nil)
@@ -178,13 +181,13 @@ module Sass::Script
       alpha < 1
     end
 
-    # @deprecated This will be removed in version 2.6.
+    # @deprecated This will be removed in version 3.2.
     # @see #rgb
     def value
       warn <<END
 DEPRECATION WARNING:
 The Sass::Script::Color #value attribute is deprecated and will be
-removed in version 2.6. Use the #rgb attribute instead.
+removed in version 3.2. Use the #rgb attribute instead.
 END
       rgb
     end

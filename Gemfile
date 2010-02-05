@@ -1,9 +1,5 @@
-clear_sources
 source "http://gemcutter.org"
 source "http://gems.github.com"
-
-directory "/Users/garrett/src/sites/GB", :glob => "{*/,}*.gemspec"
-
 
 git "git://github.com/rails/arel.git"
 git "git://github.com/rails/rack.git"

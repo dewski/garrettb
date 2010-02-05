@@ -1,5 +1,6 @@
 require 'optparse'
 require 'fileutils'
+require 'rbconfig'
 
 module Haml
   # This module handles the various Haml executables (`haml`, `sass`, `css2sass`, etc).
@@ -67,6 +68,12 @@ module Haml
           @options[:trace] = true
         end
 
+        if RbConfig::CONFIG['host_os'] =~ /mswin|windows/i
+          opts.on('--unix-newlines', 'Use Unix-style newlines in written files.') do
+            @options[:unix_newlines] = true
+          end
+        end
+
         opts.on_tail("-?", "-h", "--help", "Show this message") do
           puts opts
           exit
@@ -105,6 +112,7 @@ module Haml
 
       def open_file(filename, flag = 'r')
         return if filename.nil?
+        flag = 'wb' if @options[:unix_newlines] && flag == 'w'
         File.open(filename, flag)
       end
     end
@@ -210,13 +218,23 @@ END
       def set_opts(opts)
         super
 
+        opts.on('--watch', 'Watch files or directories for changes.',
+                           'The location of the generated CSS can be set using a colon:',
+                           '  sass --watch input.sass:output.css',
+                           '  sass --watch input-dir:output-dir') do
+          @options[:watch] = true
+        end
+        opts.on('--update', 'Compile files or directories to CSS.',
+                            'Locations are set like --watch.') do
+          @options[:update] = true
+        end
         opts.on('-t', '--style NAME',
                 'Output style. Can be nested (default), compact, compressed, or expanded.') do |name|
           @options[:for_engine][:style] = name.to_sym
         end
-        opts.on('-l', '--line-comments',
-                'Line Comments. Emit comments in the generated CSS indicating the corresponding sass line.') do
-          @options[:for_engine][:line_comments] = true
+        opts.on('-l', '--line-numbers', '--line-comments',
+                'Emit comments in the generated CSS indicating the corresponding sass line.') do
+          @options[:for_engine][:line_numbers] = true
         end
         opts.on('-i', '--interactive',
                 'Run an interactive SassScript shell.') do
@@ -225,8 +243,8 @@ END
         opts.on('-I', '--load-path PATH', 'Add a sass import path.') do |path|
           @options[:for_engine][:load_paths] << path
         end
-        opts.on('--cache-location', 'The path to put cached Sass files. Defaults to .sass-cache.') do |loc|
-          @options[:for_engine][:cache_location] = path
+        opts.on('--cache-location PATH', 'The path to put cached Sass files. Defaults to .sass-cache.') do |loc|
+          @options[:for_engine][:cache_location] = loc
         end
         opts.on('-C', '--no-cache', "Don't cache to sassc files.") do
           @options[:for_engine][:cache] = false
@@ -236,13 +254,16 @@ END
       # Processes the options set by the command-line arguments,
       # and runs the Sass compiler appropriately.
       def process_result
-        if @options[:interactive]
-          require 'sass'
-          require 'sass/repl'
-          ::Sass::Repl.new(@options).run
-          return
+        if @args.first && @args.first.include?(':')
+          if @args.size == 1
+            @args = @args.first.split(':', 2)
+          else
+            @options[:update] = true
+          end
         end
 
+        return interactive if @options[:interactive]
+        return watch_or_update if @options[:watch] || @options[:update]
         super
 
         begin
@@ -267,6 +288,78 @@ END
           raise e if @options[:trace]
           raise e.sass_backtrace_str("standard input")
         end
+      end
+
+      private
+
+      def interactive
+        require 'sass'
+        require 'sass/repl'
+        ::Sass::Repl.new(@options).run
+      end
+
+      def watch_or_update
+        require 'sass'
+        require 'sass/plugin'
+        ::Sass::Plugin.options[:unix_newlines] = @options[:unix_newlines]
+
+        dirs, files = @args.map {|name| name.split(':', 2)}.
+          map {|from, to| [from, to || from.gsub(/\..*?$/, '.css')]}.
+          partition {|i, _| File.directory? i}
+        ::Sass::Plugin.options[:template_location] = dirs
+
+        ::Sass::Plugin.on_updating_stylesheet do |_, css|
+          if File.exists? css
+            puts_action :overwrite, :yellow, css
+          else
+            puts_action :create, :green, css
+          end
+        end
+
+        ::Sass::Plugin.on_creating_directory {|dirname| puts_action :directory, :green, dirname}
+        ::Sass::Plugin.on_deleting_css {|filename| puts_action :delete, :yellow, filename}
+        ::Sass::Plugin.on_compilation_error do |error, _, _|
+          unless error.is_a?(::Sass::SyntaxError)
+            if error.is_a?(Errno::ENOENT) && error.message =~ /^No such file or directory - (.*)$/ && $1 == @args[1]
+              flag = @options[:update] ? "--update" : "--watch"
+              error.message << "\n  Did you mean: sass #{flag} #{@args[0]}:#{@args[1]}"
+            end
+
+            raise error
+          end
+
+          puts_action :error, :red, "#{error.sass_filename} (Line #{error.sass_line}: #{error.message})"
+        end
+
+        if @options[:update]
+          ::Sass::Plugin.update_stylesheets(files)
+          return
+        end
+
+        puts ">>> Sass is watching for changes. Press Ctrl-C to stop."
+
+        ::Sass::Plugin.on_template_modified {|template| puts ">>> Change detected to: #{template}"}
+        ::Sass::Plugin.on_template_created {|template| puts ">>> New template detected: #{template}"}
+        ::Sass::Plugin.on_template_deleted {|template| puts ">>> Deleted template detected: #{template}"}
+
+        ::Sass::Plugin.watch(files)
+      end
+
+      # @private
+      COLORS = { :red => 31, :green => 32, :yellow => 33 }
+
+      def puts_action(name, color, arg)
+        printf color(color, "%11s %s\n"), name, arg
+      end
+
+      def color(color, str)
+        raise "[BUG] Unrecognized color #{color}" unless COLORS[color]
+
+        # Almost any real Unix terminal will support color,
+        # so we just filter for Windows terms (which don't set TERM)
+        # and not-real terminals, which aren't ttys.
+        return str if ENV["TERM"].empty? || !STDOUT.tty?
+        return "\e[#{COLORS[color]}m#{str}\e[0m"
       end
     end
 

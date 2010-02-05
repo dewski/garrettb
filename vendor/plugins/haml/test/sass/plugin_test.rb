@@ -7,6 +7,7 @@ class SassPluginTest < Test::Unit::TestCase
   @@templates = %w{
     complex script parent_ref import alt
     subdir/subdir subdir/nested_subdir/nested_subdir
+    options
   }
 
   def setup
@@ -14,10 +15,12 @@ class SassPluginTest < Test::Unit::TestCase
     FileUtils.mkdir tempfile_loc(nil,"more_")
     set_plugin_opts
     Sass::Plugin.update_stylesheets
+    reset_mtimes
   end
 
   def teardown
     clean_up_sassc
+    clear_callbacks
     FileUtils.rm_r tempfile_loc
     FileUtils.rm_r tempfile_loc(nil,"more_")
   end
@@ -30,23 +33,21 @@ class SassPluginTest < Test::Unit::TestCase
 
   def test_no_update
     File.delete(tempfile_loc('basic'))
-    assert Sass::Plugin.stylesheet_needs_update?('basic', template_loc, tempfile_loc)
+    assert_needs_update 'basic'
     Sass::Plugin.update_stylesheets
     assert_stylesheet_updated 'basic'
   end
 
   def test_update_needed_when_modified
-    sleep 1
-    FileUtils.touch(template_loc('basic'))
-    assert Sass::Plugin.stylesheet_needs_update?('basic', template_loc, tempfile_loc)
+    touch 'basic'
+    assert_needs_update 'basic'
     Sass::Plugin.update_stylesheets
     assert_stylesheet_updated 'basic'
   end
 
   def test_update_needed_when_dependency_modified
-    sleep 1
-    FileUtils.touch(template_loc('basic'))
-    assert Sass::Plugin.stylesheet_needs_update?('import', template_loc, tempfile_loc)
+    touch 'basic'
+    assert_needs_update 'import'
     Sass::Plugin.update_stylesheets
     assert_stylesheet_updated 'basic'
   end
@@ -115,7 +116,7 @@ CSS
     set_plugin_opts
 
     File.delete(tempfile_loc('basic'))
-    assert Sass::Plugin.stylesheet_needs_update?('basic', template_loc, tempfile_loc)
+    assert_needs_update 'basic'
     
     if defined?(MerbHandler)
       MerbHandler.new('.').process nil, nil
@@ -130,15 +131,106 @@ CSS
     assert !File.exists?(tempfile_loc('_partial'))
   end
 
+  # Callbacks
+
+  def test_updating_stylesheets_callback
+    # Should run even when there's nothing to update
+    assert_callback :updating_stylesheets, []
+  end
+
+  def test_updating_stylesheets_callback_with_individual_files
+    files = [[template_loc("basic"), tempfile_loc("basic")]]
+    assert_callback(:updating_stylesheets, files) {Sass::Plugin.update_stylesheets(files)}
+  end
+
+  def test_updating_stylesheets_callback_with_never_update
+    Sass::Plugin.options[:never_update] = true
+    assert_no_callback :updating_stylesheets
+  end
+
+  def test_updating_stylesheet_callback_for_updated_template
+    Sass::Plugin.options[:always_update] = false
+    touch 'basic'
+    assert_no_callback :updating_stylesheet, template_loc("complex"), tempfile_loc("complex") do
+      assert_callbacks(
+        [:updating_stylesheet, template_loc("basic"), tempfile_loc("basic")],
+        [:updating_stylesheet, template_loc("import"), tempfile_loc("import")])
+    end
+  end
+
+  def test_updating_stylesheet_callback_for_fresh_template
+    Sass::Plugin.options[:always_update] = false
+    assert_no_callback :updating_stylesheet
+  end
+
+  def test_updating_stylesheet_callback_for_error_template
+    Sass::Plugin.options[:always_update] = false
+    touch 'bork1'
+    assert_no_callback :updating_stylesheet
+  end
+
+  def test_not_updating_stylesheet_callback_for_fresh_template
+    Sass::Plugin.options[:always_update] = false
+    assert_callback :not_updating_stylesheet, template_loc("basic"), tempfile_loc("basic")
+  end
+
+  def test_not_updating_stylesheet_callback_for_updated_template
+    Sass::Plugin.options[:always_update] = false
+    assert_callback :not_updating_stylesheet, template_loc("complex"), tempfile_loc("complex") do
+      assert_no_callbacks(
+        [:updating_stylesheet, template_loc("basic"), tempfile_loc("basic")],
+        [:updating_stylesheet, template_loc("import"), tempfile_loc("import")])
+    end
+  end
+
+  def test_not_updating_stylesheet_callback_with_never_update
+    Sass::Plugin.options[:never_update] = true
+    assert_no_callback :not_updating_stylesheet
+  end
+
+  def test_not_updating_stylesheet_callback_for_partial
+    Sass::Plugin.options[:always_update] = false
+    assert_no_callback :not_updating_stylesheet, template_loc("_partial"), tempfile_loc("_partial")
+  end
+
+  def test_not_updating_stylesheet_callback_for_error
+    Sass::Plugin.options[:always_update] = false
+    touch 'bork1'
+    assert_no_callback :not_updating_stylesheet, template_loc("bork1"), tempfile_loc("bork1")
+  end
+
+  def test_compilation_error_callback
+    Sass::Plugin.options[:always_update] = false
+    touch 'bork1'
+    assert_callback(:compilation_error,
+      lambda {|e| e.message == 'Undefined variable: "!bork".'},
+      template_loc("bork1"), tempfile_loc("bork1"))
+  end
+
+  def test_compilation_error_callback_for_file_access
+    Sass::Plugin.options[:always_update] = false
+    assert_callback(:compilation_error,
+      lambda {|e| e.is_a?(Errno::ENOENT)},
+      template_loc("nonexistent"), tempfile_loc("nonexistent")) do
+      Sass::Plugin.update_stylesheets([[template_loc("nonexistent"), tempfile_loc("nonexistent")]])
+    end
+  end
+
+  def test_creating_directory_callback
+    Sass::Plugin.options[:always_update] = false
+    dir = File.join(tempfile_loc, "subdir", "nested_subdir")
+    FileUtils.rm_r dir
+    assert_callback :creating_directory, dir
+  end
+
   ## Regression
 
   def test_cached_dependencies_update
     FileUtils.mv(template_loc("basic"), template_loc("basic", "more_"))
     set_plugin_opts :load_paths => [result_loc, template_loc(nil, "more_")]
 
-    sleep 1
-    FileUtils.touch(template_loc("basic", "more_"))
-    assert Sass::Plugin.stylesheet_needs_update?("import", template_loc, tempfile_loc)
+    touch 'basic', 'more_'
+    assert_needs_update "import"
     Sass::Plugin.update_stylesheets
     assert_renders_correctly("import")
   ensure
@@ -169,7 +261,7 @@ CSS
   end
 
   def assert_stylesheet_updated(name)
-    assert !Sass::Plugin.stylesheet_needs_update?(name, template_loc, tempfile_loc)
+    assert_doesnt_need_update name
 
     # Make sure it isn't an exception
     expected_lines = File.read(result_loc(name)).split("\n")
@@ -177,6 +269,76 @@ CSS
     if actual_lines.first == "/*" && expected_lines.first != "/*"
       assert(false, actual_lines[0..actual_lines.enum_with_index.find {|l, i| l == "*/"}.last].join("\n"))
     end
+  end
+
+  def assert_callback(name, *expected_args)
+    run = false
+    Sass::Plugin.send("on_#{name}") do |*args|
+      run ||= expected_args.zip(args).all? do |ea, a|
+        ea.respond_to?(:call) ? ea.call(a) : ea == a
+      end
+    end
+
+    if block_given?
+      yield
+    else
+      Sass::Plugin.update_stylesheets
+    end
+
+    assert run, "Expected #{name} callback to be run with arguments:\n  #{expected_args.inspect}"
+  end
+
+  def assert_no_callback(name, *unexpected_args)
+    Sass::Plugin.send("on_#{name}") do |*a|
+      next unless unexpected_args.empty? || a == unexpected_args
+
+      msg = "Expected #{name} callback not to be run"
+      if !unexpected_args.empty?
+        msg << " with arguments #{unexpected_args.inspect}"
+      elsif !a.empty?
+        msg << ",\n  was run with arguments #{a.inspect}"
+      end
+
+      flunk msg
+    end
+
+    if block_given?
+      yield
+    else
+      Sass::Plugin.update_stylesheets
+    end
+  end
+
+  def assert_callbacks(*args)
+    return Sass::Plugin.update_stylesheets if args.empty?
+    assert_callback(*args.pop) {assert_callbacks(*args)}
+  end
+
+  def assert_no_callbacks(*args)
+    return Sass::Plugin.update_stylesheets if args.empty?
+    assert_no_callback(*args.pop) {assert_no_callbacks(*args)}
+  end
+
+  def clear_callbacks
+    Sass::Plugin.instance_variable_set('@_sass_callbacks', {})
+  end
+
+  def assert_needs_update(name)
+    assert(Sass::Plugin.stylesheet_needs_update?(name, template_loc, tempfile_loc),
+      "Expected #{template_loc(name)} to need an update.")
+  end
+
+  def assert_doesnt_need_update(name)
+    assert(!Sass::Plugin.stylesheet_needs_update?(name, template_loc, tempfile_loc),
+      "Expected #{template_loc(name)} not to need an update.")
+  end
+
+  def touch(*args)
+    FileUtils.touch(template_loc(*args))
+  end
+
+  def reset_mtimes
+    Dir["{#{template_loc},#{tempfile_loc}}/**/*.{css,sass}"].each {|f| File.utime(Time.now, Time.now - 1, f)}
   end
 
   def template_loc(name = nil, prefix = nil)
@@ -214,12 +376,8 @@ CSS
       :style => :compact,
       :load_paths => [result_loc],
       :always_update => true,
+      :never_update => false,
     }.merge(overrides)
-  end
-
-  def wait_a_tick
-    time = Time.now
-    loop {break if Time.now.sec != time.sec}
   end
 end
 

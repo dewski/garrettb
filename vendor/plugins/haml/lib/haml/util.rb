@@ -168,6 +168,17 @@ module Haml
       return nil
     end
 
+    # Returns the environment of the Rails application,
+    # if this is running in a Rails context.
+    # Returns `nil` if no such environment is defined.
+    #
+    # @return [String, nil]
+    def rails_env
+      return Rails.env.to_s if defined?(Rails.root)
+      return RAILS_ENV.to_s if defined?(RAILS_ENV)
+      return nil
+    end
+
     # Returns an ActionView::Template* class.
     # In pre-3.0 versions of Rails, most of these classes
     # were of the form `ActionView::TemplateFoo`,
@@ -192,13 +203,29 @@ module Haml
       false
     end
 
+    # Returns the given text, marked as being HTML-safe.
+    # With older versions of the Rails XSS-safety mechanism,
+    # this destructively modifies the HTML-safety of `text`.
+    #
+    # @param text [String]
+    # @return [String] `text`, marked as HTML-safe
+    def html_safe(text)
+      return text.html_safe if defined?(ActiveSupport::SafeBuffer)
+      text.html_safe!
+    end
+
     # Assert that a given object (usually a String) is HTML safe
     # according to Rails' XSS handling, if it's loaded.
     #
     # @param text [Object]
-    def assert_html_safe(text)
+    def assert_html_safe!(text)
       return unless rails_xss_safe? && text && !text.to_s.html_safe?
       raise Haml::Error.new("Expected #{text.inspect} to be HTML-safe.")
+    end
+
+    def rails_safe_buffer_class
+      return ActionView::SafeBuffer if defined?(ActionView::SafeBuffer)
+      ActiveSupport::SafeBuffer
     end
 
     ## Cross-Ruby-Version Compatibility

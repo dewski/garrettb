@@ -28,7 +28,7 @@ module Haml
 
       Haml::Precompiler.module_eval do
         def precompiled_method_return_value_with_haml_xss
-          "(#{precompiled_method_return_value_without_haml_xss}).html_safe"
+          "::Haml::Util.html_safe(#{precompiled_method_return_value_without_haml_xss})"
         end
         alias_method :precompiled_method_return_value_without_haml_xss, :precompiled_method_return_value
         alias_method :precompiled_method_return_value, :precompiled_method_return_value_with_haml_xss
@@ -37,6 +37,10 @@ module Haml
       true
     end
   end
+end
+
+if Haml::Util.rails_env == "production"
+  Haml::Template.options[:ugly] = true
 end
 
 # Decide how we want to load Haml into Rails.

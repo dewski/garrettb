@@ -163,7 +163,7 @@ Available options are:
   Only has meaning within Rack, Ruby on Rails, or Merb.
 
 {#template_location-option} `:template_location`
-: A path to the root sass template directory for you application.
+: A path to the root sass template directory for your application.
   If a hash, `:css_location` is ignored and this option designates
   a mapping between input and output directories.
   May also be given a list of 2-element lists, instead of a hash.
@@ -183,6 +183,11 @@ Available options are:
 : The path where the cached `sassc` files should be written to.
   Defaults to `"./tmp/sass-cache"` in Rails and Merb,
   or `"./.sass-cache"` otherwise.
+
+{#unix_newlines-option} `:unix_newlines`
+: If true, use Unix-style newlines when writing files.
+  Only has meaning on Windows, and only when Sass is writing the files
+  (in Rack, Rails, or Merb, or when using {Sass::Plugin} directly).
 
 {#filename-option} `:filename`
 : The filename of the file being rendered.
@@ -205,6 +210,7 @@ Available options are:
   where a selector is defined to be emitted into the compiled CSS
   as a comment. Useful for debugging especially when using imports
   and mixins.
+  This option may also be called `:line_comments`.
 
 {#custom-option} `:custom`
 : An option that's available for individual applications to set
@@ -507,13 +513,13 @@ For example:
 
     @font-face
       font-family: "Bitstream Vera Sans"
-      src: url(http://foo.bar/bvs")
+      src: url(http://foo.bar/bvs)
 
 compiles to:
 
     @font-face {
       font-family: "Bitstream Vera Sans";
-      src: url(http://foo.bar/bvs"); }
+      src: url(http://foo.bar/bvs); }
 
 and
 
