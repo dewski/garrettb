@@ -71,6 +71,6 @@ end
 # Tasks
 ########################
 # Migrate the DB
+before "deploy:symlink", "deploy:move_in_asset_info", "deploy:move_in_database_yml"
 after "deploy", "deploy:migrate", "deploy:cleanup"
-after "deploy:symlink", "deploy:move_in_asset_info", "s3_asset_host:synch_public", "deploy:move_in_database_yml"
 after "deploy:update_code", "bundler:bundle_new_release"
