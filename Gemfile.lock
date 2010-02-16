@@ -1,9 +1,21 @@
 --- 
 dependencies: 
-- rails: = 3.0.0.beta
-- authlogic: ">= 0"
-- paperclip: ">= 0"
-- bluecloth: ">= 2.0.0"
+  rails: 
+    group: 
+    - :default
+    version: = 3.0.0.beta
+  bluecloth: 
+    group: 
+    - :default
+    version: ">= 2.0.0"
+  authlogic: 
+    group: 
+    - :default
+    version: ">= 0"
+  paperclip: 
+    group: 
+    - :default
+    version: ">= 0"
 specs: 
 - builder: 
     version: 2.1.2
@@ -62,6 +74,7 @@ specs:
     version: 3.0.0.beta
 - rails: 
     version: 3.0.0.beta
+hash: 70c767cf8b757da7ea46f7e2afd3125d9c09d1cb
 sources: 
 - Git: 
     uri: git://github.com/dewski/paperclip.git

@@ -49,11 +49,7 @@ end
 
 namespace :bundler do
   task :install do
-    run("#{try_sudo} gem install bundler --source=http://gemcutter.org")
-  end
-  
-  task :install do
-    run "cd #{release_path} && bundle install --without test"
+    run "cd #{release_path} && bundle install vendor/cache && bundle lock"
   end
 end
 

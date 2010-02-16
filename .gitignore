@@ -9,8 +9,8 @@ doc/*
 
 # Can bundle your own gems
 bin/*
-vendor/gems/*
-!vendor/gems/cache/
+vendor/cache/*
+!vendor/cache/*.gem
 
 # Hacker
 config/database.yml
