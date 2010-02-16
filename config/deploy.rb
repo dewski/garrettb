@@ -51,19 +51,9 @@ namespace :bundler do
   task :install do
     run("#{try_sudo} gem install bundler --source=http://gemcutter.org")
   end
-
-  task :symlink_vendor do
-    shared_gems = File.join(shared_path, "vendor/gems")
-    release_gems = "#{release_path}/vendor/gems" 
-    %w(cache gems specifications).each do |sub_dir|
-      shared_sub_dir = File.join(shared_gems, sub_dir)
-      run("mkdir -p #{shared_sub_dir} && mkdir -p #{release_gems} && ln -s #{shared_sub_dir} #{release_gems}/#{sub_dir}")
-    end
-  end
-
-  task :bundle_new_release do
-    bundler.symlink_vendor
-    run("cd #{release_path} && bundle install")
+  
+  task :install do
+    run("bundle install")
   end
 end
 
@@ -73,4 +63,4 @@ end
 # Migrate the DB
 before "deploy:symlink", "deploy:move_in_asset_info", "deploy:move_in_database_yml"
 after "deploy", "deploy:migrate", "deploy:cleanup"
-after "deploy:update_code", "bundler:bundle_new_release"
+after "deploy:update_code", "bundler:install"

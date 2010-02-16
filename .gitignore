@@ -2,6 +2,7 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 *.tmproj
+.bundle/*
 
 # Generate your own
 doc/*
