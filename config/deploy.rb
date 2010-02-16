@@ -53,7 +53,7 @@ namespace :bundler do
   end
   
   task :install do
-    run("bundle install")
+    run "cd #{release_path} && bundle install --without test"
   end
 end
 
