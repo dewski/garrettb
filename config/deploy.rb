@@ -49,7 +49,7 @@ end
 
 namespace :bundler do
   task :install do
-    run "cd #{release_path} && bundle install vendor/cache && bundle lock"
+    run "cd #{release_path} && bundle install"
   end
 end
 

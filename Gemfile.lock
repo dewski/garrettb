@@ -57,6 +57,7 @@ specs:
     version: 2.8.1
 - authlogic: 
     version: 2.1.3
+    source: 1
 - bluecloth: 
     version: 2.0.7
 - rake: 
@@ -80,12 +81,16 @@ specs:
     version: 3.0.0.beta
 - rails: 
     version: 3.0.0.beta
-hash: 126b071b10d720174d76827354df6e5dc4e8e6df
+hash: 87363fb4be0b61fe3f8d83e2e5a7a09ffdbb0a4b
 sources: 
 - Git: 
     uri: git://github.com/dewski/paperclip.git
     branch: rails3
     git: git://github.com/dewski/paperclip.git
     ref: b7bc4c6f9d155ce1cc278730d10e65868ccd70c8
+- Git: 
+    uri: git://github.com/binarylogic/authlogic.git
+    git: git://github.com/binarylogic/authlogic.git
+    ref: 85b2a6b3e9993b18c7fb1e4f7b9c6d01cc8b5d17
 - Rubygems: 
     uri: http://gemcutter.org
