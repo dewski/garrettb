@@ -1,5 +1,10 @@
 require File.expand_path('../boot', __FILE__)
 
+require 'rails/all'
+require 'authlogic'
+# Auto-require default libraries and those for the current Rails environment.
+Bundler.require :default, Rails.env
+
 module GB
   class Application < Rails::Application
     config.time_zone = 'Pacific Time (US & Canada)'
