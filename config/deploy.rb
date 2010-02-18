@@ -57,6 +57,6 @@ end
 # Tasks
 ########################
 # Migrate the DB
-before "deploy:migrate", "deploy:move_in_database_yml"
+before "deploy:migrate", "deploy:move_in_asset_info", "deploy:move_in_database_yml"
 after "deploy", "deploy:migrate", "deploy:cleanup"
 after "deploy:update_code", "bundler:install"
