@@ -49,7 +49,7 @@ end
 
 namespace :bundler do
   task :install do
-    run "cd #{release_path} && bundle install vendor/cache"
+    run "cd #{release_path} && bundle install"
   end
 end
 
@@ -57,6 +57,6 @@ end
 # Tasks
 ########################
 # Migrate the DB
-before "deploy:symlink", "deploy:move_in_asset_info", "deploy:move_in_database_yml"
+before "deploy:migrate", "deploy:move_in_database_yml"
 after "deploy", "deploy:migrate", "deploy:cleanup"
 after "deploy:update_code", "bundler:install"
