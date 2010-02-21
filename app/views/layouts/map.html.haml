@@ -10,14 +10,13 @@
   %body{ :class => controller.controller_name }
     #wrapper
       #container
-        #main.clearfix
-          #left
-            = render 'shared/header'
-          #right
-            = yield
+        #header
+          = render 'shared/header'
+        #map_container
+          = yield
         = render 'shared/faq'
       = render 'shared/footer'
-    = javascript_include_tag 'jquery.1.4.min', 'cufon-yui', 'gotham_rounded.font', 'application'
+    = javascript_include_tag 'jquery.1.4.min'
     - if content_for?(:javascript_files)
       = yield :javascript_files
     - if content_for?(:javascript)
@@ -28,11 +27,6 @@
           });
     %script{ :type => 'text/javascript' }
       :plain
-        Cufon.replace('ul#links a, body.works .meta h2', {
-          fontFamily: 'Gotham Rounded Book',
-          textShadow: '#fff 1px 1px 0'
-        });
-        
         /* Google Analytics */
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-12213707-2']);

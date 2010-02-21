@@ -67,6 +67,29 @@ dt textarea {
   background: url('../images/content/logo_bg.gif') repeat-y 249px 0;
   border-bottom: 1px solid #ffffff;
 }
+#header {
+  padding: 25px;
+  overflow: hidden;
+}
+#header h1 {
+  float: left;
+  width: 205px;
+}
+#header h1 a {
+  background: url('../images/content/logo.gif') no-repeat;
+  width: 205px;
+  height: 20px;
+  display: block;
+  font-size: 0.1em;
+  text-indent: -9999em;
+}
+#header #links { display: none; }
+#header #navigation {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  float: right;
+}
 #left {
   width: 221px;
   float: left;

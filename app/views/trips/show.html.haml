@@ -1,0 +1,44 @@
+- title 'Sacramento to NYC'
+- javascript 'http://maps.google.com/maps/api/js?sensor=false'
+
+#map{ :style => 'width: 100%; height: 500px' }
+  Please enable Javascript.
+- content_for :javascript do
+  :plain
+    var stops = #{@stops.to_json};
+    var latlng = new google.maps.LatLng(39.805107,-98.539724),
+        infoWindow = new google.maps.InfoWindow(),
+        myOptions = {
+          zoom: 4,
+          center: latlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+  - @stops.each_with_index do |stop, i|
+    :plain
+      var marker#{i} = new google.maps.Marker({
+        map: map,
+        position: new google.maps.LatLng(#{stop[:lat]}, #{stop[:lng]}),
+        draggable: false,
+        title: '#{i}'
+      });
+
+      google.maps.event.addListener(marker#{i}, 'click', function() {
+        openInfoWindow(marker#{i});
+      });
+
+  :plain
+    function openInfoWindow(marker) {
+      var i = parseInt(marker.getTitle());
+      
+      var status = stops[i].text.replace(/((https?|s?ftp|ssh)\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!])/g, function(url) {
+        return '<a href="'+ url +'">'+ url +'</a>';
+      }).replace(/\B@([_a-z0-9]+)/ig, function(reply) {
+        return reply.charAt(0)+'<a href="http://twitter.com/'+ reply.substring(1) +'">'+ reply.substring(1) +'</a>';
+      }).replace('#gbnyc', '');
+      
+      var content = status + " at " + stops[i]['created_at'];
+      infoWindow.setContent(content);
+      infoWindow.open(map, marker);
+    }

@@ -5,6 +5,7 @@ GB::Application.routes.draw do |map|
   match '/logout' => 'user_sessions#destroy'
   resources :users
   resource  :user_session
+  resource  :trip, :as => 'relocation'
   
   # Admin
   match '/admin' => redirect("/admin/dashboard")
