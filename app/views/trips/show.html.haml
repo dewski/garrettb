@@ -3,6 +3,12 @@
 
 #map{ :style => 'width: 100%; height: 500px' }
   Please enable Javascript.
+
+#tracks
+  - @tracks.each do |track|
+    = last_fm_link track
+    <br />
+    
 - content_for :javascript do
   :plain
     var stops = #{@stops.to_json};
@@ -35,6 +41,8 @@
       var status = stops[i].text.replace(/((https?|s?ftp|ssh)\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!])/g, function(url) {
         return '<a href="'+ url +'">'+ url +'</a>';
       }).replace(/\B@([_a-z0-9]+)/ig, function(reply) {
+        return reply.charAt(0)+'<a href="http://twitter.com/'+ reply.substring(1) +'">'+ reply.substring(1) +'</a>';
+      }).replace(/http:\/\/twitpic.com/g, function(reply) {
         return reply.charAt(0)+'<a href="http://twitter.com/'+ reply.substring(1) +'">'+ reply.substring(1) +'</a>';
       }).replace('#gbnyc', '');
       

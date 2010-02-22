@@ -90,6 +90,7 @@ dt textarea {
   border: 0;
   float: right;
 }
+#header #navigation li { margin: 0 0 0 8px; }
 #left {
   width: 221px;
   float: left;

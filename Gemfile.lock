@@ -1,25 +1,29 @@
 --- 
 dependencies: 
-  rails: 
-    group: 
-    - :default
-    version: = 3.0.0.beta
   system_timer: 
     group: 
     - :default
     version: = 1.0
-  authlogic: 
+  rails: 
     group: 
     - :default
-    version: = 2.1.3
-  mysql: 
-    group: 
-    - :default
-    version: = 2.8.1
+    version: = 3.0.0.beta
   bluecloth: 
     group: 
     - :default
     version: ">= 2.0.0"
+  mysql: 
+    group: 
+    - :default
+    version: = 2.8.1
+  authlogic: 
+    group: 
+    - :default
+    version: = 2.1.3
+  scrobbler: 
+    group: 
+    - :default
+    version: = 0.2.3
   paperclip: 
     group: 
     - :default
@@ -37,55 +41,59 @@ dependencies:
 specs: 
 - xml-simple: 
     version: 1.0.12
-- builder: 
-    version: 2.1.2
 - text-hyphen: 
     version: 1.0.0
+- builder: 
+    version: 2.1.2
+- hpricot: 
+    version: 0.8.2
 - i18n: 
     version: 0.3.3
 - bundler: 
     version: 0.9.6
 - arel: 
     version: 0.2.1
+- scrobbler: 
+    version: 0.2.3
 - activemodel: 
     version: 3.0.0.beta
-- rack-mount: 
-    version: 0.4.7
 - mime-types: 
     version: "1.16"
 - aws-s3: 
     version: 0.6.2
 - mail: 
     version: 2.1.2
-- ruby-hmac: 
-    version: 0.4.0
-- crack: 
-    version: 0.1.6
 - abstract: 
     version: 1.0.0
 - erubis: 
     version: 2.6.5
-- hashie: 
-    version: 0.1.8
-- oauth: 
-    version: 0.3.6
+- ruby-hmac: 
+    version: 0.4.0
+- crack: 
+    version: 0.1.6
 - thor: 
     version: 0.13.3
-- authlogic: 
-    version: 2.1.3
-    source: 1
-- mysql: 
-    version: 2.8.1
-- bluecloth: 
-    version: 2.0.7
+- oauth: 
+    version: 0.3.6
+- hashie: 
+    version: 0.1.8
 - memcache-client: 
     version: 1.7.8
 - rack: 
     version: 1.1.0
 - rack-test: 
     version: 0.5.3
+- rack-mount: 
+    version: 0.4.7
 - actionpack: 
     version: 3.0.0.beta
+- bluecloth: 
+    version: 2.0.7
+- authlogic: 
+    version: 2.1.3
+    source: 1
+- mysql: 
+    version: 2.8.1
 - rake: 
     version: 0.8.7
 - railties: 
@@ -94,8 +102,6 @@ specs:
     version: 0.4.5
 - twitter: 
     version: 0.8.4
-- system_timer: 
-    version: "1.0"
 - activerecord: 
     version: 3.0.0.beta
 - paperclip: 
@@ -105,6 +111,8 @@ specs:
     version: 1.0.0
 - actionmailer: 
     version: 3.0.0.beta
+- system_timer: 
+    version: "1.0"
 - tzinfo: 
     version: 0.3.16
 - activesupport: 
@@ -113,7 +121,7 @@ specs:
     version: 3.0.0.beta
 - rails: 
     version: 3.0.0.beta
-hash: 9dd639b1862fbe549514a8676c6b1afda75c57ca
+hash: 0e36560a947cbe2185a6c59960f9cc53b0afe399
 sources: 
 - Git: 
     uri: git://github.com/dewski/paperclip.git

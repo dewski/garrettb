@@ -3,6 +3,7 @@ class TripsController < ApplicationController
   
   def show
     @stops = get_tweets
+    @tracks = get_scrobbles
   end
   
   private
@@ -21,6 +22,13 @@ class TripsController < ApplicationController
         end
         
         results
+      }
+    end
+    
+    # Gather all tracks played starting that week
+    def get_scrobbles
+      Rails.cache.fetch('total_scrobbles', :expires_in => 60) {
+        Scrobbler::User.new('silverkid14').weekly_track_chart[0..9]
       }
     end
 end
