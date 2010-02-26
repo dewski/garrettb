@@ -12,13 +12,15 @@ class TripsController < ApplicationController
       Rails.cache.fetch('stops', :expires_in => 60) {
         results = []
         
-        Twitter::Search.new('#gbnyc').from('garrettb').fetch().results.each do |result|
-          results << {
-            :text => result.text,
-            :created_at => result.created_at,
-            :lat => result.geo.coordinates[0],
-            :lng => result.geo.coordinates[1]
-          }
+        Twitter::Search.new('#gbnyc').from('garrettb').from('jakebellacera').fetch().results.each do |result|
+          if result.geo.present?
+            results << {
+              :text => result.text,
+              :created_at => result.created_at,
+              :lat => result.geo.coordinates[0],
+              :lng => result.geo.coordinates[1]
+            }
+          end
         end
         
         results

@@ -3,14 +3,10 @@
 
 #map{ :style => 'width: 100%; height: 500px' }
   Please enable Javascript.
-
-#tracks
-  - @tracks.each do |track|
-    = last_fm_link track
-    <br />
     
 - content_for :javascript do
   :plain
+    var geocoder = new google.maps.Geocoder();
     var stops = #{@stops.to_json};
     var latlng = new google.maps.LatLng(39.805107,-98.539724),
         infoWindow = new google.maps.InfoWindow(),
@@ -26,7 +22,7 @@
       var marker#{i} = new google.maps.Marker({
         map: map,
         position: new google.maps.LatLng(#{stop[:lat]}, #{stop[:lng]}),
-        draggable: false,
+        icon: getMarkerImage(stops[#{i}].text),
         title: '#{i}'
       });
 
@@ -35,18 +31,28 @@
       });
 
   :plain
+    function getMarkerImage(text) {
+      // alert(text);
+    }
     function openInfoWindow(marker) {
       var i = parseInt(marker.getTitle());
+      var address;
       
-      var status = stops[i].text.replace(/((https?|s?ftp|ssh)\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!])/g, function(url) {
-        return '<a href="'+ url +'">'+ url +'</a>';
-      }).replace(/\B@([_a-z0-9]+)/ig, function(reply) {
-        return reply.charAt(0)+'<a href="http://twitter.com/'+ reply.substring(1) +'">'+ reply.substring(1) +'</a>';
-      }).replace(/http:\/\/twitpic.com/g, function(reply) {
-        return reply.charAt(0)+'<a href="http://twitter.com/'+ reply.substring(1) +'">'+ reply.substring(1) +'</a>';
-      }).replace('#gbnyc', '');
+      geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          address = results[0].formatted_address;
+        }
+        
+        var status = stops[i].text.replace(/((https?|s?ftp|ssh)\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!])/g, function(url) {
+          return '<a href="'+ url +'">'+ url +'</a>';
+        }).replace(/\B@([_a-z0-9]+)/ig, function(reply) {
+          return reply.charAt(0)+'<a href="http://twitter.com/'+ reply.substring(1) +'">'+ reply.substring(1) +'</a>';
+        }).replace(/http:\/\/twitpic.com/g, function(reply) {
+          return reply.charAt(0)+'<a href="http://twitter.com/'+ reply.substring(1) +'">'+ reply.substring(1) +'</a>';
+        }).replace('#gbnyc', '');
       
-      var content = status + " at " + stops[i]['created_at'];
-      infoWindow.setContent(content);
-      infoWindow.open(map, marker);
+        var content = "<strong>"+ address + "</strong><br />" + " " + status;
+        infoWindow.setContent(content);
+        infoWindow.open(map, marker);
+      });
     }
