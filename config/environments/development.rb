@@ -1,7 +1,5 @@
 GB::Application.configure do
   config.cache_classes = false
-  # ABQIAAAA8IIQcuiiU7QFPjD0KiH_PhSzY5icoUoR77ZPl8RXejMU8oPzzRT7qmrsMqWBpVudpqQ6l4uZOf7Lvg
-  # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
   # Show full error reports and disable caching
