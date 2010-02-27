@@ -47,8 +47,9 @@
           return '<a href="'+ url +'">'+ url +'</a>';
         }).replace(/\B@([_a-z0-9]+)/ig, function(reply) {
           return reply.charAt(0)+'<a href="http://twitter.com/'+ reply.substring(1) +'">'+ reply.substring(1) +'</a>';
-        }).replace(/http:\/\/twitpic.com/g, function(reply) {
-          return reply.charAt(0)+'<a href="http://twitter.com/'+ reply.substring(1) +'">'+ reply.substring(1) +'</a>';
+        }).replace(/>http:\/\/twitpic.com\/([_a-z0-9]+)</, function(reply) {
+          var item = reply.substring(20, 26);
+          return '><img src="http://twitpic.com/show/large/'+ item +'" alt="" /><';
         }).replace('#gbnyc', '');
       
         var content = "<strong>"+ address + "</strong><br />" + " " + status;
