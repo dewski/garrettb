@@ -16,6 +16,7 @@ class TripsController < ApplicationController
           if result.geo.present?
             results << {
               :text => result.text,
+              :from_user => result.from_user,
               :created_at => result.created_at,
               :lat => result.geo.coordinates[0],
               :lng => result.geo.coordinates[1]
