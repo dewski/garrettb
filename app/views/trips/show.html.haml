@@ -1,36 +1,53 @@
 - title 'Sacramento to NYC'
-- javascript 'http://maps.google.com/maps/api/js?sensor=false'
+- javascript "http://maps.google.com/maps?file=api&v=3&key=#{GOOGLE_MAPS_API_KEY}&sensor=false"
 
 #map{ :style => 'width: 100%; height: 500px' }
   Please enable Javascript.
     
 - content_for :javascript do
   :plain
-    var geocoder = new google.maps.Geocoder();
+    var geocoder = new GClientGeocoder();
+    var marker;
     var stops = #{@stops.to_json};
-    var latlng = new google.maps.LatLng(39.805107,-98.539724),
-        infoWindow = new google.maps.InfoWindow(),
-        myOptions = {
-          zoom: 4,
-          center: latlng,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+    
+    var map = new GMap2(document.getElementById('map'));
+    map.setCenter(new GLatLng(39.805107,-98.539724), 4);
 
   - @stops.each_with_index do |stop, i|
     :plain
-      var marker#{i} = new google.maps.Marker({
-        map: map,
-        position: new google.maps.LatLng(#{stop[:lat]}, #{stop[:lng]}),
-        icon: '/images/content/#{stop[:from_user] == 'garrettb' ? 'garrett.png' : 'jake.png'}',
-        title: '#{i}'
-      });
-
-      google.maps.event.addListener(marker#{i}, 'click', function() {
-        openInfoWindow(marker#{i});
-      });
+      
+      // Marker
+      map.addOverlay(createMarker(new GLatLng(#{stop[:lat]}, #{stop[:lng]}), '#{i}', '#{stop[:from_user]}'));
 
   :plain
+  
+    var dayOne = new GPolygon([
+      new GLatLng(49.02, -105.53),
+      new GLatLng(49.02, -117,77),
+      new GLatLng(49.02, -123.33),
+      new GLatLng(48.55, -123.07),
+      new GLatLng(48.22, -123.42),
+      new GLatLng(48.46, -124.63),
+      new GLatLng(47.87, -124.69),
+      new GLatLng(47.44, -124.32),
+      new GLatLng(46.74, -124.08),
+      new GLatLng(45.58, -123.97),
+      new GLatLng(42.78, -124.61),
+      new GLatLng(41.74, -124.33),
+      new GLatLng(40.53, -124.37),
+      new GLatLng(39.66, -123.82),
+      new GLatLng(38.93, -123.73),
+      new GLatLng(38.13, -122.96),
+      new GLatLng(37.67, -122.56),
+      new GLatLng(37.14, -122.37),
+      new GLatLng(36.86, -121.77),
+      new GLatLng(36.53, -122.01),
+      new GLatLng(35.37, -120.98),
+      new GLatLng(35.07, -120.65)
+    ], "#aaa", 2, 0.5, "#eee", 0.15);
+    
+    map.addOverlay(dayOne);
+  
     // From DHH's gist: http://gist.github.com/58761
     var DateHelper = {
       // Takes the format of "Jan 15, 2007 15:45:00 GMT" and converts it to a relative time
@@ -60,30 +77,29 @@
         if (distance_in_minutes < 525960) { return Math.floor(distance_in_minutes / 43200) + ' months ago'; }
         if (distance_in_minutes < 1051199) { return 'about 1 year ago'; }
  
-        return 'over ' + (distance_in_minutes / 525960).floor() + ' years ago';
+        return 'over ' + Math.floor(distance_in_minutes / 525960) + ' years ago';
       }
     };
+    
+    function createMarker(points, title, from) {
+      var icon = GIcon(G_DEFAULT_ICON);
+      icon.image = '/images/content/' + from + '.png';
+      
+      var marker = new GMarker(points, {
+        icon: icon,
+        title: title
+      });
+      return marker;
+    }
       
     function openInfoWindow(marker) {
       var i = parseInt(marker.getTitle());
-      var address;
+      var address, place = place = response.Placemark[0];
+      var geo = marker.getPosition();
+      alert(geo[0]);
+      alert(geo[1]);
       
-      geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          address = results[0].formatted_address;
-        }
-        
-        var status = stops[i].text.replace(/((https?|s?ftp|ssh)\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!])/g, function(url) {
-          return '<a href="'+ url +'">'+ url +'</a>';
-        }).replace(/\B@([_a-z0-9]+)/ig, function(reply) {
-          return reply.charAt(0)+'<a href="http://twitter.com/'+ reply.substring(1) +'">'+ reply.substring(1) +'</a>';
-        }).replace(/>http:\/\/twitpic.com\/([_a-z0-9]+)</, function(reply) {
-          var item = reply.substring(20, 26);
-          return '><img src="http://twitpic.com/show/large/'+ item +'" alt="" /><';
-        }).replace('#gbnyc', '');
-      
-        var content = "<img src='http://img.tweetimag.es/i/" + stops[i].from_user + "_n' style='margin: 0 5px 5px 0;float:left' alt='' /><strong>"+ address + "</strong><br />" + " " + status + " <em>" + DateHelper.time_ago_in_words_with_parsing(stops[i].created_at) + "</em>";
-        infoWindow.setContent(content);
-        infoWindow.open(map, marker);
-      });
+      geocoder.getLocations(latlng, function (response) {
+        alert(response);
+      })
     }

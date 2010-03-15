@@ -9,7 +9,7 @@ class TripsController < ApplicationController
   private
     # Gather all tweets by me that are tagged #gbnyc
     def get_tweets
-      Rails.cache.fetch('stops', :expires_in => 60) {
+      Rails.cache.fetch('stops', :expires_in => 30) {
         results = []
         
         Twitter::Search.new('#gbnyc').from('garrettb').from('jakebellacera').per_page(100).fetch().results.each do |result|

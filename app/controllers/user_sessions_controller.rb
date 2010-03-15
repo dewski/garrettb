@@ -11,10 +11,9 @@ class UserSessionsController < ApplicationController
     
     @user_session.save do |result|
       if result
-        flash[:notice] = "Login successful!"
-        redirect_back_or_default root_path
+        redirect_to root_path, :notice => "Login successful!"
       else
-        render :action => :new
+        render :new
       end
     end
   end
@@ -22,7 +21,6 @@ class UserSessionsController < ApplicationController
   def destroy
     @user_session = UserSession.find
     @user_session.destroy
-    flash[:notice] = "Successfully logged out."
-    redirect_to root_url
+    redirect_to root_url, :notice => "Successfully logged out."
   end
 end

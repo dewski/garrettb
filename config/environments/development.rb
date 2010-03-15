@@ -17,5 +17,7 @@ GB::Application.configure do
     :domain => "www.garrettbjerkhoel.com"
   }
   
-  Paperclip.options[:command_path] = "/usr/local/bin"
+  Paperclip.options[:command_path] = '/usr/local/bin'
 end
+
+GOOGLE_MAPS_API_KEY = 'ABQIAAAA8IIQcuiiU7QFPjD0KiH_PhSzY5icoUoR77ZPl8RXejMU8oPzzRT7qmrsMqWBpVudpqQ6l4uZOf7Lvg'

@@ -557,6 +557,7 @@ body.about a.jquery {
   font-weight: bold;
   color: #00a7e5;
 }
+body.about a.fi { color: #000000; }
 body.about a.github { color: #eea025; }
 body.about a.gowalla { color: #435522; }
 body.about a.lastfm { color: #ee3425; }

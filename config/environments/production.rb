@@ -21,3 +21,5 @@ GB::Application.configure do
   
   Paperclip.options[:command_path] = "/usr/local/bin"
 end
+
+GOOGLE_MAPS_API_KEY = 'ABQIAAAA8IIQcuiiU7QFPjD0KiH_PhRfGsGpnvwevLrP5n73-Kc7CSiPJxQVOJFFGVmJLa6tw5meJc_fVJobpQ'

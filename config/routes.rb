@@ -8,7 +8,7 @@ GB::Application.routes.draw do |map|
   resource  :trip, :as => 'relocation'
   
   # Admin
-  match '/admin' => redirect("/admin/dashboard")
+  match '/admin' => redirect('/admin/dashboard')
   namespace :admin do
     resource  :dashboard
     
