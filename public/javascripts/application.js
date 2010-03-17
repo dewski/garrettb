@@ -19,13 +19,15 @@ $(document).ready(function () {
    * The small and sweet gallery.
    **/
   $('body.works #thumbs a').live('click', function (e) {
-    e.preventDefault();
-    var index = $(this).parent().prevAll().size();
-    $('#featured').prepend($('<img/>', { src: items[index].large, alt: 'alt', style: 'z-index:5' }));
-    $('#featured img:eq(0)').hide().fadeIn(250, function () {
-      $(this).css('z-index', '1');
-      $('#featured img:eq(1)').remove();
-    });
+    if ($(this).attr('href') == '#') {
+      e.preventDefault();
+      var index = $(this).parent().prevAll().size();
+      $('#featured').prepend($('<img/>', { src: items[index].large, alt: 'alt', style: 'z-index:5' }));
+      $('#featured img:eq(0)').hide().fadeIn(250, function () {
+        $(this).css('z-index', '1');
+        $('#featured img:eq(1)').remove();
+      });
+    }
   });
   
   /*
