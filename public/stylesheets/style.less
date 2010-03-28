@@ -548,7 +548,7 @@ body.works {
   }
 }
 
-#right a strong,
+#right .item a strong,
 .works .item strong {
   text-decoration: none;
   color: #fff;
@@ -567,7 +567,7 @@ body.works {
   background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
   border: 1px solid #000;
 }
-#right a:active strong,
+#right .item a:active strong,
 .works .item a:active strong {
   background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.9)), to(rgba(0, 0, 0, 0.7))) !important;
   background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)) !important;
@@ -639,11 +639,12 @@ body.about {
   a {
     text-decoration: none;
     text-transform: uppercase;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 32px;
     font-size: 12px;
     display: block;
     color: #5a5a5a;
-    font-weight: normal;
-    padding: 9px 0 9px 32px;
   }
   
   li {
@@ -673,5 +674,121 @@ body.about {
   
   li.twitter a {
     background: url('../images/links/twitter.gif') no-repeat left center;
+  }
+}
+
+/**
+ * Droplet
+ */
+body.droplet {
+  ul#sorting {
+    padding: 10px 14px 0;
+  }
+  
+  .intro {
+    background: url('../images/content/wrap.gif') repeat-x 0 -7px;
+    position: relative;
+    overflow: hidden;
+    height: 70px;
+    padding: 10px 20px;
+    text-shadow: #323232 0 1px 0;
+    
+    h2 {
+      background: url('../images/plugins/droplet/title.png') no-repeat;
+      width: 92px; height: 34px;
+      text-indent: -9999em;
+      font-size: 0.1em;
+      float: left;
+    }
+    
+    p.description {
+      float: left;
+      width: 250px;
+      font-size: 13px;
+      color: #e8e8e8;
+      line-height: 20px;
+      padding: 5px 10px 0;
+    }
+    
+    .links {
+      padding: 10px 0 0;
+      width: 130px;
+      float: left;
+    }
+    
+    a.download {
+      text-decoration: none;
+      background: url('../images/plugins/droplet/download.png') no-repeat top left;
+      height: 24px;
+      display: block;
+      line-height: 22px;
+      padding: 0 0 0 32px;
+      font-size: 14px;
+      color: #ddd;
+      
+      strong {
+        border-bottom: 0;
+        color: #fff;
+      }
+    }
+    
+    a.contribute {
+      text-decoration: none;
+      background: url('../images/plugins/droplet/book.png') no-repeat 4px 1px;
+      height: 18px;
+      display: block;
+      line-height: 16px;
+      margin: 10px 0 0; padding: 0 0 0 32px;
+      font-size: 12px;
+      color: #ccc;
+    }
+    
+    #droplet {
+      background: url('../images/plugins/droplet/droplet.png') no-repeat;
+      width: 11px; height: 19px;
+      position: absolute;
+      top: 32px; left: 61px;
+    }
+    
+    .corner {
+      background: url('../images/content/top_right_corner.gif') no-repeat;
+      width: 5px; height: 5px;
+      position: absolute;
+      right: 0; bottom: -5px;
+      z-index: 10;
+    }
+  }
+  
+  .section {
+    padding: 20px 20px 0 20px;
+    
+    pre.code {
+      margin: 10px -20px;
+      padding: 10px 20px;
+    }
+  }
+    
+  .parameters {
+    ul {
+      padding: 10px 0;
+      font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", "DejaVu Sans Mono", monospace;
+    }
+    li {
+      height: 20px;
+      line-height: 20px;
+      padding: 0 0 0 60px;
+    }
+    .bool {
+      background: url('../images/plugins/droplet/boolean.png') no-repeat top left;
+    }
+    .int {
+      background: url('../images/plugins/droplet/integer.png') no-repeat top left;
+    }
+    .string {
+      background: url('../images/plugins/droplet/string.png') no-repeat top left;
+    }
+    .callback {
+      background: url('../images/plugins/droplet/function.png') no-repeat top left;
+    }
   }
 }

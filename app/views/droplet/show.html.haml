@@ -1,0 +1,60 @@
+- title 'Droplet - Customizable Dropdown Menus'
+
+.intro
+  .corner
+  #droplet
+  %h2 Droplet
+  %p.description
+    is a fully customizable dropdown plugin for jQuery. View the examples below, or download the source code to the right.
+  .links
+    <a href="" class="download">Download <strong>1.0</strong></a>
+    <a href="http://github.com/dewski/droplet" class="contribute">Source on GitHub</a>
+
+%ul(class='clearfix' id='sorting')
+  %li <a href="#usage">Usage</a></li>
+  %li <a href="#parameters">Parameters</a></li>
+  %li <a href="#examples">Examples</a></li>
+
+.section.usage#usage
+  %h2 Usage
+  %pre.code
+    %code
+      $('select').droplet();
+      
+.section.parameters#parameters
+  %h2 Parameters
+  %ul
+    %li.int fadeSpeed: <strong>150</strong>
+    %li.int scrollSpeed: <strong>500</strong>
+    %li.bool parseSelectedOffset: <strong>true</strong>
+    %li.bool scrollToSelect: <strong>true</strong>
+    %li.string wrapperClass: <strong>'droplet_wrapper'</strong>
+    %li.string listClass: <strong>'droplet_list'</strong>
+    %li.string placeholderClass: <strong>'droplet_placeholder'</strong>
+    %li.callback change: <strong>function (selected, index) {}</strong>
+
+.section.examples#examples
+  %h2 Examples
+  
+
+- content_for :javascript do
+  :plain
+    Cufon.replace('.section h2', {
+      fontFamily: 'Gotham Rounded Book'
+    });
+    
+    window.setInterval(function () {
+      $('#droplet').animate({
+        top: 39
+      }, 1000, 'easeOutBounce').animate({
+        top: 120,
+        opacity: 0.5
+      }, 1000, 'easeInQuint', function () {
+        $(this).css({
+          opacity: 0,
+          top: 33
+        }).delay(5000).animate({
+          opacity: 1
+        }, 50);
+      });
+    }, 10000);

@@ -56,7 +56,7 @@ $(document).ready(function () {
     }, 2500);
   });
   
-  $('#sorting a').live('click', function (e) {
+  $('body.works #sorting a').live('click', function (e) {
     e.preventDefault();
     var points = [], unmatched = [], b = 0, left, top,
         rel = $(this).attr('rel'),
@@ -135,9 +135,6 @@ $(document).ready(function () {
 });
 
 (function($) {
-  /*
-   * 
-   **/
   var cache = [];
   $.preloadImages = function() {
     var args_len = arguments.length;

@@ -34,6 +34,7 @@ body {
   color: #333333;
   margin: 0;
   padding: 10px 0 0;
+  -webkit-text-stroke: 1px transparent;
 }
 a {
   color: #333333;

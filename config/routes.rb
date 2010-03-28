@@ -6,6 +6,7 @@ GB::Application.routes.draw do |map|
   resources :users
   resource  :user_session
   resource  :trip, :as => 'relocation'
+  resource  :droplet, :controller => 'droplet'
   
   # Admin
   match '/admin' => redirect('/admin/dashboard')
