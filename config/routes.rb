@@ -5,7 +5,7 @@ GB::Application.routes.draw do |map|
   match '/logout' => 'user_sessions#destroy'
   resources :users
   resource  :user_session
-  resource  :trip, :as => 'relocation'
+  # resource  :trip, :as => 'relocation'
   resource  :droplet, :controller => 'droplet'
   
   # Admin

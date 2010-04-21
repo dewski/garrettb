@@ -6,7 +6,7 @@ class ContactController < ApplicationController
   end
   
   def create
-    @contact = Mailman.deliver_contact(params[:contact])
+    @contact = Mailman.contact(params[:contact]).deliver
     respond_with @contact, :location => contact_path, :status => "Successfully sent email"
   end
 end
