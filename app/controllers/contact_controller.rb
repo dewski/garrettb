@@ -1,5 +1,5 @@
 class ContactController < ApplicationController
-  respond_to :html
+  respond_to :html, :js
   
   def show
     
