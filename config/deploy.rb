@@ -4,59 +4,125 @@ require 'capistrano/ext/multistage'
 
 default_run_options[:pty] = true
 
-set :application, "garrettb"
+set :application, 'garrettb'
+set :deploy_to, '/var/www/garrettb'
 
+# Git options
 set :scm, :git
-set :deploy_via, :remote_cache
-set :repository,  "git@github.com:dewski/garrettb.git"
-set :branch, "master"
+set :repository, 'git@github.com:dewski/garrettb.git'
+set :branch, 'origin/master'
 
-set :user, "deploy"
+set :user, 'deploy'
 set :ssh_options, { :forward_agent => true }
 
-role :web, "garrettbjerkhoel.com", :asset_host_syncher => true
-role :app, "garrettbjerkhoel.com"
-role :db, "garrettbjerkhoel.com", :primary => true
+role :web, 'garrettbjerkhoel.com'
+role :app, 'garrettbjerkhoel.com'
+role :db,  'garrettbjerkhoel.com', :primary => true
 
 namespace :deploy do
-  [:start, :stop].each do |t|
-    desc "#{t} task is a no-op with mod_rails"
-    task t, :roles => :app do ; end
+  desc "Deploy app"
+  task :default do
+    update
+    restart
   end
   
-  desc "Restarting mod_rails with restart.txt"
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "touch #{File.join(current_path, "tmp", "restart.txt")}"
+  desc "Update code, bundle all assets, migrate db, install gems"
+  task :full do
+    update
+    migrate
+    bundle
+    restart
+    cleanup
+  end
+ 
+  desc "Setup a GitHub-style deployment."
+  task :setup, :except => { :no_release => true } do
+    run "git clone #{repository} #{current_path}"
+  end
+ 
+  desc "Update the deployed code."
+  task :update_code, :except => { :no_release => true } do
+    run "cd #{current_path}; git fetch origin; git reset --hard #{branch}"
+  end
+
+  desc "Deploy and run migrations"
+  task :migrations, :except => { :no_release => true } do
+    update
+    migrate
+    restart
+    cleanup
+  end
+
+  desc "Run pending migrations on already deployed code"
+  task :migrate, :except => { :no_release => true } do
+    run "cd #{current_path}; rake RAILS_ENV=#{rails_env} db:migrate"
+  end
+ 
+  namespace :rollback do
+    desc "Rollback a single commit."
+    task :code, :except => { :no_release => true } do
+      set :branch, "HEAD^"
+      deploy.default
+    end
+
+    task :default do
+      rollback.code
+    end
+  end
+    
+  desc "Make all the symlinks"
+  task :symlink, :roles => :app, :except => { :no_release => true } do
+    set :normal_symlinks, %w(
+      tmp/pids
+      config/database.yml
+      config/s3.yml
+      log/staging.log
+      log/production.log
+    )
+    
+    set :weird_symlinks, {
+      'pids' => 'tmp/pids'
+    }
+    
+    commands = normal_symlinks.map do |path|
+      "rm -rf #{current_path}/#{path} && \
+       ln -s #{shared_path}/#{path} #{current_path}/#{path}"
+    end
+
+    commands += weird_symlinks.map do |from, to|
+      "rm -rf #{current_path}/#{to} && \
+       ln -s #{shared_path}/#{from} #{current_path}/#{to}"
+    end
+
+    run "mkdir -p #{current_path}/tmp && \
+         mkdir -p #{current_path}/public/system && \
+         mkdir -p #{current_path}/config && \
+         mkdir -p #{current_path}/log"
+         
+    run <<-CMD
+      cd #{current_path} &&
+      #{commands.join(' && ')}
+    CMD
   end
   
-  desc "Update the crontab file"
-  task :update_crontab, :roles => :db do
-    run "cd #{release_path} && whenever --update-crontab #{application}"
+  # override default tasks to make capistrano happy
+  desc "Kick Passenger"
+  task :start do
+    run "touch #{current_path}/tmp/restart.txt"
   end
-end
 
-namespace :maintenance do
-  desc "This will disable the application and show a warning screen"
-  task :on do
-    run "haml #{current_path}/app/views/layouts/maintenance.html.haml #{current_path}/public/system/maintenance.html"
+  desc "Kick Passenger"
+  task :restart do
+    stop
+    start
+  end
+
+  desc "Kick Passenger"
+  task :stop do
   end
   
-  desc "This will enable the application and remove the warning screen"
-  task :off do
-    run "rm #{current_path}/public/system/maintenance.html"
+  desc "Install all gems"
+  task :bundle do
+    run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle install --without development test &>2"
   end
 end
-
-namespace :bundler do
-  task :install do
-    run "cd #{release_path} && bundle install"
-  end
-end
-
-#######
-# Tasks
-########################
-# Migrate the DB
-before "deploy:migrate", "deploy:move_in_asset_info", "deploy:move_in_database_yml"
-after "deploy", "deploy:migrate", "deploy:cleanup"
-after "deploy:update_code", "bundler:install"
