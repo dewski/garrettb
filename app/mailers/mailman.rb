@@ -1,5 +1,5 @@
 class Mailman < ActionMailer::Base
-  delivers_from 'no-reply@garrettbjerkhoel.com'
+  default :from => "no-reply@clientend.com"
   
   def contact(info)
     @email = info
