@@ -1,26 +1,94 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-  </style>
-</head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-type' />
+    <title>Garrett Bjerkhoel</title>
+    <link href="/blog.atom" rel="alternate" title="ATOM" type="application/atom+xml" />
+    <link href="/stylesheets/style.css?1269736121" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body class='about'>
+    <div id='wrapper'>
+      <div id='container'>
+        <div class='clearfix' id='main'>
+          <div id='left'>
+            <h1><a href="/">Garrett Bjerkhoel</a></h1>
+            <ul class='clearfix' id='navigation'>
+              <li><a href="/work">Work</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+            <ul id='links'>
+              <li class='github'><a href="http://github.com/dewski">My Code</a></li>
+              <li class='lastfm'><a href="http://last.fm/user/silverkid14">My Music</a></li>
+              <li class='twitter'><a href="http://twitter.com/garrettb">My Tweets</a></li>
+            </ul>
+          </div>
+          <div id='right'>
+            <div id='dewskis' style='display:none'></div>
+            <h2 id="error" style="display:none">Error</h2>
+          </div>
+        </div>
+      </div>
+      <div id='footer'>
+        <p>
+          <a href="http://github.com/dewski">GitHub</a>
+          &bull;
+          <a href="/blog">Blog</a>
+          &bull;
+          <a href="/work">Work</a>
+          &bull;
+          <a href="/contact">Contact</a>
+          &bull;
+          <a href="/about">About</a>
+        </p>
+        Copyright &copy; 2010 <a href="/">Garrett Bjerkhoel</a>. All Rights Reserved.
+      </div>
+    </div>
+    <script src="/javascripts/jquery.1.4.min.js?1269721313" type="text/javascript"></script>
+    <script src="/javascripts/cufon-yui.js?1265091451" type="text/javascript"></script>
+    <script src="/javascripts/gotham_rounded.font.js?1265091441" type="text/javascript"></script>
+    <script src="/javascripts/application.js?1269736195" type="text/javascript"></script>
+    <script type='text/javascript'>
+      $(document).ready(function () {
+        $.preloadImages('/images/content/about_dewski.jpg', '/images/content/dewski.gif');
+        
+         var dewskis = $('#dewskis'), x = 1;
+         dewskis.fadeIn();
 
-<body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-  </div>
-</body>
+         for(var i = 0; i < 154; i++) {
+            // todo: storing the <img/> in a variable makes it flash
+            dewskis.append($('<img/>', { src: '/images/content/dewski.gif', alt: '', style: 'display:none' }));
+            dewskis.find('img:last').hide(0).delay(i*10).fadeIn(50);
+         }
+
+         window.setTimeout(function () {
+            $('body.about #right').css({
+               backgroundImage: 'url()'
+            });
+            $('#dewskis').fadeOut(1000);
+         }, 2500);
+      });
+    </script>
+    <script type='text/javascript'>
+      Cufon.replace('ul#links a, body.works .meta h2', {
+        fontFamily: 'Gotham Rounded Book',
+        textShadow: '#fff 1px 1px 0'
+      });
+      Cufon.replace('#right h2', {
+         fontFamily: 'Gotham Rounded Book'
+      });
+      
+      /* Google Analytics */
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12213707-2']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  </body>
 </html>

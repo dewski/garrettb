@@ -364,7 +364,7 @@ body.admin .skills label { display: block; }
 body.admin .skills h2 { padding: 0 0 10px; }
 body.works .meta {
   background-image: none;
-  padding: 25px 15px 15px;
+  padding: 15px;
 }
 body.works .meta h2 {
   font-size: 20px;
@@ -379,7 +379,7 @@ body.works .meta .agency {
   display: block;
   text-indent: -9999em;
   font-size: 0.1em;
-  margin: 0 5px 0 0;
+  margin: 10px 5px 0 0;
 }
 body.works .meta .agency_bkwld {
   background: url('../images/agencies/bkwld.png') no-repeat;
@@ -543,7 +543,7 @@ body.about a.github {
   font-weight: bold;
   color: #00a7e5;
 }
-body.about a.gowalla {
+body.about a.foursquare {
   text-decoration: none;
   font-weight: bold;
   color: #00a7e5;
@@ -560,7 +560,7 @@ body.about a.jquery {
 }
 body.about a.fi { color: #000000; }
 body.about a.github { color: #eea025; }
-body.about a.gowalla { color: #435522; }
+body.about a.foursquare { color: #0066cc; }
 body.about a.lastfm { color: #ee3425; }
 body.about a.jquery { color: #4082ae; }
 body.about #dewskis {
