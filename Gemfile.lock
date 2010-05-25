@@ -1,43 +1,35 @@
 --- 
 dependencies: 
-  system_timer: 
-    group: 
-    - :default
-    version: = 1.0
   rails: 
     group: 
     - :default
-    version: = 3.0.0.beta
-  bluecloth: 
+    version: = 3.0.0.beta3
+  pg: 
     group: 
-    - :default
-    version: ">= 2.0.0"
+    - :production
+    version: ">= 0"
   mysql: 
     group: 
-    - :default
+    - :development
     version: = 2.8.1
   authlogic: 
     group: 
     - :default
-    version: = 2.1.3
-  scrobbler: 
+    version: ">= 0"
+  bluecloth: 
     group: 
     - :default
-    version: = 0.2.3
+    version: ">= 2.0.0"
   paperclip: 
     group: 
     - :default
-    version: = 2.3.1.1
+    version: ">= 0"
   aws-s3: 
     group: 
     - :default
-    version: = 0.6.2
+    version: ">= 0"
     require: 
     - aws/s3
-  twitter: 
-    group: 
-    - :default
-    version: = 0.9.5
 specs: 
 - rake: 
     version: 0.8.7
@@ -46,25 +38,25 @@ specs:
 - builder: 
     version: 2.1.2
 - i18n: 
-    version: 0.3.6
+    version: 0.3.7
 - memcache-client: 
-    version: 1.7.8
+    version: 1.8.3
 - tzinfo: 
-    version: 0.3.16
+    version: 0.3.20
 - activesupport: 
-    version: 3.0.0.beta
+    version: 3.0.0.beta3
 - activemodel: 
-    version: 3.0.0.beta
+    version: 3.0.0.beta3
 - erubis: 
     version: 2.6.5
 - rack: 
     version: 1.1.0
 - rack-mount: 
-    version: 0.4.7
+    version: 0.6.3
 - rack-test: 
     version: 0.5.3
 - actionpack: 
-    version: 3.0.0.beta
+    version: 3.0.0.beta3
 - mime-types: 
     version: "1.16"
 - polyglot: 
@@ -72,21 +64,21 @@ specs:
 - treetop: 
     version: 1.4.5
 - mail: 
-    version: 2.1.5.3
+    version: 2.2.1
 - text-hyphen: 
     version: 1.0.0
 - text-format: 
     version: 1.0.0
 - actionmailer: 
-    version: 3.0.0.beta
+    version: 3.0.0.beta3
 - arel: 
-    version: 0.2.1
+    version: 0.3.3
 - activerecord: 
-    version: 3.0.0.beta
+    version: 3.0.0.beta3
 - activeresource: 
-    version: 3.0.0.beta
+    version: 3.0.0.beta3
 - authlogic: 
-    version: 2.1.3
+    version: 2.1.4
     source: 1
 - xml-simple: 
     version: 1.0.12
@@ -95,52 +87,30 @@ specs:
 - bluecloth: 
     version: 2.0.7
 - bundler: 
-    version: 0.9.21
-- crack: 
-    version: 0.1.6
-- hashie: 
-    version: 0.2.0
-- hpricot: 
-    version: 0.8.2
-- httparty: 
-    version: 0.5.2
+    version: 0.9.25
 - mysql: 
     version: 2.8.1
-- ruby-hmac: 
-    version: 0.4.0
-- oauth: 
-    version: 0.3.6
 - paperclip: 
     version: 2.3.1.1
     source: 0
+- pg: 
+    version: 0.9.0
 - thor: 
-    version: 0.13.4
+    version: 0.13.6
 - railties: 
-    version: 3.0.0.beta
+    version: 3.0.0.beta3
 - rails: 
-    version: 3.0.0.beta
-- scrobbler: 
-    version: 0.2.3
-- system_timer: 
-    version: "1.0"
-- yajl-ruby: 
-    version: 0.7.4
-- twitter: 
-    version: 0.9.5
-hash: 15bbce688503ae134364579e52e2f9f970f37d5d
+    version: 3.0.0.beta3
+hash: 337e4877f2714613d6b95ab0fdb9693288716be4
 sources: 
 - Git: 
-    name: paperclip
     uri: git://github.com/dewski/paperclip.git
     branch: rails3
-    version: 2.3.1.1
     git: git://github.com/dewski/paperclip.git
-    ref: b7bc4c6f9d155ce1cc278730d10e65868ccd70c8
+    ref: ed5da4d4676e41cf23b1e082189c50051d733b98
 - Git: 
-    name: authlogic
     uri: git://github.com/binarylogic/authlogic.git
-    version: 2.1.3
     git: git://github.com/binarylogic/authlogic.git
-    ref: 85b2a6b3e9993b18c7fb1e4f7b9c6d01cc8b5d17
+    ref: ce0738b4d8351e01e3e5730dfdd2d983b20cbedd
 - Rubygems: 
     uri: http://gemcutter.org

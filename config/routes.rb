@@ -1,11 +1,12 @@
 GB::Application.routes.draw do |map|
   # Sessions
   match '/user_session/new' => redirect('/login')
+  match '/trip' => redirect('/')
   match '/login' => 'user_sessions#new'
   match '/logout' => 'user_sessions#destroy'
   resources :users
   resource  :user_session
-  resource  :trip, :as => 'relocation'
+  # resource  :trip, :as => 'relocation'
   resource  :droplet, :controller => 'droplet'
   
   # Admin
