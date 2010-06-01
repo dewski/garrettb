@@ -123,6 +123,6 @@ namespace :deploy do
   
   desc "Install all gems"
   task :bundle do
-    run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle install --without development test &>2"
+    run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle install --without development test"
   end
 end
