@@ -1,18 +1,18 @@
 - title "Contact"
 
 .body
-  - form_for :contact, :url => contact_path, :html => { :remote => true } do |f|
+  = form_for :contact, :url => contact_path, :html => { :remote => true } do |f|
     = f.error_messages
 
     %dl
-    %dd= f.label :name
-    %dt= f.text_field :name
+      %dd= f.label :name
+      %dt= f.text_field :name
 
-    %dd= f.label :email
-    %dt= f.text_field :email
+      %dd= f.label :email
+      %dt= f.text_field :email
 
-    %dd= f.label :body
-    %dt= f.text_area :body
+      %dd= f.label :body
+      %dt= f.text_area :body
 
     = f.submit "Submit"
 
