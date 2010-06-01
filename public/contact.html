@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-type' />
+    <title>Contact &bull; Garrett Bjerkhoel</title>
+    <link href="/posts.atom" rel="alternate" title="ATOM" type="application/atom+xml" />
+    <link href="/stylesheets/style.css?1272422879" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body class='contact'>
+    <div id='wrapper'>
+      <div id='container'>
+        <div class='clearfix' id='main'>
+          <div id='left'>
+            <h1><a href="/">Garrett Bjerkhoel</a></h1>
+            <ul class='clearfix' id='navigation'>
+              <li><a href="/works">Work</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/posts">Blog</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+            <ul id='links'>
+              <li class='github'><a href="http://github.com/dewski">My Code</a></li>
+              <li class='lastfm'><a href="http://last.fm/user/silverkid14">My Music</a></li>
+              <li class='twitter'><a href="http://twitter.com/garrettb">My Tweets</a></li>
+            </ul>
+          </div>
+          <div id='right'>
+            <div class='body'>
+                <dl>
+                <dd><label for="contact_name">Name</label></dd>
+                <dt><input id="contact_name" name="contact[name]" size="30" type="text" /></dt>
+                <dd><label for="contact_email">Email</label></dd>
+                <dt><input id="contact_email" name="contact[email]" size="30" type="text" /></dt>
+                <dd><label for="contact_body">Body</label></dd>
+                <dt><textarea cols="40" id="contact_body" name="contact[body]" rows="20"></textarea></dt>
+                <input id="contact_submit" name="commit" type="submit" value="Submit" />
+              </dl>
+            <form action="/contact" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="VhrNRYAdOUJVithTDHYLrUQvQoe26IerSXqZOvntLPo=" /></div></form>
+            </div>
+          </div>
+        </div>
+        <div class='clearfix' id='faq'>
+          <div class='answer'>
+            <h2>
+              <small>01/24/2010</small>
+              <a href="/posts/fork-this-site">Fork this site</a>
+            </h2>
+            
+          </div>
+          <div class='answer f_b'>
+            <h2>
+              <small>01/24/2010</small>
+              <a href="/posts/its-finally-up">It's finally up</a>
+            </h2>
+            <p>aasd</p>
+          </div>
+          <div class='answer f_b'>
+            <h2>
+              <small>01/21/2010</small>
+              <a href="/posts/new-york-city-bound">New York City Bound</a>
+            </h2>
+            <p>asd</p>
+          </div>
+        </div>
+      </div>
+      <div id='footer'>
+        <p>
+          <a href="http://github.com/dewski">GitHub</a>
+          &bull;
+          <a href="/posts">Blog</a>
+          &bull;
+          <a href="/works">Work</a>
+          &bull;
+          <a href="/contact">Contact</a>
+          &bull;
+          <a href="/about">About</a>
+        </p>
+        Copyright &copy; 2010 <a href="/">Garrett Bjerkhoel</a>. All Rights Reserved.
+      </div>
+    </div>
+    <script src="/javascripts/jquery.1.4.min.js?1269721313" type="text/javascript"></script>
+    <script src="/javascripts/cufon-yui.js?1265091451" type="text/javascript"></script>
+    <script src="/javascripts/gotham_rounded.font.js?1265091441" type="text/javascript"></script>
+    <script src="/javascripts/application.js?1269736195" type="text/javascript"></script>
+    <script src="/javascripts/contact.js?1275409111" type="text/javascript"></script>
+    <script type='text/javascript'>
+      Cufon.replace('ul#links a, body.works .meta h2', {
+        fontFamily: 'Gotham Rounded Book',
+        textShadow: '#fff 1px 1px 0'
+      });
+      
+      /* Google Analytics */
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12213707-2']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+  </body>
+</html>

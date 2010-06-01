@@ -1,9 +1,8 @@
 - title "Contact"
+- javascript 'contact'
 
 .body
   = form_for :contact, :url => contact_path, :html => { :remote => true } do |f|
-    = f.error_messages
-
     %dl
       %dd= f.label :name
       %dt= f.text_field :name
@@ -14,24 +13,4 @@
       %dd= f.label :body
       %dt= f.text_area :body
 
-    = f.submit "Submit"
-
-- content_for :javascript do
-  :plain
-    $('body.contact form').bind('ajax:before', function (e) {
-      var validated = true;
-      $(['name', 'email', 'body']).each(function (i, v) {
-        var item = $('#contact_'+ v);
-        if(item.val() === "") {
-          e.preventDefault();
-          alert('Please fill out the '+ v +' field.');
-          item.addClass('has_errors');
-          item.focus();
-          validated = false;
-          return false;
-        } else {
-          item.removeClass('has_errors');
-        }
-      });
-      return validated;
-    });
+      = f.submit "Submit"
