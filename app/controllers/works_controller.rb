@@ -1,4 +1,5 @@
 class WorksController < ApplicationController
+  caches_page :index, :show
   # layout 'detail', :only => :show
   respond_to :html
   

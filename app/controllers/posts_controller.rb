@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  caches_page :index, :show
   respond_to :html
   respond_to :atom, :only => :index
   

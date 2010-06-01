@@ -4,22 +4,18 @@ dependencies:
     group: 
     - :default
     version: = 3.0.0.beta3
-  pg: 
-    group: 
-    - :production
-    version: ">= 0"
   mysql: 
     group: 
     - :development
     version: = 2.8.1
-  authlogic: 
-    group: 
-    - :default
-    version: ">= 0"
   bluecloth: 
     group: 
     - :default
     version: ">= 2.0.0"
+  authlogic: 
+    group: 
+    - :default
+    version: ">= 0"
   paperclip: 
     group: 
     - :default
@@ -42,7 +38,7 @@ specs:
 - memcache-client: 
     version: 1.8.3
 - tzinfo: 
-    version: 0.3.20
+    version: 0.3.22
 - activesupport: 
     version: 3.0.0.beta3
 - activemodel: 
@@ -54,7 +50,7 @@ specs:
 - rack-mount: 
     version: 0.6.3
 - rack-test: 
-    version: 0.5.3
+    version: 0.5.4
 - actionpack: 
     version: 3.0.0.beta3
 - mime-types: 
@@ -62,7 +58,7 @@ specs:
 - polyglot: 
     version: 0.3.1
 - treetop: 
-    version: 1.4.5
+    version: 1.4.8
 - mail: 
     version: 2.2.1
 - text-hyphen: 
@@ -78,7 +74,7 @@ specs:
 - activeresource: 
     version: 3.0.0.beta3
 - authlogic: 
-    version: 2.1.4
+    version: 2.1.5
     source: 1
 - xml-simple: 
     version: 1.0.12
@@ -93,15 +89,13 @@ specs:
 - paperclip: 
     version: 2.3.1.1
     source: 0
-- pg: 
-    version: 0.9.0
 - thor: 
     version: 0.13.6
 - railties: 
     version: 3.0.0.beta3
 - rails: 
     version: 3.0.0.beta3
-hash: 337e4877f2714613d6b95ab0fdb9693288716be4
+hash: 0c2280105297804b7ec427702b6a3c7e624b48c8
 sources: 
 - Git: 
     uri: git://github.com/dewski/paperclip.git
@@ -111,6 +105,6 @@ sources:
 - Git: 
     uri: git://github.com/binarylogic/authlogic.git
     git: git://github.com/binarylogic/authlogic.git
-    ref: ce0738b4d8351e01e3e5730dfdd2d983b20cbedd
+    ref: c52993c83479d614a18cc888a0ddc0a25b5afd8e
 - Rubygems: 
     uri: http://gemcutter.org
