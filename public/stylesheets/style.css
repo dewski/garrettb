@@ -363,7 +363,7 @@ body.admin .skills label { display: block; }
 body.admin .skills h2 { padding: 0 0 10px; }
 body.works .meta {
   background-image: none;
-  padding: 15px;
+  padding: 25px 15px 15px;
 }
 body.works .meta h2 {
   font-size: 20px;
@@ -378,7 +378,7 @@ body.works .meta .agency {
   display: block;
   text-indent: -9999em;
   font-size: 0.1em;
-  margin: 10px 5px 0 0;
+  margin: 0 5px 0 0;
 }
 body.works .meta .agency_bkwld {
   background: url('../images/agencies/bkwld.png') no-repeat;
@@ -581,12 +581,10 @@ body.about #dewskis {
   text-decoration: none;
   text-transform: uppercase;
   font-size: 12px;
-  line-height: 30px;
-  height: 30px;
-  padding-left: 32px;
   display: block;
   color: #5a5a5a;
   font-weight: normal;
+  padding: 9px 0 9px 32px;
 }
 #links li {
   background: #ededed url('../images/content/link_bg.gif') repeat-x top;
