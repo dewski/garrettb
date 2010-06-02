@@ -34,7 +34,6 @@ body {
   color: #333333;
   margin: 0;
   padding: 10px 0 0;
-  -webkit-text-stroke: 1px transparent;
 }
 a {
   color: #333333;
@@ -468,7 +467,7 @@ body.works #listing .item {
   -moz-border-radius: 2px;
   border-radius: 2px;
 }
-#right .item a strong {
+#right a strong {
   text-decoration: none;
   color: #ffffff;
   font-size: 11px;
@@ -502,7 +501,7 @@ body.works #listing .item {
   background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
   border: 1px solid #000000;
 }
-#right .item a:active strong {
+#right a:active strong {
   background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.9)), to(rgba(0, 0, 0, 0.7))) !important;
   background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)) !important;
 }
@@ -543,7 +542,7 @@ body.about a.github {
   font-weight: bold;
   color: #00a7e5;
 }
-body.about a.foursquare {
+body.about a.gowalla {
   text-decoration: none;
   font-weight: bold;
   color: #00a7e5;
@@ -560,7 +559,7 @@ body.about a.jquery {
 }
 body.about a.fi { color: #000000; }
 body.about a.github { color: #eea025; }
-body.about a.foursquare { color: #0066cc; }
+body.about a.gowalla { color: #435522; }
 body.about a.lastfm { color: #ee3425; }
 body.about a.jquery { color: #4082ae; }
 body.about #dewskis {
@@ -581,12 +580,13 @@ body.about #dewskis {
 #links a {
   text-decoration: none;
   text-transform: uppercase;
-  height: 30px;
-  line-height: 30px;
-  padding-left: 32px;
   font-size: 12px;
+  line-height: 30px;
+  height: 30px;
+  padding-left: 32px;
   display: block;
   color: #5a5a5a;
+  font-weight: normal;
 }
 #links li {
   background: #ededed url('../images/content/link_bg.gif') repeat-x top;
@@ -598,93 +598,3 @@ body.about #dewskis {
 #links li.github a { background: url('../images/links/github.gif') no-repeat left center; }
 #links li.lastfm a { background: url('../images/links/lastfm.gif') no-repeat left center; }
 #links li.twitter a { background: url('../images/links/twitter.gif') no-repeat left center; }
-body.droplet ul#sorting { padding: 10px 14px 0; }
-body.droplet .intro {
-  background: url('../images/content/wrap.gif') repeat-x 0 -7px;
-  position: relative;
-  overflow: hidden;
-  height: 70px;
-  padding: 10px 20px;
-  text-shadow: #323232 0 1px 0;
-}
-body.droplet .intro h2 {
-  background: url('../images/plugins/droplet/title.png') no-repeat;
-  width: 92px;
-  height: 34px;
-  text-indent: -9999em;
-  font-size: 0.1em;
-  float: left;
-}
-body.droplet .intro p.description {
-  float: left;
-  width: 250px;
-  font-size: 13px;
-  color: #e8e8e8;
-  line-height: 20px;
-  padding: 5px 10px 0;
-}
-body.droplet .intro .links {
-  padding: 10px 0 0;
-  width: 130px;
-  float: left;
-}
-body.droplet .intro a.download {
-  text-decoration: none;
-  background: url('../images/plugins/droplet/download.png') no-repeat top left;
-  height: 24px;
-  display: block;
-  line-height: 22px;
-  padding: 0 0 0 32px;
-  font-size: 14px;
-  color: #dddddd;
-}
-body.droplet .intro a.download strong {
-  border-bottom: 0;
-  color: #ffffff;
-}
-body.droplet .intro a.contribute {
-  text-decoration: none;
-  background: url('../images/plugins/droplet/book.png') no-repeat 4px 1px;
-  height: 18px;
-  display: block;
-  line-height: 16px;
-  margin: 10px 0 0;
-  padding: 0 0 0 32px;
-  font-size: 12px;
-  color: #cccccc;
-}
-body.droplet .intro #droplet {
-  background: url('../images/plugins/droplet/droplet.png') no-repeat;
-  width: 11px;
-  height: 19px;
-  position: absolute;
-  top: 32px;
-  left: 61px;
-}
-body.droplet .intro .corner {
-  background: url('../images/content/top_right_corner.gif') no-repeat;
-  width: 5px;
-  height: 5px;
-  position: absolute;
-  right: 0;
-  bottom: -5px;
-  z-index: 10;
-}
-body.droplet .section { padding: 20px 20px 0 20px; }
-body.droplet .section pre.code {
-  margin: 10px -20px;
-  padding: 10px 20px;
-}
-body.droplet .parameters ul {
-  padding: 10px 0;
-  font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", "DejaVu Sans Mono", monospace;
-}
-body.droplet .parameters li {
-  height: 20px;
-  line-height: 20px;
-  padding: 0 0 0 60px;
-}
-body.droplet .parameters .bool { background: url('../images/plugins/droplet/boolean.png') no-repeat top left; }
-body.droplet .parameters .int { background: url('../images/plugins/droplet/integer.png') no-repeat top left; }
-body.droplet .parameters .string { background: url('../images/plugins/droplet/string.png') no-repeat top left; }
-body.droplet .parameters .callback { background: url('../images/plugins/droplet/function.png') no-repeat top left; }
