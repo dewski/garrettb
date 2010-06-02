@@ -7,6 +7,6 @@
   %p#thirsty Now that you made it all the way down<br />to the bottom I only ask for you to<br /><a href="#" class="dewski">give me a Mountain Dew</a> to drink.
   %p#quenched{ :style => "display:none" } Ah, why thank you, now I can help you<br />through my <a href="/work">portfolio</a>.
   
-- content_for :javascript do
+%script{ :type => 'text/javascript' }
   :plain
     $.preLoadImages('/images/content/about_dewski.jpg', '/images/content/dewski.gif');

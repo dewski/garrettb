@@ -20,7 +20,7 @@
 
 %script{ :type => 'text/javascript' }
   :plain
-    items = #{@thumbs.to_json};
+    var items = #{@thumbs.to_json};
     $(items).each(function (i, item) {
       $.preloadImages(item.large)
     });
