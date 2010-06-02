@@ -1,4 +1,5 @@
 class ContactController < ApplicationController
+  caches_page :show
   respond_to :html, :js
   
   def show
