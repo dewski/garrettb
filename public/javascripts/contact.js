@@ -15,3 +15,8 @@ $('body.contact form').bind('ajax:before', function (e) {
   });
   return validated;
 });
+
+$('body.contact form').bind('ajax:failure', function (xhr, status, error) {
+  alert('Something went wrong, please email me at:\nxhtmlthis@me.com');
+  $('body.contact form').clearForm();
+});

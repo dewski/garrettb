@@ -17,8 +17,8 @@
 
 #featured
   = image_tag @images.first.file.url(:large)
-    
-- content_for :javascript do
+
+%script{ :type => 'text/javascript' }
   :plain
     items = #{@thumbs.to_json};
     $(items).each(function (i, item) {
