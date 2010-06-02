@@ -467,7 +467,8 @@ body.works #listing .item {
   -moz-border-radius: 2px;
   border-radius: 2px;
 }
-.item strong {
+.item strong,
+#welcome > a strong {
   text-decoration: none;
   color: #ffffff;
   font-size: 11px;
@@ -484,11 +485,8 @@ body.works #listing .item {
   background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
   border: 1px solid #000000;
 }
-.item a:active strong {
-  background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.9)), to(rgba(0, 0, 0, 0.7))) !important;
-  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)) !important;
-}
-.item a:active strong {
+.item a:active strong,
+#welcome > a:active strong {
   background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.9)), to(rgba(0, 0, 0, 0.7))) !important;
   background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)) !important;
 }
