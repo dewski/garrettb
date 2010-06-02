@@ -6,7 +6,7 @@ GB::Application.configure do
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store, "172.19.2.187:11211"
   config.serve_static_assets = true
-  # config.action_controller.asset_host = "http://img.garrettbjerkhoel.com"
+  config.action_controller.asset_host = "img.garrettbjerkhoel.com"
   
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
