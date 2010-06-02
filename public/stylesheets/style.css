@@ -468,7 +468,7 @@ body.works #listing .item {
   border-radius: 2px;
 }
 .item strong,
-#welcome > a strong {
+body.welcome #right > a strong {
   text-decoration: none;
   color: #ffffff;
   font-size: 11px;
@@ -486,7 +486,7 @@ body.works #listing .item {
   border: 1px solid #000000;
 }
 .item a:active strong,
-#welcome > a:active strong {
+body.welcome #right > a:active strong {
   background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(0, 0, 0, 0.9)), to(rgba(0, 0, 0, 0.7))) !important;
   background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)) !important;
 }
